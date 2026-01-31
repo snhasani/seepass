@@ -3,12 +3,10 @@
 import {
   AIInsight,
   ProblemCard,
-  StatPill,
   SummaryPanel,
   type PriorityItem,
   type Problem,
 } from "@repo/design-system";
-import { AlertTriangle, MessageSquare, Sparkles, Users } from "lucide-react";
 
 // Mock data for the dashboard
 const mockPriorities: PriorityItem[] = [
@@ -119,36 +117,6 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col h-full ds-gradient-subtle">
       {/* Compact Stats Header Bar */}
-      <header className="flex items-center gap-4 px-6 py-3 border-b border-[--ds-indigo-200] bg-card/80 backdrop-blur-sm overflow-x-auto">
-        <StatPill
-          icon={AlertTriangle}
-          label="Problems"
-          value={156}
-          trend="+10%"
-          negative
-        />
-        <StatPill
-          icon={AlertTriangle}
-          label="Critical"
-          value={3}
-          variant="critical"
-        />
-        <StatPill
-          icon={MessageSquare}
-          label="Signals"
-          value={234}
-          trend="+18%"
-          variant="signal"
-        />
-        <StatPill icon={Sparkles} label="AI Insights" value={12} variant="ai" />
-        <StatPill
-          icon={Users}
-          label="Users Affected"
-          value="2.4K"
-          trend="+33%"
-          negative
-        />
-      </header>
 
       {/* Main content area - full width */}
       <main className="flex-1 min-h-0 overflow-y-auto p-6">

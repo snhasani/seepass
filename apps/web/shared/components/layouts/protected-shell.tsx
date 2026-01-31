@@ -8,11 +8,11 @@ import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
 import { Button } from "@/shared/components/ui/button";
 import { useAuthStore } from "@/features/auth";
 
-export default function DashboardLayout({
-  children,
-}: {
+type ProtectedShellProps = {
   children: React.ReactNode;
-}) {
+};
+
+export function ProtectedShell({ children }: ProtectedShellProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, isAuthenticated, signOut } = useAuthStore();
@@ -28,14 +28,12 @@ export default function DashboardLayout({
     router.push("/");
   }
 
-  // Show nothing while checking auth
   if (!isAuthenticated) {
     return null;
   }
 
   return (
     <div className="flex h-dvh flex-col">
-      {/* Header */}
       <header className="flex h-14 shrink-0 items-center justify-between border-b bg-background px-4">
         <div className="flex items-center gap-3">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold text-white">
@@ -110,7 +108,6 @@ export default function DashboardLayout({
         </div>
       </header>
 
-      {/* Sub navigation */}
       <nav className="flex h-12 shrink-0 items-center gap-2 border-b bg-background px-4 text-sm">
         <Link
           href="/dashboard"
@@ -134,7 +131,6 @@ export default function DashboardLayout({
         </Link>
       </nav>
 
-      {/* Main content */}
       <main className="flex-1 min-h-0 overflow-auto">{children}</main>
     </div>
   );
