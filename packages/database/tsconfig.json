@@ -3,7 +3,6 @@
   "compilerOptions": {
     "lib": ["ES2015"],
     "outDir": "./dist",
-    "rootDir": "./src",
     "types": ["node"]
   },
   "include": ["src/**/*", "prisma/**/*"],

@@ -5,11 +5,11 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "db:migrate": "npx prisma migrate dev",
+    "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
-    "db:reset": "npx prisma migrate reset",
-    "db:studio": "npx prisma studio",
-    "db:generate": "npx prisma generate",
+    "db:reset": "prisma migrate reset",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate",
     "lint": "eslint src/",
     "check-types": "tsc --noEmit"
   },
@@ -17,12 +17,16 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "^7.0.0"
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.0.0",
+    "pg": "^8.18.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
+    "@types/pg": "^8.16.0",
+    "dotenv": "^17.2.3",
     "eslint": "^9.39.0",
     "prisma": "^7.0.0",
     "tsx": "^4.19.2",

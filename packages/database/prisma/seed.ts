@@ -1,13 +1,20 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
+import { config } from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const prisma = new PrismaClient();
+config({ path: path.resolve(__dirname, '../.env') });
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const seedPath = path.join(
-    process.cwd(),
-    'packages/data-gen/out/pattern_records_seed.json'
+  const seedPath = path.resolve(
+    __dirname,
+    '../../data-gen/out/pattern_records_seed.json'
   );
 
   if (!fs.existsSync(seedPath)) {
