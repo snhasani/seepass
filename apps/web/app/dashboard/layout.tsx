@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { LogOut, Monitor, Moon, Sun } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, isAuthenticated, signOut } = useAuthStore();
 
   useEffect(() => {
@@ -107,6 +109,30 @@ export default function DashboardLayout({
           </div>
         </div>
       </header>
+
+      {/* Sub navigation */}
+      <nav className="flex h-12 shrink-0 items-center gap-2 border-b bg-background px-4 text-sm">
+        <Link
+          href="/dashboard"
+          className={`rounded-full px-3 py-1.5 transition ${
+            pathname === "/dashboard"
+              ? "bg-muted text-foreground"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Dashboard
+        </Link>
+        <Link
+          href="/assistant"
+          className={`rounded-full px-3 py-1.5 transition ${
+            pathname === "/assistant"
+              ? "bg-muted text-foreground"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Problem Assistant
+        </Link>
+      </nav>
 
       {/* Main content */}
       <main className="flex-1 min-h-0 overflow-auto">{children}</main>
