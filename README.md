@@ -26,15 +26,35 @@ git clone https://github.com/your-team/your-project.git
 cd your-project
 
 # Install dependencies
-npm install
+pnpm install
+
+# Start PostgreSQL database (Docker required)
+./scripts/db-start.sh
+# Or: docker-compose up -d postgres
 
 # Set up environment variables
-cp .env.example .env
-# Add your API keys to .env
+cp .env.example apps/web/.env.local
+# DATABASE_URL is already configured for docker-compose setup
+
+# Generate pattern records
+pnpm gen:patterns
+
+# Run database migrations
+cd apps/web && pnpm db:migrate
+
+# Seed the database
+pnpm db:seed
 
 # Run the development server
-npm run dev
+pnpm dev
 ```
+
+### Database Management
+
+- **Start database**: `./scripts/db-start.sh` or `docker-compose up -d postgres`
+- **Stop database**: `./scripts/db-stop.sh` or `docker-compose down`
+- **View logs**: `./scripts/db-logs.sh` or `docker-compose logs -f postgres`
+- **Database Studio**: `cd apps/web && pnpm db:studio` (opens Prisma Studio)
 
 ## Details
 

@@ -8,6 +8,8 @@ minimumReleaseAgeExclude:
   - turbo-linux-arm64
 
 onlyBuiltDependencies:
+  - '@prisma/engines'
   - '@swc/core'
   - esbuild
+  - prisma
   - sharp
