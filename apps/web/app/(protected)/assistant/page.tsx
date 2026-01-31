@@ -4,21 +4,31 @@ import { useAuthStore } from "@/features/auth";
 import {
   ProblemCanvas,
   ProblemDiscoveryAssistant,
-  ProblemsSidebar,
+  ProblemsList,
 } from "@/features/problems";
 import { Button } from "@/shared/components/ui/button";
-import { MessageSquare, LayoutGrid } from "lucide-react";
+import { MessageSquare, LayoutGrid, List, Plus } from "lucide-react";
 import { useCallback, useState } from "react";
 
-type ViewMode = "chat" | "canvas";
+type ViewMode = "list" | "chat" | "workshop";
 
 export default function AssistantProblemPage() {
   const user = useAuthStore((state) => state.user);
   const [key, setKey] = useState(0);
-  const [viewMode, setViewMode] = useState<ViewMode>("chat");
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   const handleProblemConfirmed = useCallback(() => {
     setKey((k) => k + 1);
+    setViewMode("list");
+  }, []);
+
+  const handleNewProblem = useCallback(() => {
+    setKey((k) => k + 1);
+    setViewMode("chat");
+  }, []);
+
+  const handleStartWorkshop = useCallback(() => {
+    setViewMode("workshop");
   }, []);
 
   if (!user?.id) {
@@ -32,8 +42,17 @@ export default function AssistantProblemPage() {
   return (
     <div className="flex h-full min-h-0 flex-col p-4">
       {/* View toggle */}
-      <div className="mb-4 flex items-center gap-2">
+      <div className="mb-4 flex items-center justify-between">
         <div className="inline-flex items-center rounded-lg border bg-muted p-1">
+          <Button
+            variant={viewMode === "list" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setViewMode("list")}
+            className="gap-2"
+          >
+            <List className="size-4" />
+            Problems
+          </Button>
           <Button
             variant={viewMode === "chat" ? "default" : "ghost"}
             size="sm"
@@ -44,30 +63,43 @@ export default function AssistantProblemPage() {
             Chat
           </Button>
           <Button
-            variant={viewMode === "canvas" ? "default" : "ghost"}
+            variant={viewMode === "workshop" ? "default" : "ghost"}
             size="sm"
-            onClick={() => setViewMode("canvas")}
+            onClick={() => setViewMode("workshop")}
             className="gap-2"
           >
             <LayoutGrid className="size-4" />
-            Canvas
+            Workshop
           </Button>
         </div>
+        {viewMode === "list" && (
+          <Button onClick={handleNewProblem} className="gap-2">
+            <Plus className="size-4" />
+            New Problem
+          </Button>
+        )}
       </div>
 
       {/* Content area */}
-      {viewMode === "chat" ? (
-        <div className="flex min-h-0 flex-1 gap-6">
-          <div className="flex min-w-0 flex-1 flex-col">
-            <ProblemDiscoveryAssistant
-              key={key}
-              userId={user.id}
-              onProblemConfirmed={handleProblemConfirmed}
-            />
-          </div>
-          <ProblemsSidebar userId={user.id} />
+      {viewMode === "list" && (
+        <div className="flex min-h-0 flex-1">
+          <ProblemsList
+            userId={user.id}
+            onNewProblem={handleNewProblem}
+            onStartWorkshop={handleStartWorkshop}
+          />
         </div>
-      ) : (
+      )}
+      {viewMode === "chat" && (
+        <div className="flex min-h-0 flex-1 flex-col">
+          <ProblemDiscoveryAssistant
+            key={key}
+            userId={user.id}
+            onProblemConfirmed={handleProblemConfirmed}
+          />
+        </div>
+      )}
+      {viewMode === "workshop" && (
         <div className="flex min-h-0 flex-1">
           <ProblemCanvas className="flex-1" />
         </div>
