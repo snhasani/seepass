@@ -15,10 +15,10 @@ const frequencyIndicatorVariants = cva(
         lg: "text-base",
       },
       trend: {
-        up: "text-[--ds-severity-critical]",
-        down: "text-[--ds-status-active]",
+        up: "text-[var(--ds-severity-critical)]",
+        down: "text-[var(--ds-status-active)]",
         stable: "text-muted-foreground",
-        hot: "text-[--ds-amber-500]",
+        hot: "text-[var(--ds-amber-500)]",
       },
     },
     defaultVariants: {
@@ -100,8 +100,8 @@ function FrequencyIndicator({
           <span
             className={cn(
               "text-xs",
-              changePercent > 0 && "text-[--ds-severity-high]",
-              changePercent < 0 && "text-[--ds-status-active]"
+              changePercent > 0 && "text-[var(--ds-severity-high)]",
+              changePercent < 0 && "text-[var(--ds-status-active)]"
             )}
           >
             ({changePercent > 0 ? "+" : ""}
@@ -141,7 +141,7 @@ function FrequencySparkline({
           key={index}
           className={cn(
             "flex-1 min-w-1 rounded-t-sm transition-all duration-300",
-            "bg-[--ds-teal-400] hover:bg-[--ds-teal-500]"
+            "bg-[var(--ds-teal-400)] hover:bg-[var(--ds-teal-500)]"
           )}
           style={{
             height: `${Math.max((value / max) * 100, 8)}%`,

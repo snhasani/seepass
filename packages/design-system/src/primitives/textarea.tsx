@@ -16,8 +16,8 @@ const textareaVariants = cva(
     variants: {
       variant: {
         default: "border-input",
-        problem: "border-[--ds-amber-300] focus-visible:ring-[--ds-problem]",
-        ai: "border-[--ds-violet-300] focus-visible:ring-[--ds-ai]",
+        problem: "border-[var(--ds-amber-300)] focus-visible:ring-[var(--ds-problem)]",
+        ai: "border-[var(--ds-violet-300)] focus-visible:ring-[var(--ds-ai)]",
       },
       resize: {
         none: "resize-none",
@@ -94,7 +94,7 @@ function Textarea({
           <span
             className={cn(
               "ml-auto tabular-nums",
-              charLength > maxLength * 0.9 && "text-[--ds-status-pending]",
+              charLength > maxLength * 0.9 && "text-[var(--ds-status-pending)]",
               charLength >= maxLength && "text-destructive"
             )}
           >

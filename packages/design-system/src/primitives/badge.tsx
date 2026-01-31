@@ -10,20 +10,20 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[--ds-indigo-100] text-[--ds-indigo-700] dark:bg-[--ds-indigo-800] dark:text-[--ds-indigo-200]",
+          "bg-[var(--ds-indigo-100)] text-[var(--ds-indigo-700)] dark:bg-[var(--ds-indigo-800)] dark:text-[var(--ds-indigo-200)]",
         secondary: "bg-secondary text-secondary-foreground border border-border",
         outline: "border border-current bg-transparent",
         problem:
-          "bg-[--ds-problem-bg] text-[--ds-amber-700] dark:text-[--ds-amber-300] border border-[--ds-problem-border] dark:border-[--ds-amber-700]",
-        ai: "bg-[--ds-ai-bg] text-[--ds-violet-600] dark:text-[--ds-violet-300] border border-[--ds-ai-border] dark:border-[--ds-violet-700]",
+          "bg-[var(--ds-problem-bg)] text-[var(--ds-amber-700)] dark:text-[var(--ds-amber-300)] border border-[var(--ds-problem-border)] dark:border-[var(--ds-amber-700)]",
+        ai: "bg-[var(--ds-ai-bg)] text-[var(--ds-violet-600)] dark:text-[var(--ds-violet-300)] border border-[var(--ds-ai-border)] dark:border-[var(--ds-violet-700)]",
         signal:
-          "bg-[--ds-signal-bg] text-[--ds-teal-700] dark:text-[--ds-teal-300] border border-[--ds-signal-border] dark:border-[--ds-teal-700]",
+          "bg-[var(--ds-signal-bg)] text-[var(--ds-teal-700)] dark:text-[var(--ds-teal-300)] border border-[var(--ds-signal-border)] dark:border-[var(--ds-teal-700)]",
         success:
-          "bg-[--ds-status-active-bg] text-[--ds-status-active] border border-[--ds-teal-200] dark:border-[--ds-teal-700]",
+          "bg-[var(--ds-status-active-bg)] text-[var(--ds-status-active)] border border-[var(--ds-teal-200)] dark:border-[var(--ds-teal-700)]",
         warning:
-          "bg-[--ds-status-pending-bg] text-[--ds-amber-700] dark:text-[--ds-amber-300] border border-[--ds-amber-200] dark:border-[--ds-amber-700]",
+          "bg-[var(--ds-status-pending-bg)] text-[var(--ds-amber-700)] dark:text-[var(--ds-amber-300)] border border-[var(--ds-amber-200)] dark:border-[var(--ds-amber-700)]",
         destructive:
-          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] border border-[--ds-severity-critical-border]",
+          "bg-[var(--ds-severity-critical-bg)] text-[var(--ds-severity-critical)] border border-[var(--ds-severity-critical-border)]",
       },
       size: {
         sm: "px-2 py-0.5 text-[10px] leading-4",

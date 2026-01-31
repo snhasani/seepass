@@ -25,12 +25,12 @@ const solutionCardVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-border hover:border-[--ds-teal-300]",
+        default: "border-border hover:border-[var(--ds-teal-300)]",
         aiSuggested:
-          "border-[--ds-violet-300] bg-gradient-to-br from-[--ds-ai-bg] to-transparent",
-        approved: "border-[--ds-status-active] bg-[--ds-status-active-bg]",
-        rejected: "border-[--ds-severity-critical]/30 bg-muted/30 opacity-60",
-        inProgress: "border-[--ds-amber-300] bg-[--ds-problem-bg]",
+          "border-[var(--ds-violet-300)] bg-gradient-to-br from-[var(--ds-ai-bg)] to-transparent",
+        approved: "border-[var(--ds-status-active)] bg-[var(--ds-status-active-bg)]",
+        rejected: "border-[var(--ds-severity-critical)]/30 bg-muted/30 opacity-60",
+        inProgress: "border-[var(--ds-amber-300)] bg-[var(--ds-problem-bg)]",
       },
       size: {
         sm: "p-3 gap-2",
@@ -49,27 +49,27 @@ const statusConfig = {
   proposed: {
     label: "Proposed",
     icon: Sparkles,
-    color: "text-[--ds-violet-500]",
+    color: "text-[var(--ds-violet-500)]",
   },
   approved: {
     label: "Approved",
     icon: CheckCircle2,
-    color: "text-[--ds-status-active]",
+    color: "text-[var(--ds-status-active)]",
   },
   rejected: {
     label: "Rejected",
     icon: XCircle,
-    color: "text-[--ds-severity-critical]",
+    color: "text-[var(--ds-severity-critical)]",
   },
   inProgress: {
     label: "In Progress",
     icon: Clock,
-    color: "text-[--ds-amber-500]",
+    color: "text-[var(--ds-amber-500)]",
   },
   completed: {
     label: "Completed",
     icon: CheckCircle2,
-    color: "text-[--ds-status-active]",
+    color: "text-[var(--ds-status-active)]",
   },
 };
 
@@ -251,7 +251,7 @@ function SolutionCard({
                     e.stopPropagation();
                     onProblemClick?.(problem.id);
                   }}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs bg-[--ds-problem-bg] text-[--ds-amber-700] hover:bg-[--ds-amber-200] transition-colors"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs bg-[var(--ds-problem-bg)] text-[var(--ds-amber-700)] hover:bg-[var(--ds-amber-200)] transition-colors"
                 >
                   <ArrowRight className="size-2.5" />
                   <span className="truncate max-w-[100px]">

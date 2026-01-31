@@ -17,11 +17,11 @@ const groupContainerVariants = cva(
       variant: {
         default: "border-border/50 bg-muted/20",
         problems:
-          "border-[--ds-amber-200] bg-[--ds-problem-bg]/30 dark:border-[--ds-amber-700]",
+          "border-[var(--ds-amber-200)] bg-[var(--ds-problem-bg)]/30 dark:border-[var(--ds-amber-700)]",
         solutions:
-          "border-[--ds-teal-200] bg-[--ds-signal-bg]/30 dark:border-[--ds-teal-700]",
+          "border-[var(--ds-teal-200)] bg-[var(--ds-signal-bg)]/30 dark:border-[var(--ds-teal-700)]",
         cluster:
-          "border-[--ds-violet-200] bg-[--ds-ai-bg]/30 dark:border-[--ds-violet-700]",
+          "border-[var(--ds-violet-200)] bg-[var(--ds-ai-bg)]/30 dark:border-[var(--ds-violet-700)]",
       },
       collapsed: {
         true: "min-h-0 h-auto",
@@ -105,9 +105,9 @@ function GroupContainer({
             <FolderOpen
               className={cn(
                 "size-5 shrink-0",
-                variant === "problems" && "text-[--ds-amber-500]",
-                variant === "solutions" && "text-[--ds-teal-500]",
-                variant === "cluster" && "text-[--ds-violet-500]"
+                variant === "problems" && "text-[var(--ds-amber-500)]",
+                variant === "solutions" && "text-[var(--ds-teal-500)]",
+                variant === "cluster" && "text-[var(--ds-violet-500)]"
               )}
             />
 

@@ -23,8 +23,8 @@ const effortEstimateVariants = cva(
   {
     variants: {
       source: {
-        ai: "border-[--ds-violet-200] bg-[--ds-ai-bg]",
-        human: "border-[--ds-teal-200] bg-[--ds-signal-bg]",
+        ai: "border-[var(--ds-violet-200)] bg-[var(--ds-ai-bg)]",
+        human: "border-[var(--ds-teal-200)] bg-[var(--ds-signal-bg)]",
         combined: "border-border bg-card",
       },
       size: {
@@ -72,8 +72,8 @@ function EffortEstimate({
       >
         <Icon
           className={cn(
-            source === "ai" && "text-[--ds-violet-500]",
-            source === "human" && "text-[--ds-teal-500]",
+            source === "ai" && "text-[var(--ds-violet-500)]",
+            source === "human" && "text-[var(--ds-teal-500)]",
             source === "combined" && "text-muted-foreground",
             size === "sm" ? "size-3" : size === "lg" ? "size-5" : "size-4"
           )}
@@ -102,9 +102,9 @@ function EffortEstimate({
                 size === "sm" ? "size-1.5" : size === "lg" ? "size-2.5" : "size-2",
                 level <= config.value
                   ? source === "ai"
-                    ? "bg-[--ds-violet-500]"
+                    ? "bg-[var(--ds-violet-500)]"
                     : source === "human"
-                      ? "bg-[--ds-teal-500]"
+                      ? "bg-[var(--ds-teal-500)]"
                       : "bg-foreground"
                   : "bg-muted"
               )}
@@ -158,7 +158,7 @@ function EffortSelector({
                   "flex-1 px-2 py-2 rounded-lg text-xs font-medium transition-all duration-200",
                   "border-2 flex flex-col items-center gap-1",
                   isSelected
-                    ? "border-[--ds-teal-500] bg-[--ds-signal-bg] text-[--ds-teal-700] scale-105"
+                    ? "border-[var(--ds-teal-500)] bg-[var(--ds-signal-bg)] text-[var(--ds-teal-700)] scale-105"
                     : "border-transparent bg-muted/50 hover:bg-muted text-muted-foreground",
                   disabled && "opacity-50 cursor-not-allowed"
                 )}
@@ -225,7 +225,7 @@ function EstimateComparison({
           {/* AI Estimate */}
           <div className="space-y-2">
             <div className="text-xs text-muted-foreground flex items-center gap-1">
-              <Sparkles className="size-3 text-[--ds-violet-500]" />
+              <Sparkles className="size-3 text-[var(--ds-violet-500)]" />
               AI Estimate
             </div>
             <EffortEstimate
@@ -239,7 +239,7 @@ function EstimateComparison({
           {/* Human Estimate */}
           <div className="space-y-2">
             <div className="text-xs text-muted-foreground flex items-center gap-1">
-              <User className="size-3 text-[--ds-teal-500]" />
+              <User className="size-3 text-[var(--ds-teal-500)]" />
               Your Estimate
             </div>
             {humanEstimate ? (
@@ -251,7 +251,7 @@ function EstimateComparison({
             ) : onHumanEstimateChange ? (
               <button
                 onClick={() => onHumanEstimateChange("medium")}
-                className="w-full h-[52px] rounded-lg border-2 border-dashed border-muted hover:border-[--ds-teal-300] transition-colors text-sm text-muted-foreground"
+                className="w-full h-[52px] rounded-lg border-2 border-dashed border-muted hover:border-[var(--ds-teal-300)] transition-colors text-sm text-muted-foreground"
               >
                 Add your estimate
               </button>
@@ -268,12 +268,12 @@ function EstimateComparison({
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="rounded-lg bg-[--ds-problem-bg] p-3 text-sm"
+            className="rounded-lg bg-[var(--ds-problem-bg)] p-3 text-sm"
           >
             <div className="flex items-start gap-2">
-              <HelpCircle className="size-4 text-[--ds-amber-500] mt-0.5 shrink-0" />
+              <HelpCircle className="size-4 text-[var(--ds-amber-500)] mt-0.5 shrink-0" />
               <div>
-                <p className="font-medium text-[--ds-amber-700]">
+                <p className="font-medium text-[var(--ds-amber-700)]">
                   Large estimation gap detected
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">

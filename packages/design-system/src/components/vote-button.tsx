@@ -17,9 +17,9 @@ const voteButtonVariants = cva(
     variants: {
       variant: {
         agree:
-          "bg-[--ds-status-active-bg] text-[--ds-status-active] hover:bg-[--ds-status-active]/20 border border-[--ds-status-active]/20",
+          "bg-[var(--ds-status-active-bg)] text-[var(--ds-status-active)] hover:bg-[var(--ds-status-active)]/20 border border-[var(--ds-status-active)]/20",
         disagree:
-          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] hover:bg-[--ds-severity-critical]/20 border border-[--ds-severity-critical]/20",
+          "bg-[var(--ds-severity-critical-bg)] text-[var(--ds-severity-critical)] hover:bg-[var(--ds-severity-critical)]/20 border border-[var(--ds-severity-critical)]/20",
         neutral:
           "bg-muted text-muted-foreground hover:bg-muted/80 border border-border",
       },
@@ -37,13 +37,13 @@ const voteButtonVariants = cva(
       {
         variant: "agree",
         selected: true,
-        className: "ring-[--ds-status-active] bg-[--ds-status-active] text-white",
+        className: "ring-[var(--ds-status-active)] bg-[var(--ds-status-active)] text-white",
       },
       {
         variant: "disagree",
         selected: true,
         className:
-          "ring-[--ds-severity-critical] bg-[--ds-severity-critical] text-white",
+          "ring-[var(--ds-severity-critical)] bg-[var(--ds-severity-critical)] text-white",
       },
     ],
     defaultVariants: {
@@ -205,9 +205,9 @@ function AgreementToggle({
         className={cn(
           "flex items-center gap-3 rounded-lg border px-4 py-3 text-sm transition-all duration-200",
           value === true &&
-            "border-[--ds-status-active] bg-[--ds-status-active-bg]",
+            "border-[var(--ds-status-active)] bg-[var(--ds-status-active-bg)]",
           value === false &&
-            "border-[--ds-severity-critical] bg-[--ds-severity-critical-bg]",
+            "border-[var(--ds-severity-critical)] bg-[var(--ds-severity-critical-bg)]",
           value === null && "border-border bg-muted/30 hover:bg-muted/50",
           disabled && "opacity-50 cursor-not-allowed",
           className
@@ -217,8 +217,8 @@ function AgreementToggle({
         <div
           className={cn(
             "flex size-5 items-center justify-center rounded-full transition-colors",
-            value === true && "bg-[--ds-status-active] text-white",
-            value === false && "bg-[--ds-severity-critical] text-white",
+            value === true && "bg-[var(--ds-status-active)] text-white",
+            value === false && "bg-[var(--ds-severity-critical)] text-white",
             value === null && "bg-muted"
           )}
         >

@@ -18,12 +18,12 @@ import { cn } from "../utils/cn";
 import { ConfidenceBar } from "./confidence-indicator";
 
 const aiInsightVariants = cva(
-  "relative rounded-xl border transition-all duration-300 shadow-[--ds-shadow-sm]",
+  "relative rounded-xl border transition-all duration-300 shadow-[var(--ds-shadow-sm)]",
   {
     variants: {
       variant: {
         default:
-          "bg-[--ds-gradient-card] border-border shadow-[--ds-shadow-xs] hover:border-[--ds-indigo-200] hover:shadow-[--ds-shadow-md]",
+          "bg-[var(--ds-gradient-card)] border-border shadow-[var(--ds-shadow-xs)] hover:border-[var(--ds-indigo-200)] hover:shadow-[var(--ds-shadow-md)]",
       },
       size: {
         sm: "p-3",
@@ -115,7 +115,7 @@ function AIInsight({
       {...props}
     >
       {/* Animated gradient accent */}
-      <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[--ds-violet-400] via-[--ds-teal-400] to-[--ds-amber-400] opacity-0 blur transition-opacity duration-500 group-hover:opacity-20" />
+      <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[var(--ds-violet-400)] via-[var(--ds-teal-400)] to-[var(--ds-amber-400)] opacity-0 blur transition-opacity duration-500 group-hover:opacity-20" />
 
       {/* Header */}
       <div className="relative flex items-start gap-3">
@@ -188,7 +188,7 @@ function AIInsight({
                         key={idx}
                         className="text-sm text-muted-foreground flex items-center gap-2"
                       >
-                        <span className="size-1.5 rounded-full bg-[--ds-teal-400]" />
+                        <span className="size-1.5 rounded-full bg-[var(--ds-teal-400)]" />
                         {problem}
                       </li>
                     ))}
@@ -215,15 +215,15 @@ function AIInsight({
               <>
                 <button
                   onClick={() => handleFeedback(true)}
-                  className="rounded-md p-1.5 hover:bg-[--ds-status-active-bg] transition-colors"
+                  className="rounded-md p-1.5 hover:bg-[var(--ds-status-active-bg)] transition-colors"
                 >
-                  <ThumbsUp className="size-4 text-muted-foreground hover:text-[--ds-status-active]" />
+                  <ThumbsUp className="size-4 text-muted-foreground hover:text-[var(--ds-status-active)]" />
                 </button>
                 <button
                   onClick={() => handleFeedback(false)}
-                  className="rounded-md p-1.5 hover:bg-[--ds-severity-critical-bg] transition-colors"
+                  className="rounded-md p-1.5 hover:bg-[var(--ds-severity-critical-bg)] transition-colors"
                 >
-                  <ThumbsDown className="size-4 text-muted-foreground hover:text-[--ds-severity-critical]" />
+                  <ThumbsDown className="size-4 text-muted-foreground hover:text-[var(--ds-severity-critical)]" />
                 </button>
               </>
             )}

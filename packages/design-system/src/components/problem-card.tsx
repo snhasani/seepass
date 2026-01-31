@@ -20,13 +20,13 @@ import { SignalSource, type SignalSourceType } from "./signal-source";
 const problemCardVariants = cva(
   [
     "relative flex flex-col rounded-xl border text-card-foreground transition-all duration-300",
-    "hover:shadow-[--ds-shadow-md]",
+    "hover:shadow-[var(--ds-shadow-md)]",
   ],
   {
     variants: {
       variant: {
         default:
-          "bg-[--ds-gradient-card] border-border shadow-[--ds-shadow-xs] hover:border-[--ds-indigo-200] hover:shadow-[--ds-shadow-md]",
+          "bg-[var(--ds-gradient-card)] border-border shadow-[var(--ds-shadow-xs)] hover:border-[var(--ds-indigo-200)] hover:shadow-[var(--ds-shadow-md)]",
       },
       size: {
         sm: "p-3 gap-2",
@@ -138,7 +138,7 @@ function ProblemCard({
         animate={{ opacity: 1, y: 0 }}
         className={cn(
           "flex items-center gap-3 rounded-lg border bg-card px-4 py-3 cursor-pointer transition-all",
-          "hover:bg-muted/50 hover:border-[--ds-teal-300]",
+          "hover:bg-muted/50 hover:border-[var(--ds-teal-300)]",
           selected && "ring-2 ring-primary",
           className
         )}
@@ -149,7 +149,7 @@ function ProblemCard({
         <div className="flex items-center gap-2 shrink-0">
           <SeverityBadge severity={problem.severity} size="sm" />
           {problem.aiConfidence !== undefined && (
-            <Sparkles className="size-3.5 text-[--ds-violet-500]" />
+            <Sparkles className="size-3.5 text-[var(--ds-violet-500)]" />
           )}
         </div>
 
@@ -169,8 +169,8 @@ function ProblemCard({
               className={cn(
                 "text-xs font-medium",
                 frequencyChange > 0
-                  ? "text-[--ds-severity-critical]"
-                  : "text-[--ds-status-active]"
+                  ? "text-[var(--ds-severity-critical)]"
+                  : "text-[var(--ds-status-active)]"
               )}
             >
               {frequencyChange > 0 ? "+" : ""}
@@ -209,10 +209,10 @@ function ProblemCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             {problem.isImmutable && (
-              <Lock className="size-3.5 text-[--ds-teal-500]" />
+              <Lock className="size-3.5 text-[var(--ds-teal-500)]" />
             )}
             {problem.aiConfidence !== undefined && (
-              <Sparkles className="size-3.5 text-[--ds-violet-500]" />
+              <Sparkles className="size-3.5 text-[var(--ds-violet-500)]" />
             )}
             <h3 className="font-semibold truncate">{problem.title}</h3>
             {collapsible && (

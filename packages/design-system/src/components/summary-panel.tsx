@@ -19,10 +19,12 @@ const summaryPanelVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-border bg-card shadow-[--ds-shadow-sm]",
-        highlighted: "border-[--ds-teal-300] bg-[--ds-gradient-card] shadow-[--ds-shadow-md] shadow-[--ds-shadow-glow-teal]",
-        urgent: "border-[--ds-amber-300] bg-[--ds-problem-bg] shadow-[--ds-shadow-md]",
-        ai: "border-[--ds-violet-200] bg-[--ds-gradient-ai] shadow-[--ds-shadow-sm] shadow-[--ds-shadow-glow]",
+        default: "border-border bg-card shadow-[var(--ds-shadow-sm)]",
+        highlighted:
+          "border-border bg-[var(--ds-gradient-card)] shadow-[var(--ds-shadow-md)] shadow-[var(--ds-shadow-glow-teal)]",
+        urgent:
+          "border-border bg-[var(--ds-problem-bg)] shadow-[var(--ds-shadow-md)]",
+        ai: "border-border bg-[var(--ds-gradient-ai)] shadow-[var(--ds-shadow-sm)] shadow-[var(--ds-shadow-glow)]",
       },
     },
     defaultVariants: {
@@ -42,7 +44,8 @@ export interface PriorityItem {
 }
 
 export interface SummaryPanelProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof summaryPanelVariants> {
   title?: string;
   subtitle?: string;
@@ -96,7 +99,7 @@ function SummaryPanel({
       {/* Header */}
       <div className="flex items-center justify-between p-4 pb-3">
         <div className="flex items-center gap-2">
-          <Sparkles className="size-4 text-[--ds-violet-500]" />
+          <Sparkles className="size-4 text-[var(--ds-violet-500)]" />
           <h2 className="font-semibold">{title}</h2>
           {hasUrgent && (
             <Badge variant="destructive" size="sm">
@@ -160,13 +163,14 @@ function SummaryPanel({
                   "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-all",
                   "hover:bg-muted/50",
                   isExpanded && "bg-muted/30",
-                  item.severity === "critical" && "bg-[--ds-severity-critical-bg]/30"
+                  item.severity === "critical" &&
+                    "bg-[var(--ds-severity-critical-bg)]/30"
                 )}
               >
                 <SeverityBadge severity={item.severity} size="sm" />
 
                 {item.isAiSuggested && (
-                  <Sparkles className="size-3 text-[--ds-violet-500] shrink-0" />
+                  <Sparkles className="size-3 text-[var(--ds-violet-500)] shrink-0" />
                 )}
 
                 <span className="flex-1 font-medium text-sm truncate">
@@ -205,7 +209,7 @@ function SummaryPanel({
                         </p>
                       )}
                       <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                        <Sparkles className="size-3 text-[--ds-violet-400] mt-0.5 shrink-0" />
+                        <Sparkles className="size-3 text-[var(--ds-violet-400)] mt-0.5 shrink-0" />
                         <span className="italic">{item.reason}</span>
                       </div>
                     </div>

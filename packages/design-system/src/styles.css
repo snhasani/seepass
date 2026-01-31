@@ -79,24 +79,28 @@
 
   /* ========================================
      SEVERITY COLORS
-     More refined and accessible
+     Vibrant, distinct colors for each level
      ======================================== */
 
-  --ds-severity-critical: oklch(0.58 0.22 25);
-  --ds-severity-critical-bg: oklch(0.97 0.03 25);
-  --ds-severity-critical-border: oklch(0.88 0.1 25);
+  /* Critical - Vivid red */
+  --ds-severity-critical: oklch(0.55 0.25 25);
+  --ds-severity-critical-bg: oklch(0.95 0.05 25);
+  --ds-severity-critical-border: oklch(0.80 0.15 25);
 
-  --ds-severity-high: oklch(0.65 0.18 45);
-  --ds-severity-high-bg: oklch(0.97 0.025 50);
-  --ds-severity-high-border: oklch(0.9 0.08 50);
+  /* High - Bright orange */
+  --ds-severity-high: oklch(0.68 0.2 50);
+  --ds-severity-high-bg: oklch(0.96 0.045 50);
+  --ds-severity-high-border: oklch(0.85 0.12 50);
 
-  --ds-severity-medium: oklch(0.72 0.14 85);
-  --ds-severity-medium-bg: oklch(0.98 0.015 85);
-  --ds-severity-medium-border: oklch(0.92 0.05 85);
+  /* Medium - Warm yellow/amber */
+  --ds-severity-medium: oklch(0.75 0.16 85);
+  --ds-severity-medium-bg: oklch(0.97 0.04 85);
+  --ds-severity-medium-border: oklch(0.88 0.1 85);
 
-  --ds-severity-low: oklch(0.6 0.12 175);
-  --ds-severity-low-bg: oklch(0.97 0.02 175);
-  --ds-severity-low-border: oklch(0.9 0.06 175);
+  /* Low - Calm teal/green */
+  --ds-severity-low: oklch(0.6 0.15 160);
+  --ds-severity-low-bg: oklch(0.96 0.035 160);
+  --ds-severity-low-border: oklch(0.85 0.1 160);
 
   /* ========================================
      STATUS COLORS
@@ -218,15 +222,15 @@
   --ds-signal-bg: oklch(0.22 0.05 175);
   --ds-signal-border: oklch(0.38 0.1 175);
 
-  /* Severity backgrounds */
-  --ds-severity-critical-bg: oklch(0.22 0.08 25);
-  --ds-severity-critical-border: oklch(0.4 0.14 25);
-  --ds-severity-high-bg: oklch(0.23 0.06 50);
-  --ds-severity-high-border: oklch(0.42 0.12 50);
-  --ds-severity-medium-bg: oklch(0.25 0.04 85);
-  --ds-severity-medium-border: oklch(0.42 0.08 85);
-  --ds-severity-low-bg: oklch(0.23 0.04 175);
-  --ds-severity-low-border: oklch(0.4 0.08 175);
+  /* Severity backgrounds - darker, richer variants */
+  --ds-severity-critical-bg: oklch(0.25 0.1 25);
+  --ds-severity-critical-border: oklch(0.45 0.18 25);
+  --ds-severity-high-bg: oklch(0.26 0.08 50);
+  --ds-severity-high-border: oklch(0.48 0.14 50);
+  --ds-severity-medium-bg: oklch(0.28 0.06 85);
+  --ds-severity-medium-border: oklch(0.5 0.1 85);
+  --ds-severity-low-bg: oklch(0.25 0.06 160);
+  --ds-severity-low-border: oklch(0.45 0.1 160);
 
   /* Status backgrounds */
   --ds-status-active-bg: oklch(0.23 0.05 155);

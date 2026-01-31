@@ -10,11 +10,11 @@ const statPillVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-card border-border text-foreground shadow-[--ds-shadow-xs]",
-        critical: "bg-[--ds-severity-critical-bg] border-[--ds-severity-critical-border] text-[--ds-severity-critical]",
-        warning: "bg-[--ds-problem-bg] border-[--ds-problem-border] text-[--ds-amber-600]",
-        ai: "bg-[--ds-ai-bg] border-[--ds-ai-border] text-[--ds-violet-600]",
-        signal: "bg-[--ds-signal-bg] border-[--ds-signal-border] text-[--ds-teal-600]",
+        default: "bg-card border-border text-foreground shadow-[var(--ds-shadow-xs)]",
+        critical: "bg-[var(--ds-severity-critical-bg)] border-[var(--ds-severity-critical-border)] text-[var(--ds-severity-critical)]",
+        warning: "bg-[var(--ds-problem-bg)] border-[var(--ds-problem-border)] text-[var(--ds-amber-600)]",
+        ai: "bg-[var(--ds-ai-bg)] border-[var(--ds-ai-border)] text-[var(--ds-violet-600)]",
+        signal: "bg-[var(--ds-signal-bg)] border-[var(--ds-signal-border)] text-[var(--ds-teal-600)]",
       },
     },
     defaultVariants: {
@@ -60,8 +60,8 @@ function StatPill({
           className={cn(
             "text-xs",
             negative
-              ? "text-[--ds-severity-critical]"
-              : "text-[--ds-status-active]"
+              ? "text-[var(--ds-severity-critical)]"
+              : "text-[var(--ds-status-active)]"
           )}
         >
           {trend}

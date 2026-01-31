@@ -25,17 +25,17 @@ const sourceConfig: Record<
   email: {
     icon: Mail,
     label: "Email",
-    color: "bg-[--ds-teal-500] text-white",
+    color: "bg-[var(--ds-teal-500)] text-white",
   },
   support: {
     icon: Headphones,
     label: "Support",
-    color: "bg-[--ds-amber-500] text-white",
+    color: "bg-[var(--ds-amber-500)] text-white",
   },
   interview: {
     icon: Users,
     label: "Interview",
-    color: "bg-[--ds-violet-500] text-white",
+    color: "bg-[var(--ds-violet-500)] text-white",
   },
   document: {
     icon: FileText,

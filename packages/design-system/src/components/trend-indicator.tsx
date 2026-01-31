@@ -20,13 +20,13 @@ const trendIndicatorVariants = cva(
     variants: {
       trend: {
         emerging:
-          "border-[--ds-violet-200] bg-[--ds-ai-bg] text-[--ds-violet-700]",
+          "border-[var(--ds-violet-200)] bg-[var(--ds-ai-bg)] text-[var(--ds-violet-700)]",
         rising:
-          "border-[--ds-severity-high] bg-[--ds-severity-high-bg] text-[--ds-severity-high]",
+          "border-[var(--ds-severity-high)] bg-[var(--ds-severity-high-bg)] text-[var(--ds-severity-high)]",
         stable: "border-border bg-muted/50 text-muted-foreground",
         declining:
-          "border-[--ds-status-active] bg-[--ds-status-active-bg] text-[--ds-status-active]",
-        hot: "border-[--ds-amber-400] bg-[--ds-problem-bg] text-[--ds-amber-600]",
+          "border-[var(--ds-status-active)] bg-[var(--ds-status-active-bg)] text-[var(--ds-status-active)]",
+        hot: "border-[var(--ds-amber-400)] bg-[var(--ds-problem-bg)] text-[var(--ds-amber-600)]",
       },
       size: {
         sm: "text-xs px-2 py-1",
@@ -175,11 +175,11 @@ function TrendList({
                 <div
                   className={cn(
                     "flex size-8 items-center justify-center rounded-lg",
-                    trend.trend === "emerging" && "bg-[--ds-ai-bg] text-[--ds-violet-500]",
-                    trend.trend === "rising" && "bg-[--ds-severity-high-bg] text-[--ds-severity-high]",
+                    trend.trend === "emerging" && "bg-[var(--ds-ai-bg)] text-[var(--ds-violet-500)]",
+                    trend.trend === "rising" && "bg-[var(--ds-severity-high-bg)] text-[var(--ds-severity-high)]",
                     trend.trend === "stable" && "bg-muted text-muted-foreground",
-                    trend.trend === "declining" && "bg-[--ds-status-active-bg] text-[--ds-status-active]",
-                    trend.trend === "hot" && "bg-[--ds-problem-bg] text-[--ds-amber-600]"
+                    trend.trend === "declining" && "bg-[var(--ds-status-active-bg)] text-[var(--ds-status-active)]",
+                    trend.trend === "hot" && "bg-[var(--ds-problem-bg)] text-[var(--ds-amber-600)]"
                   )}
                 >
                   <Icon className="size-4" />
