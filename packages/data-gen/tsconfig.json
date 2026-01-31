@@ -1,7 +1,9 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
+    "allowImportingTsExtensions": false,
     "lib": ["ES2015"],
+    "noEmit": false,
     "outDir": "./dist",
     "rootDir": "./src",
     "types": ["node"]
