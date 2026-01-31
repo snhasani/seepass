@@ -10,20 +10,20 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[--ds-teal-100] text-[--ds-teal-700] dark:bg-[--ds-teal-800] dark:text-[--ds-teal-200]",
-        secondary: "bg-secondary text-secondary-foreground",
+          "bg-[--ds-indigo-100] text-[--ds-indigo-700] dark:bg-[--ds-indigo-800] dark:text-[--ds-indigo-200]",
+        secondary: "bg-secondary text-secondary-foreground border border-border",
         outline: "border border-current bg-transparent",
         problem:
-          "bg-[--ds-problem-bg] text-[--ds-amber-700] dark:text-[--ds-amber-300] ring-1 ring-[--ds-amber-200] dark:ring-[--ds-amber-700]",
-        ai: "bg-[--ds-ai-bg] text-[--ds-violet-700] dark:text-[--ds-violet-300] ring-1 ring-[--ds-violet-200] dark:ring-[--ds-violet-700]",
+          "bg-[--ds-problem-bg] text-[--ds-amber-700] dark:text-[--ds-amber-300] border border-[--ds-problem-border] dark:border-[--ds-amber-700]",
+        ai: "bg-[--ds-ai-bg] text-[--ds-violet-600] dark:text-[--ds-violet-300] border border-[--ds-ai-border] dark:border-[--ds-violet-700]",
         signal:
-          "bg-[--ds-signal-bg] text-[--ds-teal-700] dark:text-[--ds-teal-300] ring-1 ring-[--ds-teal-200] dark:ring-[--ds-teal-700]",
+          "bg-[--ds-signal-bg] text-[--ds-teal-700] dark:text-[--ds-teal-300] border border-[--ds-signal-border] dark:border-[--ds-teal-700]",
         success:
-          "bg-[--ds-status-active-bg] text-[--ds-status-active] ring-1 ring-[--ds-status-active]/20",
+          "bg-[--ds-status-active-bg] text-[--ds-status-active] border border-[--ds-teal-200] dark:border-[--ds-teal-700]",
         warning:
-          "bg-[--ds-status-pending-bg] text-[--ds-amber-700] dark:text-[--ds-amber-300] ring-1 ring-[--ds-amber-300]/30",
+          "bg-[--ds-status-pending-bg] text-[--ds-amber-700] dark:text-[--ds-amber-300] border border-[--ds-amber-200] dark:border-[--ds-amber-700]",
         destructive:
-          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] ring-1 ring-[--ds-severity-critical]/20",
+          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] border border-[--ds-severity-critical-border]",
       },
       size: {
         sm: "px-2 py-0.5 text-[10px] leading-4",

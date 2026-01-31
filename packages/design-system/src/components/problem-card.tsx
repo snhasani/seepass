@@ -19,19 +19,14 @@ import { SignalSource, type SignalSourceType } from "./signal-source";
 
 const problemCardVariants = cva(
   [
-    "relative flex flex-col rounded-xl border bg-card text-card-foreground transition-all duration-300",
-    "hover:shadow-md",
+    "relative flex flex-col rounded-xl border text-card-foreground transition-all duration-300",
+    "hover:shadow-[--ds-shadow-md]",
   ],
   {
     variants: {
       variant: {
-        default: "border-border hover:border-[--ds-amber-300]",
-        highlighted:
-          "border-[--ds-amber-400] bg-[--ds-problem-bg] shadow-md ring-2 ring-[--ds-problem]/10",
-        aiSuggested:
-          "border-[--ds-violet-300] bg-[--ds-ai-bg] ring-2 ring-[--ds-ai]/10",
-        immutable:
-          "border-[--ds-teal-300] bg-[--ds-signal-bg] cursor-not-allowed",
+        default:
+          "bg-[--ds-gradient-card] border-border shadow-[--ds-shadow-xs] hover:border-[--ds-indigo-200] hover:shadow-[--ds-shadow-md]",
       },
       size: {
         sm: "p-3 gap-2",
@@ -115,12 +110,6 @@ function ProblemCard({
     React.useState(defaultExpanded);
   const isExpanded = controlledExpanded ?? internalExpanded;
 
-  const effectiveVariant = problem.isImmutable
-    ? "immutable"
-    : problem.aiConfidence
-      ? "aiSuggested"
-      : variant;
-
   const handleClick = () => {
     if (collapsible) {
       setInternalExpanded(!isExpanded);
@@ -150,10 +139,6 @@ function ProblemCard({
         className={cn(
           "flex items-center gap-3 rounded-lg border bg-card px-4 py-3 cursor-pointer transition-all",
           "hover:bg-muted/50 hover:border-[--ds-teal-300]",
-          effectiveVariant === "aiSuggested" &&
-            "border-[--ds-violet-200] bg-[--ds-ai-bg]/30",
-          effectiveVariant === "highlighted" &&
-            "border-[--ds-amber-200] bg-[--ds-problem-bg]/30",
           selected && "ring-2 ring-primary",
           className
         )}
@@ -211,7 +196,7 @@ function ProblemCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       className={cn(
-        problemCardVariants({ variant: effectiveVariant, size }),
+        problemCardVariants({ variant, size }),
         selected && "ring-2 ring-primary",
         (onSelect || collapsible) && "cursor-pointer",
         className

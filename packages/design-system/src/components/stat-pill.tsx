@@ -6,15 +6,15 @@ import * as React from "react";
 import { cn } from "../utils/cn";
 
 const statPillVariants = cva(
-  "inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+  "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium transition-all border",
   {
     variants: {
       variant: {
-        default: "bg-muted text-foreground",
-        critical: "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical]",
-        warning: "bg-[--ds-problem-bg] text-[--ds-amber-600]",
-        ai: "bg-[--ds-ai-bg] text-[--ds-violet-600]",
-        signal: "bg-[--ds-signal-bg] text-[--ds-teal-600]",
+        default: "bg-card border-border text-foreground shadow-[--ds-shadow-xs]",
+        critical: "bg-[--ds-severity-critical-bg] border-[--ds-severity-critical-border] text-[--ds-severity-critical]",
+        warning: "bg-[--ds-problem-bg] border-[--ds-problem-border] text-[--ds-amber-600]",
+        ai: "bg-[--ds-ai-bg] border-[--ds-ai-border] text-[--ds-violet-600]",
+        signal: "bg-[--ds-signal-bg] border-[--ds-signal-border] text-[--ds-teal-600]",
       },
     },
     defaultVariants: {

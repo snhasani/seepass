@@ -8,19 +8,15 @@ import {
   type PriorityItem,
   type Problem,
 } from "@repo/design-system";
-import {
-  AlertTriangle,
-  MessageSquare,
-  Sparkles,
-  Users,
-} from "lucide-react";
+import { AlertTriangle, MessageSquare, Sparkles, Users } from "lucide-react";
 
 // Mock data for the dashboard
 const mockPriorities: PriorityItem[] = [
   {
     id: "1",
     title: "Checkout flow abandonment spike",
-    description: "Users are dropping off at the payment step at 3x the normal rate",
+    description:
+      "Users are dropping off at the payment step at 3x the normal rate",
     severity: "critical",
     signalCount: 47,
     reason: "High impact on revenue, affecting 12% of all transactions",
@@ -63,7 +59,8 @@ const mockProblems: Problem[] = [
   {
     id: "prob-1",
     title: "Users can't complete checkout on mobile",
-    description: "Multiple reports of the checkout button being unresponsive on mobile devices, particularly after applying discount codes.",
+    description:
+      "Multiple reports of the checkout button being unresponsive on mobile devices, particularly after applying discount codes.",
     severity: "critical",
     sources: [
       { type: "support", timestamp: new Date("2026-01-30T14:22:00") },
@@ -82,7 +79,8 @@ const mockProblems: Problem[] = [
   {
     id: "prob-2",
     title: "Dashboard loading extremely slowly",
-    description: "Enterprise customers reporting 10+ second load times on their main dashboard view.",
+    description:
+      "Enterprise customers reporting 10+ second load times on their main dashboard view.",
     severity: "high",
     sources: [
       { type: "email", timestamp: new Date("2026-01-30T09:15:00") },
@@ -98,7 +96,8 @@ const mockProblems: Problem[] = [
   {
     id: "prob-3",
     title: "Confusing onboarding flow for teams",
-    description: "New team admins struggling to understand how to invite members and set up permissions.",
+    description:
+      "New team admins struggling to understand how to invite members and set up permissions.",
     severity: "medium",
     sources: [
       { type: "survey", timestamp: new Date("2026-01-29T10:00:00") },
@@ -118,9 +117,9 @@ const mockProblems: Problem[] = [
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full ds-gradient-subtle">
       {/* Compact Stats Header Bar */}
-      <header className="flex items-center gap-4 px-6 py-3 border-b bg-muted/30 overflow-x-auto">
+      <header className="flex items-center gap-4 px-6 py-3 border-b border-[--ds-indigo-200] bg-card/80 backdrop-blur-sm overflow-x-auto">
         <StatPill
           icon={AlertTriangle}
           label="Problems"
@@ -141,12 +140,7 @@ export default function DashboardPage() {
           trend="+18%"
           variant="signal"
         />
-        <StatPill
-          icon={Sparkles}
-          label="AI Insights"
-          value={12}
-          variant="ai"
-        />
+        <StatPill icon={Sparkles} label="AI Insights" value={12} variant="ai" />
         <StatPill
           icon={Users}
           label="Users Affected"
@@ -167,6 +161,7 @@ export default function DashboardPage() {
             lastUpdated={new Date()}
             maxItems={5}
             compact
+            className="bg-white"
           />
 
           {/* AI Insight - collapsible */}
@@ -183,6 +178,7 @@ export default function DashboardPage() {
             ]}
             expandable
             defaultExpanded={false}
+            className="bg-white"
           />
 
           {/* Problem Cards - collapsible */}
@@ -197,6 +193,7 @@ export default function DashboardPage() {
                   problem={problem}
                   collapsible
                   defaultExpanded={false}
+                  className="bg-white"
                 />
               ))}
             </div>

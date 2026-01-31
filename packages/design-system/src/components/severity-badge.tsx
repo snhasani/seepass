@@ -29,18 +29,18 @@ const severityConfig = {
 };
 
 const severityBadgeVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200",
+  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200 border",
   {
     variants: {
       severity: {
         critical:
-          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] ring-1 ring-[--ds-severity-critical]/20",
+          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] border-[--ds-severity-critical-border]",
         high:
-          "bg-[--ds-severity-high-bg] text-[--ds-severity-high] ring-1 ring-[--ds-severity-high]/20",
+          "bg-[--ds-severity-high-bg] text-[--ds-severity-high] border-[--ds-severity-high-border]",
         medium:
-          "bg-[--ds-severity-medium-bg] text-[--ds-severity-medium] ring-1 ring-[--ds-severity-medium]/20",
+          "bg-[--ds-severity-medium-bg] text-[--ds-severity-medium] border-[--ds-severity-medium-border]",
         low:
-          "bg-[--ds-severity-low-bg] text-[--ds-severity-low] ring-1 ring-[--ds-severity-low]/20",
+          "bg-[--ds-severity-low-bg] text-[--ds-severity-low] border-[--ds-severity-low-border]",
       },
       size: {
         sm: "px-2 py-0.5 text-[10px]",

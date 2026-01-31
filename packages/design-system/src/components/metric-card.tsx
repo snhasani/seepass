@@ -7,14 +7,14 @@ import { TrendingUp, TrendingDown, Minus, type LucideIcon } from "lucide-react";
 import { cn } from "../utils/cn";
 
 const metricCardVariants = cva(
-  "relative rounded-xl border bg-card p-4 transition-all duration-200 hover:shadow-md",
+  "relative rounded-xl border p-4 transition-all duration-200 hover:shadow-[--ds-shadow-md]",
   {
     variants: {
       variant: {
-        default: "border-border",
-        highlighted: "border-[--ds-teal-300] bg-[--ds-signal-bg]",
-        warning: "border-[--ds-amber-300] bg-[--ds-problem-bg]",
-        ai: "border-[--ds-violet-300] bg-[--ds-ai-bg]",
+        default: "border-border bg-[--ds-gradient-card] shadow-[--ds-shadow-xs]",
+        highlighted: "border-[--ds-teal-200] bg-[--ds-signal-bg] shadow-[--ds-shadow-sm]",
+        warning: "border-[--ds-amber-200] bg-[--ds-problem-bg] shadow-[--ds-shadow-sm]",
+        ai: "border-[--ds-violet-200] bg-[--ds-gradient-ai] shadow-[--ds-shadow-sm] shadow-[--ds-shadow-glow]",
       },
       size: {
         sm: "p-3",

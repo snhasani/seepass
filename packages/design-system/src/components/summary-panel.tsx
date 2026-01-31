@@ -15,18 +15,18 @@ import { cn } from "../utils/cn";
 import { SeverityBadge, type SeverityLevel } from "./severity-badge";
 
 const summaryPanelVariants = cva(
-  "rounded-xl border bg-card transition-all duration-300",
+  "rounded-xl border transition-all duration-300",
   {
     variants: {
       variant: {
-        default: "border-border",
-        highlighted: "border-[--ds-teal-300] shadow-sm",
-        urgent: "border-[--ds-amber-300] shadow-sm",
-        ai: "border-[--ds-violet-300]",
+        default: "border-border bg-card shadow-[--ds-shadow-sm]",
+        highlighted: "border-[--ds-teal-300] bg-[--ds-gradient-card] shadow-[--ds-shadow-md] shadow-[--ds-shadow-glow-teal]",
+        urgent: "border-[--ds-amber-300] bg-[--ds-problem-bg] shadow-[--ds-shadow-md]",
+        ai: "border-[--ds-violet-200] bg-[--ds-gradient-ai] shadow-[--ds-shadow-sm] shadow-[--ds-shadow-glow]",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "ai",
     },
   }
 );
