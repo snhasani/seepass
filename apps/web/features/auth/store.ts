@@ -1,6 +1,19 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+// Generate a deterministic UUID-like ID from a string (for demo purposes)
+function deterministicId(input: string): string {
+  let hash = 0;
+  for (let i = 0; i < input.length; i++) {
+    const char = input.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  // Convert to positive hex and pad to create UUID-like format
+  const hex = Math.abs(hash).toString(16).padStart(8, "0");
+  return `user-${hex}-${hex.split("").reverse().join("")}`;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -33,7 +46,7 @@ export const useAuthStore = create<AuthState>()(
         await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate network delay
 
         const user: User = {
-          id: crypto.randomUUID(),
+          id: deterministicId(email),
           email,
           name: email.split("@")[0],
         };
@@ -47,7 +60,7 @@ export const useAuthStore = create<AuthState>()(
         await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate network delay
 
         const user: User = {
-          id: crypto.randomUUID(),
+          id: deterministicId(email),
           email,
           name,
         };
