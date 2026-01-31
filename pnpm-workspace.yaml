@@ -1,3 +1,13 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+  - apps/*
+  - packages/*
+
+minimumReleaseAge: 120
+
+minimumReleaseAgeExclude:
+  - turbo-linux-arm64
+
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+  - sharp
