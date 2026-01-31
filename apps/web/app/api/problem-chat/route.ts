@@ -33,7 +33,9 @@ const requestSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  const parsed = requestSchema.safeParse(await req.json());
+  const data = await req.json();
+
+  const parsed = requestSchema.safeParse(data);
   if (!parsed.success) {
     return new Response("Invalid request body", { status: 400 });
   }

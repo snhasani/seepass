@@ -11,11 +11,27 @@ export const platformContextExample = {
     name: "Saferspaces",
     description:
       "Germany-based safety and awareness platform providing a web-based, no-app reporting and rapid-response system for events, venues, and organizations. Focused on making help accessible, anonymous, and immediate for harassment, discrimination, medical incidents, or escalating conflict.",
-    primaryUsers: ["Event attendees", "Venue visitors", "Employees", "Students"],
-    industries: ["Events", "Hospitality", "Education", "Workplaces", "Public venues"],
+    primaryUsers: [
+      "Event attendees",
+      "Venue visitors",
+      "Employees",
+      "Students",
+    ],
+    industries: [
+      "Events",
+      "Hospitality",
+      "Education",
+      "Workplaces",
+      "Public venues",
+    ],
     regions: ["Germany", "Europe"],
   },
-  surfaces: ["Web app (browser-based)", "QR codes", "Venue links", "White-label integrations"],
+  surfaces: [
+    "Web app (browser-based)",
+    "QR codes",
+    "Venue links",
+    "White-label integrations",
+  ],
   keyFeatures: [
     "Anonymous, low-barrier reporting",
     "Real-time location sharing",
@@ -25,7 +41,12 @@ export const platformContextExample = {
     "Multilingual access",
     "Geofencing",
   ],
-  constraints: ["No app download", "No login", "No personal data required", "GDPR-compliant"],
+  constraints: [
+    "No app download",
+    "No login",
+    "No personal data required",
+    "GDPR-compliant",
+  ],
   knownPainPoints: [
     "People hesitate to report due to fear of retaliation",
     "Slow or misdirected responses during incidents",
@@ -57,51 +78,16 @@ const platformContextSchema = z.object({
 });
 
 export async function fetchPlatformContext(): Promise<string | null> {
-  if (!PLATFORM_CONTEXT_URL) return null;
+  const raw = platformContextExample;
+  const parsed = platformContextSchema.safeParse(raw);
+  if (!parsed.success) return null;
+  const text = formatContextPayload(parsed.data);
 
-  const controller = new AbortController();
-  const timeout = setTimeout(
-    () => controller.abort(),
-    PLATFORM_CONTEXT_TIMEOUT_MS
-  );
-
-  try {
-    const response = await fetch(PLATFORM_CONTEXT_URL, {
-      method: "GET",
-      headers: {
-        Accept: "application/json, text/plain;q=0.9",
-        ...(PLATFORM_CONTEXT_API_KEY
-          ? { Authorization: `Bearer ${PLATFORM_CONTEXT_API_KEY}` }
-          : {}),
-      },
-      cache: "no-store",
-      signal: controller.signal,
-    });
-
-    if (!response.ok) return null;
-
-    const contentType = response.headers.get("content-type") ?? "";
-    let text = "";
-
-    if (contentType.includes("application/json")) {
-      const raw = await response.json();
-      const parsed = platformContextSchema.safeParse(raw);
-      if (!parsed.success) return null;
-      text = formatContextPayload(parsed.data);
-    } else {
-      text = await response.text();
-    }
-
-    const trimmed = text.trim();
-    if (!trimmed) return null;
-    return trimmed.length > PLATFORM_CONTEXT_MAX_CHARS
-      ? `${trimmed.slice(0, PLATFORM_CONTEXT_MAX_CHARS)}…`
-      : trimmed;
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(timeout);
-  }
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+  return trimmed.length > PLATFORM_CONTEXT_MAX_CHARS
+    ? `${trimmed.slice(0, PLATFORM_CONTEXT_MAX_CHARS)}…`
+    : trimmed;
 }
 
 type PlatformContext = z.infer<typeof platformContextSchema>;
