@@ -1,40 +1,41 @@
-# Turborepo kitchen sink starter
+# Seepass
 
-This Turborepo starter is maintained by the Turborepo core team.
+AI-Native Product Management Tool
 
-This example also shows how to use [Workspace Configurations](https://turborepo.dev/docs/core-concepts/monorepos/configuring-workspaces).
+## Tech Stack
 
-## Using this example
+MVP Architecture Summary
 
-Run the following command:
+* App: Next.js (App Router) + TypeScript
+* UI: Tailwind CSS, Canvas option A: React Flow; option B: custom canvas
+* API: Next.js API routes + server actions (no separate service)
+* AI: External LLMs for core workflows (no custom embeddings)
+* Data/Realtime: Convex (single source of truth for data + realtime)
+* Integrations: Manual entry + CSV import only
+* Repo-Native Mode: Deferred
+* Infrastructure: Single Next.js deployment + Convex backend
+* Observability: Structured logs + Sentry
 
-```sh
-npx create-turbo@latest -e kitchen-sink
+## How to Run
+
+Step-by-step instructions to run the project locally, including everything that needs to be set up.
+
+```bash
+# Clone the repo
+git clone https://github.com/your-team/your-project.git
+cd your-project
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Add your API keys to .env
+
+# Run the development server
+npm run dev
 ```
 
-## What's inside?
+## Details
 
-This Turborepo includes the following packages and apps:
-
-### Apps and Packages
-
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
-- `@repo/eslint-config`: ESLint configurations used throughout the monorepo
-- `@repo/jest-presets`: Jest configurations
-- `@repo/logger`: isomorphic logger (a small wrapper around console.log)
-- `@repo/ui`: a dummy React UI library (which contains `<CounterButton>` and `<Link>` components)
-- `@repo/typescript-config`: tsconfig.json's used throughout the monorepo
-
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Jest](https://jestjs.io) test runner for all things JavaScript
-- [Prettier](https://prettier.io) for code formatting
+Add anything else you want to share: architecture diagrams, screenshots, challenges faced, future plans, etc.
