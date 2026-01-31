@@ -6,15 +6,13 @@ import {
   UserMessageAttachments,
 } from "@/components/assistant-ui/attachment";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
-import { Reasoning, ReasoningGroup } from "@/components/assistant-ui/reasoning";
-import { ToolFallback } from "@/components/assistant-ui/tool-fallback";
-import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import {
   ProblemQuestionTool,
   ProblemSummaryTool,
 } from "@/components/assistant-ui/problem-tools";
+import { ToolFallback } from "@/components/assistant-ui/tool-fallback";
+import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import {
   ActionBarMorePrimitive,
   ActionBarPrimitive,
@@ -238,8 +236,8 @@ const AssistantMessage: FC = () => {
         <MessagePrimitive.Parts
           components={{
             Text: MarkdownText,
-            Reasoning,
-            ReasoningGroup,
+            // Reasoning,
+            // ReasoningGroup,
             tools: {
               Fallback: ToolFallback,
               by_name: {
@@ -295,35 +293,23 @@ const AssistantActionBar: FC = () => {
           className="aui-action-bar-more-content z-50 min-w-32 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md"
         >
           <ActionBarPrimitive.Edit asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-start"
-            >
+            <Button variant="ghost" size="sm" className="w-full justify-start">
               <PencilIcon />
               Edit
             </Button>
           </ActionBarPrimitive.Edit>
           <ActionBarPrimitive.Copy asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-start"
-            >
+            <Button variant="ghost" size="sm" className="w-full justify-start">
               <CopyIcon />
               Copy
             </Button>
           </ActionBarPrimitive.Copy>
-          <ActionBarPrimitive.Export asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-start"
-            >
+          <ActionBarPrimitive.ExportMarkdown asChild>
+            <Button variant="ghost" size="sm" className="w-full justify-start">
               <DownloadIcon />
               Export
             </Button>
-          </ActionBarPrimitive.Export>
+          </ActionBarPrimitive.ExportMarkdown>
         </ActionBarMorePrimitive.Content>
       </ActionBarMorePrimitive.Root>
     </ActionBarPrimitive.Root>
@@ -348,39 +334,40 @@ const UserMessage: FC = () => {
         <MessageError />
       </div>
 
-      <div className="aui-user-action-bar mt-1 flex flex-col">
+      {/* <div className="aui-user-action-bar mt-1 flex flex-col">
         <BranchPicker />
         <UserActionBar />
-      </div>
+      </div> */}
     </MessagePrimitive.Root>
   );
 };
 
 const UserActionBar: FC = () => {
-  return (
-    <ActionBarPrimitive.Root
-      hideWhenRunning
-      autohide="not-last"
-      autohideFloat="single-branch"
-      className="aui-user-action-bar-root col-start-3 row-start-2 -mr-1 flex flex-col gap-1 text-muted-foreground data-floating:absolute data-floating:rounded-md data-floating:border data-floating:bg-background data-floating:p-1 data-floating:shadow-sm"
-    >
-      <ActionBarPrimitive.Copy asChild>
-        <TooltipIconButton tooltip="Copy">
-          <AssistantIf condition={({ message }) => message.isCopied}>
-            <CheckIcon />
-          </AssistantIf>
-          <AssistantIf condition={({ message }) => !message.isCopied}>
-            <CopyIcon />
-          </AssistantIf>
-        </TooltipIconButton>
-      </ActionBarPrimitive.Copy>
-      <ActionBarPrimitive.Reload asChild>
-        <TooltipIconButton tooltip="Refresh">
-          <RefreshCwIcon />
-        </TooltipIconButton>
-      </ActionBarPrimitive.Reload>
-    </ActionBarPrimitive.Root>
-  );
+  return null;
+  // return (
+  //   <ActionBarPrimitive.Root
+  //     hideWhenRunning
+  //     autohide="not-last"
+  //     autohideFloat="single-branch"
+  //     className="aui-user-action-bar-root col-start-3 row-start-2 -mr-1 flex flex-col gap-1 text-muted-foreground data-floating:absolute data-floating:rounded-md data-floating:border data-floating:bg-background data-floating:p-1 data-floating:shadow-sm"
+  //   >
+  //     <ActionBarPrimitive.Copy asChild>
+  //       <TooltipIconButton tooltip="Copy">
+  //         <AssistantIf condition={({ message }) => message.isCopied}>
+  //           <CheckIcon />
+  //         </AssistantIf>
+  //         <AssistantIf condition={({ message }) => !message.isCopied}>
+  //           <CopyIcon />
+  //         </AssistantIf>
+  //       </TooltipIconButton>
+  //     </ActionBarPrimitive.Copy>
+  //     <ActionBarPrimitive.Reload asChild>
+  //       <TooltipIconButton tooltip="Refresh">
+  //         <RefreshCwIcon />
+  //       </TooltipIconButton>
+  //     </ActionBarPrimitive.Reload>
+  //   </ActionBarPrimitive.Root>
+  // );
 };
 
 const BranchPicker: FC = () => {
@@ -391,7 +378,9 @@ const BranchPicker: FC = () => {
           <ChevronLeftIcon />
         </TooltipIconButton>
       </BranchPickerPrimitive.Previous>
-      <BranchPickerPrimitive.Number className="aui-branch-picker-number px-1 text-sm tabular-nums" />
+      <span className="aui-branch-picker-number px-1 text-sm tabular-nums">
+        <BranchPickerPrimitive.Number />
+      </span>
       <BranchPickerPrimitive.Next asChild>
         <TooltipIconButton tooltip="Next">
           <ChevronRightIcon />
@@ -403,23 +392,23 @@ const BranchPicker: FC = () => {
 
 const EditComposer: FC = () => {
   return (
-    <MessagePrimitive.EditComposer
-      className={cn(
-        "aui-edit-composer-root border border-input bg-background",
-        "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/20"
-      )}
-    >
-      <ComposerPrimitive.Input className="aui-edit-composer-input p-3 text-sm outline-none" />
-      <div className="aui-edit-composer-footer flex items-center justify-end gap-2 border-t bg-muted/20 p-2">
-        <ComposerPrimitive.Cancel asChild>
-          <Button variant="ghost" size="sm">
-            Cancel
-          </Button>
-        </ComposerPrimitive.Cancel>
-        <ComposerPrimitive.Send asChild>
-          <Button size="sm">Save</Button>
-        </ComposerPrimitive.Send>
-      </div>
-    </MessagePrimitive.EditComposer>
+    <MessagePrimitive.Root className="aui-edit-composer-wrapper mx-auto flex w-full max-w-(--thread-max-width) flex-col px-2 py-3">
+      <ComposerPrimitive.Root className="aui-edit-composer-root ml-auto flex w-full max-w-[85%] flex-col rounded-2xl bg-muted">
+        <ComposerPrimitive.Input
+          className="aui-edit-composer-input min-h-14 w-full resize-none bg-transparent p-4 text-foreground text-sm outline-none"
+          autoFocus
+        />
+        <div className="aui-edit-composer-footer mx-3 mb-3 flex items-center gap-2 self-end">
+          <ComposerPrimitive.Cancel asChild>
+            <Button variant="ghost" size="sm">
+              Cancel
+            </Button>
+          </ComposerPrimitive.Cancel>
+          <ComposerPrimitive.Send asChild>
+            <Button size="sm">Update</Button>
+          </ComposerPrimitive.Send>
+        </div>
+      </ComposerPrimitive.Root>
+    </MessagePrimitive.Root>
   );
 };
