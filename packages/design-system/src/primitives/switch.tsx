@@ -16,11 +16,11 @@ const switchVariants = cva(
   {
     variants: {
       variant: {
-        default: "data-[state=checked]:bg-[--ds-teal-500]",
-        problem: "data-[state=checked]:bg-[--ds-problem]",
-        ai: "data-[state=checked]:bg-[--ds-ai]",
-        success: "data-[state=checked]:bg-[--ds-status-active]",
-        danger: "data-[state=checked]:bg-[--ds-severity-critical]",
+        default: "data-[state=checked]:bg-[var(--ds-teal-500)]",
+        problem: "data-[state=checked]:bg-[var(--ds-problem)]",
+        ai: "data-[state=checked]:bg-[var(--ds-ai)]",
+        success: "data-[state=checked]:bg-[var(--ds-status-active)]",
+        danger: "data-[state=checked]:bg-[var(--ds-severity-critical)]",
       },
       size: {
         sm: "h-5 w-9",

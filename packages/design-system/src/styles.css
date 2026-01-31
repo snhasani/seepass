@@ -1,77 +1,156 @@
 /* SeePass Design System - Custom Theme Variables */
+/* Modern, Professional, AI-Native Design Language */
 
 :root {
-  /* Core brand colors - Deep teal meets warm amber */
-  --ds-teal-50: oklch(0.97 0.02 180);
-  --ds-teal-100: oklch(0.93 0.04 180);
-  --ds-teal-200: oklch(0.86 0.08 180);
-  --ds-teal-300: oklch(0.76 0.12 180);
-  --ds-teal-400: oklch(0.64 0.14 180);
-  --ds-teal-500: oklch(0.52 0.14 180);
-  --ds-teal-600: oklch(0.44 0.12 180);
-  --ds-teal-700: oklch(0.37 0.10 180);
-  --ds-teal-800: oklch(0.30 0.08 180);
-  --ds-teal-900: oklch(0.22 0.06 180);
-  
-  --ds-amber-50: oklch(0.98 0.03 85);
-  --ds-amber-100: oklch(0.95 0.06 85);
-  --ds-amber-200: oklch(0.90 0.12 80);
-  --ds-amber-300: oklch(0.84 0.16 75);
-  --ds-amber-400: oklch(0.78 0.18 70);
-  --ds-amber-500: oklch(0.72 0.18 65);
-  --ds-amber-600: oklch(0.62 0.16 60);
-  --ds-amber-700: oklch(0.52 0.14 55);
-  --ds-amber-800: oklch(0.42 0.10 50);
-  --ds-amber-900: oklch(0.32 0.06 45);
-  
-  --ds-violet-50: oklch(0.97 0.02 290);
-  --ds-violet-100: oklch(0.94 0.04 290);
-  --ds-violet-200: oklch(0.88 0.08 290);
-  --ds-violet-300: oklch(0.80 0.14 290);
-  --ds-violet-400: oklch(0.70 0.18 290);
-  --ds-violet-500: oklch(0.60 0.20 290);
-  --ds-violet-600: oklch(0.50 0.18 290);
-  --ds-violet-700: oklch(0.40 0.14 290);
-  --ds-violet-800: oklch(0.32 0.10 290);
-  --ds-violet-900: oklch(0.24 0.06 290);
-  
-  /* Semantic colors */
+  /* ========================================
+     BRAND COLORS
+     Primary: Indigo-blue (AI, intelligence, trust)
+     Accent: Coral-amber (problems, warmth)
+     Secondary: Violet (AI insights)
+     Tertiary: Teal (signals, data)
+     ======================================== */
+
+  /* Indigo - Primary brand color */
+  --ds-indigo-50: oklch(0.97 0.015 265);
+  --ds-indigo-100: oklch(0.94 0.035 265);
+  --ds-indigo-200: oklch(0.88 0.07 265);
+  --ds-indigo-300: oklch(0.78 0.12 265);
+  --ds-indigo-400: oklch(0.65 0.16 265);
+  --ds-indigo-500: oklch(0.55 0.18 265);
+  --ds-indigo-600: oklch(0.48 0.17 265);
+  --ds-indigo-700: oklch(0.4 0.14 265);
+  --ds-indigo-800: oklch(0.32 0.1 265);
+  --ds-indigo-900: oklch(0.24 0.06 265);
+
+  /* Teal - Signals, data, positive states */
+  --ds-teal-50: oklch(0.97 0.025 175);
+  --ds-teal-100: oklch(0.93 0.05 175);
+  --ds-teal-200: oklch(0.86 0.1 175);
+  --ds-teal-300: oklch(0.76 0.14 175);
+  --ds-teal-400: oklch(0.65 0.15 175);
+  --ds-teal-500: oklch(0.55 0.14 175);
+  --ds-teal-600: oklch(0.48 0.12 175);
+  --ds-teal-700: oklch(0.4 0.1 175);
+  --ds-teal-800: oklch(0.32 0.08 175);
+  --ds-teal-900: oklch(0.24 0.05 175);
+
+  /* Coral/Amber - Problems, warnings, attention */
+  --ds-amber-50: oklch(0.98 0.025 50);
+  --ds-amber-100: oklch(0.95 0.06 50);
+  --ds-amber-200: oklch(0.9 0.11 48);
+  --ds-amber-300: oklch(0.84 0.15 45);
+  --ds-amber-400: oklch(0.76 0.17 42);
+  --ds-amber-500: oklch(0.68 0.18 40);
+  --ds-amber-600: oklch(0.58 0.16 38);
+  --ds-amber-700: oklch(0.48 0.13 35);
+  --ds-amber-800: oklch(0.4 0.1 32);
+  --ds-amber-900: oklch(0.32 0.06 30);
+
+  /* Violet - AI insights, intelligence */
+  --ds-violet-50: oklch(0.97 0.025 295);
+  --ds-violet-100: oklch(0.94 0.05 295);
+  --ds-violet-200: oklch(0.88 0.1 295);
+  --ds-violet-300: oklch(0.8 0.15 295);
+  --ds-violet-400: oklch(0.7 0.18 295);
+  --ds-violet-500: oklch(0.6 0.2 295);
+  --ds-violet-600: oklch(0.52 0.18 295);
+  --ds-violet-700: oklch(0.42 0.14 295);
+  --ds-violet-800: oklch(0.34 0.1 295);
+  --ds-violet-900: oklch(0.26 0.06 295);
+
+  /* ========================================
+     SEMANTIC COLORS
+     ======================================== */
+
+  /* Problem theme - coral-amber tones */
   --ds-problem: var(--ds-amber-500);
-  --ds-problem-bg: var(--ds-amber-50);
+  --ds-problem-bg: oklch(0.98 0.02 50);
+  --ds-problem-border: var(--ds-amber-200);
+
+  /* AI theme - rich violet */
   --ds-ai: var(--ds-violet-500);
-  --ds-ai-bg: var(--ds-violet-50);
+  --ds-ai-bg: oklch(0.97 0.025 295);
+  --ds-ai-border: var(--ds-violet-200);
+
+  /* Signal theme - professional teal */
   --ds-signal: var(--ds-teal-500);
-  --ds-signal-bg: var(--ds-teal-50);
-  
-  /* Severity colors */
-  --ds-severity-critical: oklch(0.55 0.24 25);
-  --ds-severity-critical-bg: oklch(0.95 0.04 25);
-  --ds-severity-high: oklch(0.68 0.20 45);
-  --ds-severity-high-bg: oklch(0.96 0.03 45);
-  --ds-severity-medium: oklch(0.75 0.15 85);
-  --ds-severity-medium-bg: oklch(0.97 0.02 85);
-  --ds-severity-low: oklch(0.65 0.12 160);
-  --ds-severity-low-bg: oklch(0.97 0.02 160);
-  
-  /* Status colors */
-  --ds-status-active: oklch(0.60 0.16 145);
-  --ds-status-active-bg: oklch(0.96 0.03 145);
-  --ds-status-pending: oklch(0.72 0.14 85);
-  --ds-status-pending-bg: oklch(0.97 0.02 85);
-  --ds-status-resolved: oklch(0.55 0.10 240);
-  --ds-status-resolved-bg: oklch(0.96 0.02 240);
-  
+  --ds-signal-bg: oklch(0.97 0.02 175);
+  --ds-signal-border: var(--ds-teal-200);
+
+  /* ========================================
+     SEVERITY COLORS
+     Vibrant, distinct colors for each level
+     ======================================== */
+
+  /* Critical - Vivid red */
+  --ds-severity-critical: oklch(0.55 0.25 25);
+  --ds-severity-critical-bg: oklch(0.95 0.05 25);
+  --ds-severity-critical-border: oklch(0.80 0.15 25);
+
+  /* High - Bright orange */
+  --ds-severity-high: oklch(0.68 0.2 50);
+  --ds-severity-high-bg: oklch(0.96 0.045 50);
+  --ds-severity-high-border: oklch(0.85 0.12 50);
+
+  /* Medium - Warm yellow/amber */
+  --ds-severity-medium: oklch(0.75 0.16 85);
+  --ds-severity-medium-bg: oklch(0.97 0.04 85);
+  --ds-severity-medium-border: oklch(0.88 0.1 85);
+
+  /* Low - Calm teal/green */
+  --ds-severity-low: oklch(0.6 0.15 160);
+  --ds-severity-low-bg: oklch(0.96 0.035 160);
+  --ds-severity-low-border: oklch(0.85 0.1 160);
+
+  /* ========================================
+     STATUS COLORS
+     ======================================== */
+
+  --ds-status-active: oklch(0.58 0.14 155);
+  --ds-status-active-bg: oklch(0.97 0.025 155);
+  --ds-status-pending: oklch(0.7 0.12 85);
+  --ds-status-pending-bg: oklch(0.98 0.015 85);
+  --ds-status-resolved: oklch(0.55 0.1 265);
+  --ds-status-resolved-bg: oklch(0.97 0.02 265);
+
   /* Confidence levels */
-  --ds-confidence-high: oklch(0.60 0.16 145);
-  --ds-confidence-medium: oklch(0.72 0.14 85);
-  --ds-confidence-low: oklch(0.65 0.08 0);
-  
-  /* Surface & overlay */
-  --ds-glass: oklch(1 0 0 / 0.7);
-  --ds-glass-border: oklch(1 0 0 / 0.2);
-  --ds-overlay: oklch(0.15 0.02 280 / 0.8);
-  
-  /* Spacing scale */
+  --ds-confidence-high: oklch(0.58 0.14 155);
+  --ds-confidence-medium: oklch(0.7 0.12 85);
+  --ds-confidence-low: oklch(0.55 0.06 265);
+
+  /* ========================================
+     SURFACE & EFFECTS
+     ======================================== */
+
+  /* Glass morphism */
+  --ds-glass: oklch(0.99 0.005 265 / 0.85);
+  --ds-glass-border: oklch(0.55 0.1 265 / 0.12);
+  --ds-glass-shadow: 0 4px 24px oklch(0.55 0.1 265 / 0.08);
+
+  /* Overlay */
+  --ds-overlay: oklch(0.2 0.03 265 / 0.6);
+
+  /* Subtle gradient backgrounds - visible lavender tints */
+  --ds-gradient-subtle: linear-gradient(
+    135deg,
+    oklch(0.97 0.035 275) 0%,
+    oklch(0.96 0.045 290) 100%
+  );
+  --ds-gradient-card: linear-gradient(
+    180deg,
+    oklch(0.995 0.02 275) 0%,
+    oklch(0.98 0.03 280) 100%
+  );
+  --ds-gradient-ai: linear-gradient(
+    135deg,
+    oklch(0.96 0.05 295) 0%,
+    oklch(0.94 0.06 270) 100%
+  );
+
+  /* ========================================
+     SPACING SCALE
+     ======================================== */
+
   --ds-space-1: 0.25rem;
   --ds-space-2: 0.5rem;
   --ds-space-3: 0.75rem;
@@ -82,23 +161,46 @@
   --ds-space-10: 2.5rem;
   --ds-space-12: 3rem;
   --ds-space-16: 4rem;
-  
-  /* Border radius */
+
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+
   --ds-radius-sm: 0.375rem;
   --ds-radius-md: 0.5rem;
   --ds-radius-lg: 0.75rem;
   --ds-radius-xl: 1rem;
   --ds-radius-2xl: 1.5rem;
   --ds-radius-full: 9999px;
-  
-  /* Shadows */
-  --ds-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);
-  --ds-shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.07), 0 2px 4px -2px oklch(0 0 0 / 0.05);
-  --ds-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.08), 0 4px 6px -4px oklch(0 0 0 / 0.05);
-  --ds-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.08), 0 8px 10px -6px oklch(0 0 0 / 0.05);
-  --ds-shadow-glow: 0 0 20px oklch(0.6 0.2 290 / 0.15);
-  
-  /* Animation */
+
+  /* ========================================
+     SHADOWS
+     Refined with brand color tint
+     ======================================== */
+
+  --ds-shadow-xs: 0 1px 2px oklch(0.55 0.05 265 / 0.04);
+  --ds-shadow-sm:
+    0 1px 3px oklch(0.55 0.05 265 / 0.06), 0 1px 2px oklch(0.55 0.05 265 / 0.04);
+  --ds-shadow-md:
+    0 4px 6px -1px oklch(0.55 0.05 265 / 0.07),
+    0 2px 4px -2px oklch(0.55 0.05 265 / 0.05);
+  --ds-shadow-lg:
+    0 10px 15px -3px oklch(0.55 0.05 265 / 0.08),
+    0 4px 6px -4px oklch(0.55 0.05 265 / 0.04);
+  --ds-shadow-xl:
+    0 20px 25px -5px oklch(0.55 0.05 265 / 0.1),
+    0 8px 10px -6px oklch(0.55 0.05 265 / 0.05);
+
+  /* Colored glows */
+  --ds-shadow-glow: 0 0 24px oklch(0.6 0.18 295 / 0.2);
+  --ds-shadow-glow-indigo: 0 0 20px oklch(0.55 0.18 265 / 0.18);
+  --ds-shadow-glow-teal: 0 0 20px oklch(0.55 0.14 175 / 0.18);
+  --ds-shadow-glow-amber: 0 0 20px oklch(0.68 0.18 40 / 0.18);
+
+  /* ========================================
+     ANIMATION
+     ======================================== */
+
   --ds-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --ds-transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
   --ds-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -106,58 +208,135 @@
 }
 
 .dark {
-  --ds-glass: oklch(0.18 0.02 280 / 0.7);
-  --ds-glass-border: oklch(1 0 0 / 0.08);
-  --ds-overlay: oklch(0.08 0.02 280 / 0.9);
-  
-  --ds-problem-bg: oklch(0.25 0.06 65);
-  --ds-ai-bg: oklch(0.22 0.06 290);
-  --ds-signal-bg: oklch(0.22 0.06 180);
-  
-  --ds-severity-critical-bg: oklch(0.22 0.08 25);
-  --ds-severity-high-bg: oklch(0.24 0.06 45);
-  --ds-severity-medium-bg: oklch(0.26 0.04 85);
-  --ds-severity-low-bg: oklch(0.24 0.04 160);
-  
-  --ds-status-active-bg: oklch(0.24 0.05 145);
-  --ds-status-pending-bg: oklch(0.26 0.04 85);
-  --ds-status-resolved-bg: oklch(0.24 0.03 240);
-  
-  --ds-shadow-glow: 0 0 30px oklch(0.6 0.2 290 / 0.25);
+  /* Glass morphism for dark mode */
+  --ds-glass: oklch(0.22 0.03 265 / 0.8);
+  --ds-glass-border: oklch(0.7 0.08 265 / 0.15);
+  --ds-glass-shadow: 0 4px 24px oklch(0 0 0 / 0.3);
+  --ds-overlay: oklch(0.1 0.02 265 / 0.85);
+
+  /* Semantic backgrounds - deeper, richer */
+  --ds-problem-bg: oklch(0.24 0.06 50);
+  --ds-problem-border: oklch(0.4 0.12 50);
+  --ds-ai-bg: oklch(0.22 0.06 295);
+  --ds-ai-border: oklch(0.4 0.12 295);
+  --ds-signal-bg: oklch(0.22 0.05 175);
+  --ds-signal-border: oklch(0.38 0.1 175);
+
+  /* Severity backgrounds - darker, richer variants */
+  --ds-severity-critical-bg: oklch(0.25 0.1 25);
+  --ds-severity-critical-border: oklch(0.45 0.18 25);
+  --ds-severity-high-bg: oklch(0.26 0.08 50);
+  --ds-severity-high-border: oklch(0.48 0.14 50);
+  --ds-severity-medium-bg: oklch(0.28 0.06 85);
+  --ds-severity-medium-border: oklch(0.5 0.1 85);
+  --ds-severity-low-bg: oklch(0.25 0.06 160);
+  --ds-severity-low-border: oklch(0.45 0.1 160);
+
+  /* Status backgrounds */
+  --ds-status-active-bg: oklch(0.23 0.05 155);
+  --ds-status-pending-bg: oklch(0.25 0.04 85);
+  --ds-status-resolved-bg: oklch(0.23 0.03 265);
+
+  /* Dark mode gradients - visible indigo tints */
+  --ds-gradient-subtle: linear-gradient(
+    135deg,
+    oklch(0.18 0.06 270) 0%,
+    oklch(0.20 0.07 290) 100%
+  );
+  --ds-gradient-card: linear-gradient(
+    180deg,
+    oklch(0.24 0.07 272) 0%,
+    oklch(0.22 0.06 275) 100%
+  );
+  --ds-gradient-ai: linear-gradient(
+    135deg,
+    oklch(0.24 0.09 295) 0%,
+    oklch(0.22 0.08 270) 100%
+  );
+
+  /* Brighter glows for dark mode */
+  --ds-shadow-glow: 0 0 30px oklch(0.65 0.18 295 / 0.3);
+  --ds-shadow-glow-indigo: 0 0 24px oklch(0.65 0.16 265 / 0.25);
+  --ds-shadow-glow-teal: 0 0 24px oklch(0.6 0.14 175 / 0.25);
+  --ds-shadow-glow-amber: 0 0 24px oklch(0.7 0.16 40 / 0.25);
+
+  /* Dark mode shadows */
+  --ds-shadow-xs: 0 1px 2px oklch(0 0 0 / 0.2);
+  --ds-shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25), 0 1px 2px oklch(0 0 0 / 0.2);
+  --ds-shadow-md:
+    0 4px 6px -1px oklch(0 0 0 / 0.3), 0 2px 4px -2px oklch(0 0 0 / 0.2);
+  --ds-shadow-lg:
+    0 10px 15px -3px oklch(0 0 0 / 0.35), 0 4px 6px -4px oklch(0 0 0 / 0.2);
+  --ds-shadow-xl:
+    0 20px 25px -5px oklch(0 0 0 / 0.4), 0 8px 10px -6px oklch(0 0 0 / 0.25);
 }
 
 /* Keyframe animations */
 @keyframes ds-pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes ds-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
 }
 
 @keyframes ds-scale-in {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes ds-slide-up {
-  from { transform: translateY(8px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes ds-shimmer {
-  from { background-position: 200% 0; }
-  to { background-position: -200% 0; }
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 @keyframes ds-spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Utility classes */
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Animations */
 .ds-animate-pulse-soft {
   animation: ds-pulse-soft 2s ease-in-out infinite;
 }
@@ -174,12 +353,106 @@
   animation: ds-slide-up 300ms ease-out;
 }
 
+/* Glass morphism */
 .ds-glass {
   background: var(--ds-glass);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--ds-glass-border);
+  box-shadow: var(--ds-glass-shadow);
 }
 
+/* Glow effects */
 .ds-glow {
   box-shadow: var(--ds-shadow-glow);
+}
+
+.ds-glow-indigo {
+  box-shadow: var(--ds-shadow-glow-indigo);
+}
+
+.ds-glow-teal {
+  box-shadow: var(--ds-shadow-glow-teal);
+}
+
+.ds-glow-amber {
+  box-shadow: var(--ds-shadow-glow-amber);
+}
+
+/* Gradient backgrounds */
+.ds-gradient-subtle {
+  background: var(--ds-gradient-subtle);
+}
+
+.ds-gradient-card {
+  background: var(--ds-gradient-card);
+}
+
+.ds-gradient-ai {
+  background: var(--ds-gradient-ai);
+}
+
+/* Card surfaces with refined shadows */
+.ds-surface {
+  background: var(--ds-gradient-card);
+  box-shadow: var(--ds-shadow-sm);
+  border: 1px solid oklch(0.55 0.05 265 / 0.08);
+}
+
+.ds-surface-elevated {
+  background: var(--ds-gradient-card);
+  box-shadow: var(--ds-shadow-md);
+  border: 1px solid oklch(0.55 0.05 265 / 0.06);
+}
+
+/* AI-themed surface */
+.ds-surface-ai {
+  background: var(--ds-gradient-ai);
+  box-shadow: var(--ds-shadow-sm), var(--ds-shadow-glow);
+  border: 1px solid var(--ds-ai-border);
+}
+
+/* Interactive hover states */
+.ds-interactive {
+  transition: all var(--ds-transition-base);
+}
+
+.ds-interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--ds-shadow-md);
+}
+
+.ds-interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--ds-shadow-sm);
+}
+
+/* Focus ring */
+.ds-focus-ring:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--ds-indigo-100),
+    0 0 0 4px var(--ds-indigo-400);
+}
+
+/* Shimmer loading effect */
+.ds-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.95 0.01 265) 0%,
+    oklch(0.98 0.005 265) 50%,
+    oklch(0.95 0.01 265) 100%
+  );
+  background-size: 200% 100%;
+  animation: ds-shimmer 1.5s ease-in-out infinite;
+}
+
+.dark .ds-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.22 0.02 265) 0%,
+    oklch(0.28 0.025 265) 50%,
+    oklch(0.22 0.02 265) 100%
+  );
+  background-size: 200% 100%;
 }

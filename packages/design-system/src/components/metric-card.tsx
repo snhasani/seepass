@@ -7,14 +7,14 @@ import { TrendingUp, TrendingDown, Minus, type LucideIcon } from "lucide-react";
 import { cn } from "../utils/cn";
 
 const metricCardVariants = cva(
-  "relative rounded-xl border bg-card p-4 transition-all duration-200 hover:shadow-md",
+  "relative rounded-xl border p-4 transition-all duration-200 hover:shadow-[var(--ds-shadow-md)]",
   {
     variants: {
       variant: {
-        default: "border-border",
-        highlighted: "border-[--ds-teal-300] bg-[--ds-signal-bg]",
-        warning: "border-[--ds-amber-300] bg-[--ds-problem-bg]",
-        ai: "border-[--ds-violet-300] bg-[--ds-ai-bg]",
+        default: "border-border bg-[var(--ds-gradient-card)] shadow-[var(--ds-shadow-xs)]",
+        highlighted: "border-[var(--ds-teal-200)] bg-[var(--ds-signal-bg)] shadow-[var(--ds-shadow-sm)]",
+        warning: "border-[var(--ds-amber-200)] bg-[var(--ds-problem-bg)] shadow-[var(--ds-shadow-sm)]",
+        ai: "border-[var(--ds-violet-200)] bg-[var(--ds-gradient-ai)] shadow-[var(--ds-shadow-sm)] shadow-[var(--ds-shadow-glow)]",
       },
       size: {
         sm: "p-3",
@@ -91,9 +91,9 @@ function MetricCard({
             <Icon
               className={cn(
                 "size-5",
-                variant === "highlighted" && "text-[--ds-teal-500]",
-                variant === "warning" && "text-[--ds-amber-500]",
-                variant === "ai" && "text-[--ds-violet-500]",
+                variant === "highlighted" && "text-[var(--ds-teal-500)]",
+                variant === "warning" && "text-[var(--ds-amber-500)]",
+                variant === "ai" && "text-[var(--ds-violet-500)]",
                 variant === "default" && "text-muted-foreground"
               )}
             />
@@ -122,8 +122,8 @@ function MetricCard({
               className={cn(
                 "flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium mb-1",
                 isTrendGood
-                  ? "bg-[--ds-status-active-bg] text-[--ds-status-active]"
-                  : "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical]"
+                  ? "bg-[var(--ds-status-active-bg)] text-[var(--ds-status-active)]"
+                  : "bg-[var(--ds-severity-critical-bg)] text-[var(--ds-severity-critical)]"
               )}
             >
               <TrendIcon className="size-3" />

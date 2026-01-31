@@ -17,11 +17,11 @@ const canvasNodeVariants = cva(
     variants: {
       variant: {
         default: "border-border",
-        problem: "border-[--ds-amber-300] bg-[--ds-problem-bg]",
-        solution: "border-[--ds-teal-300] bg-[--ds-signal-bg]",
-        aiSuggested: "border-[--ds-violet-300] bg-[--ds-ai-bg]",
+        problem: "border-[var(--ds-amber-300)] bg-[var(--ds-problem-bg)]",
+        solution: "border-[var(--ds-teal-300)] bg-[var(--ds-signal-bg)]",
+        aiSuggested: "border-[var(--ds-violet-300)] bg-[var(--ds-ai-bg)]",
         immutable:
-          "border-[--ds-teal-400] bg-[--ds-signal-bg] ring-2 ring-[--ds-teal-200]",
+          "border-[var(--ds-teal-400)] bg-[var(--ds-signal-bg)] ring-2 ring-[var(--ds-teal-200)]",
       },
       size: {
         sm: "w-48 p-3",
@@ -178,10 +178,10 @@ function CanvasNode({
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="flex items-center gap-1.5 flex-wrap">
           {node.isImmutable ? (
-            <Lock className="size-3.5 text-[--ds-teal-500]" />
+            <Lock className="size-3.5 text-[var(--ds-teal-500)]" />
           ) : null}
           {node.isAiGenerated ? (
-            <Sparkles className="size-3.5 text-[--ds-violet-500]" />
+            <Sparkles className="size-3.5 text-[var(--ds-violet-500)]" />
           ) : null}
           <Badge
             variant={

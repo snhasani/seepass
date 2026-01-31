@@ -11,7 +11,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 });
 
 // After (React 19)
-function Button({ ref, ...props }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
+function Button({
+  ref,
+  ...props
+}: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   return <button ref={ref} {...props} />;
 }
 ```

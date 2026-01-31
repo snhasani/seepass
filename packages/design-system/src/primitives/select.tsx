@@ -168,7 +168,7 @@ function SelectItem({
     >
       <span className="absolute left-2 flex size-4 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check className="size-4 text-[--ds-teal-500]" />
+          <Check className="size-4 text-[var(--ds-teal-500)]" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

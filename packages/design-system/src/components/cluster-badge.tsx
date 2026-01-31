@@ -11,13 +11,13 @@ const clusterBadgeVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[--ds-teal-100] text-[--ds-teal-700] dark:bg-[--ds-teal-800] dark:text-[--ds-teal-200]",
+          "bg-[var(--ds-teal-100)] text-[var(--ds-teal-700)] dark:bg-[var(--ds-teal-800)] dark:text-[var(--ds-teal-200)]",
         aiGenerated:
-          "bg-[--ds-ai-bg] text-[--ds-violet-700] dark:text-[--ds-violet-300] ring-1 ring-[--ds-violet-200] dark:ring-[--ds-violet-700]",
+          "bg-[var(--ds-ai-bg)] text-[var(--ds-violet-700)] dark:text-[var(--ds-violet-300)] ring-1 ring-[var(--ds-violet-200)] dark:ring-[var(--ds-violet-700)]",
         userCreated:
-          "bg-[--ds-signal-bg] text-[--ds-teal-700] dark:text-[--ds-teal-300] ring-1 ring-[--ds-teal-200] dark:ring-[--ds-teal-700]",
+          "bg-[var(--ds-signal-bg)] text-[var(--ds-teal-700)] dark:text-[var(--ds-teal-300)] ring-1 ring-[var(--ds-teal-200)] dark:ring-[var(--ds-teal-700)]",
         trending:
-          "bg-[--ds-amber-100] text-[--ds-amber-700] dark:bg-[--ds-amber-800] dark:text-[--ds-amber-200] ring-1 ring-[--ds-amber-200]",
+          "bg-[var(--ds-amber-100)] text-[var(--ds-amber-700)] dark:bg-[var(--ds-amber-800)] dark:text-[var(--ds-amber-200)] ring-1 ring-[var(--ds-amber-200)]",
       },
       size: {
         sm: "px-2 py-0.5 text-[10px]",

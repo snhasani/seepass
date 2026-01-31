@@ -69,18 +69,18 @@ function DecisionItem({
     const iconConfig = {
       ai: {
         icon: Sparkles,
-        color: "bg-[--ds-ai-bg] text-[--ds-violet-600]",
-        lineColor: "bg-[--ds-violet-200]",
+        color: "bg-[var(--ds-ai-bg)] text-[var(--ds-violet-600)]",
+        lineColor: "bg-[var(--ds-violet-200)]",
       },
       human: {
         icon: User,
-        color: "bg-[--ds-signal-bg] text-[--ds-teal-600]",
-        lineColor: "bg-[--ds-teal-200]",
+        color: "bg-[var(--ds-signal-bg)] text-[var(--ds-teal-600)]",
+        lineColor: "bg-[var(--ds-teal-200)]",
       },
       override: {
         icon: ArrowRight,
-        color: "bg-[--ds-problem-bg] text-[--ds-amber-600]",
-        lineColor: "bg-[--ds-amber-200]",
+        color: "bg-[var(--ds-problem-bg)] text-[var(--ds-amber-600)]",
+        lineColor: "bg-[var(--ds-amber-200)]",
       },
       comment: {
         icon: MessageSquare,
@@ -162,7 +162,7 @@ function DecisionItem({
                   {decision.metadata.previousValue}
                 </span>
                 <ArrowRight className="size-3 text-muted-foreground" />
-                <span className="px-2 py-0.5 rounded bg-[--ds-status-active-bg] text-[--ds-status-active] font-medium">
+                <span className="px-2 py-0.5 rounded bg-[var(--ds-status-active-bg)] text-[var(--ds-status-active)] font-medium">
                   {decision.metadata.newValue}
                 </span>
               </div>

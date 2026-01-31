@@ -26,14 +26,14 @@ const indicatorVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[--ds-teal-500]",
-        problem: "bg-[--ds-problem]",
-        ai: "bg-[--ds-ai]",
-        success: "bg-[--ds-status-active]",
-        warning: "bg-[--ds-status-pending]",
-        danger: "bg-[--ds-severity-critical]",
+        default: "bg-[var(--ds-teal-500)]",
+        problem: "bg-[var(--ds-problem)]",
+        ai: "bg-[var(--ds-ai)]",
+        success: "bg-[var(--ds-status-active)]",
+        warning: "bg-[var(--ds-status-pending)]",
+        danger: "bg-[var(--ds-severity-critical)]",
         gradient:
-          "bg-gradient-to-r from-[--ds-teal-500] via-[--ds-violet-500] to-[--ds-amber-500]",
+          "bg-gradient-to-r from-[var(--ds-teal-500)] via-[var(--ds-violet-500)] to-[var(--ds-amber-500)]",
       },
     },
     defaultVariants: {

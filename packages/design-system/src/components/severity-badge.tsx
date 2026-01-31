@@ -29,18 +29,18 @@ const severityConfig = {
 };
 
 const severityBadgeVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200",
+  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200 border",
   {
     variants: {
       severity: {
         critical:
-          "bg-[--ds-severity-critical-bg] text-[--ds-severity-critical] ring-1 ring-[--ds-severity-critical]/20",
+          "bg-[var(--ds-severity-critical-bg)] text-[var(--ds-severity-critical)] border-[var(--ds-severity-critical-border)]",
         high:
-          "bg-[--ds-severity-high-bg] text-[--ds-severity-high] ring-1 ring-[--ds-severity-high]/20",
+          "bg-[var(--ds-severity-high-bg)] text-[var(--ds-severity-high)] border-[var(--ds-severity-high-border)]",
         medium:
-          "bg-[--ds-severity-medium-bg] text-[--ds-severity-medium] ring-1 ring-[--ds-severity-medium]/20",
+          "bg-[var(--ds-severity-medium-bg)] text-[var(--ds-severity-medium)] border-[var(--ds-severity-medium-border)]",
         low:
-          "bg-[--ds-severity-low-bg] text-[--ds-severity-low] ring-1 ring-[--ds-severity-low]/20",
+          "bg-[var(--ds-severity-low-bg)] text-[var(--ds-severity-low)] border-[var(--ds-severity-low-border)]",
       },
       size: {
         sm: "px-2 py-0.5 text-[10px]",
@@ -129,7 +129,7 @@ function SeverityBar({
             className={cn(
               "h-1.5 w-4 rounded-full transition-all duration-300",
               index <= activeIndex
-                ? `bg-[--ds-severity-${severity}]`
+                ? `bg-[var(--ds-severity-${severity})]`
                 : "bg-muted",
               animated && index <= activeIndex && "animate-pulse"
             )}
