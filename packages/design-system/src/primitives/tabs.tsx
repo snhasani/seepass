@@ -1,0 +1,75 @@
+"use client";
+
+import * as React from "react";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+import { cn } from "../utils/cn";
+
+const Tabs = TabsPrimitive.Root;
+
+function TabsList({
+  className,
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & {
+  ref?: React.Ref<React.ElementRef<typeof TabsPrimitive.List>>;
+}) {
+  return (
+    <TabsPrimitive.List
+      ref={ref}
+      data-slot="tabs-list"
+      className={cn(
+        "inline-flex h-10 items-center justify-center gap-1 rounded-xl bg-muted/50 p-1 text-muted-foreground",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function TabsTrigger({
+  className,
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
+  ref?: React.Ref<React.ElementRef<typeof TabsPrimitive.Trigger>>;
+}) {
+  return (
+    <TabsPrimitive.Trigger
+      ref={ref}
+      data-slot="tabs-trigger"
+      className={cn(
+        "inline-flex items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium ring-offset-background transition-all duration-200",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "disabled:pointer-events-none disabled:opacity-50",
+        "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+        "hover:text-foreground/80",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function TabsContent({
+  className,
+  ref,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content> & {
+  ref?: React.Ref<React.ElementRef<typeof TabsPrimitive.Content>>;
+}) {
+  return (
+    <TabsPrimitive.Content
+      ref={ref}
+      data-slot="tabs-content"
+      className={cn(
+        "mt-4 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "data-[state=inactive]:hidden",
+        "animate-in fade-in-0 slide-in-from-bottom-2 duration-200",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent };
