@@ -154,6 +154,12 @@ export {
 } from "./components/metric-card";
 
 export {
+  StatPill,
+  statPillVariants,
+  type StatPillProps,
+} from "./components/stat-pill";
+
+export {
   TrendIndicator,
   TrendList,
   trendConfig,

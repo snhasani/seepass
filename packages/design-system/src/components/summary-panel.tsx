@@ -1,34 +1,28 @@
 "use client";
 
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  Sparkles,
-  Clock,
   AlertTriangle,
-  CheckCircle2,
-  ArrowRight,
+  ChevronDown,
+  Clock,
   RefreshCw,
-  Calendar,
+  Sparkles,
 } from "lucide-react";
-import { cn } from "../utils/cn";
+import * as React from "react";
 import { Badge } from "../primitives/badge";
+import { cn } from "../utils/cn";
 import { SeverityBadge, type SeverityLevel } from "./severity-badge";
 
 const summaryPanelVariants = cva(
-  "rounded-2xl border bg-gradient-to-br transition-all duration-300",
+  "rounded-xl border bg-card transition-all duration-300",
   {
     variants: {
       variant: {
-        default:
-          "from-card to-card/50 border-border",
-        highlighted:
-          "from-[--ds-signal-bg] to-card border-[--ds-teal-300] shadow-lg",
-        urgent:
-          "from-[--ds-problem-bg] to-card border-[--ds-amber-300] shadow-lg ring-2 ring-[--ds-amber-200]",
-        ai:
-          "from-[--ds-ai-bg] to-card border-[--ds-violet-300]",
+        default: "border-border",
+        highlighted: "border-[--ds-teal-300] shadow-sm",
+        urgent: "border-[--ds-amber-300] shadow-sm",
+        ai: "border-[--ds-violet-300]",
       },
     },
     defaultVariants: {
@@ -58,6 +52,8 @@ export interface SummaryPanelProps
   onItemClick?: (item: PriorityItem) => void;
   isRefreshing?: boolean;
   maxItems?: number;
+  /** Show compact one-liner items by default */
+  compact?: boolean;
   ref?: React.Ref<HTMLDivElement>;
 }
 
@@ -72,166 +68,165 @@ function SummaryPanel({
   isRefreshing = false,
   variant,
   maxItems = 5,
+  compact = true,
   ref,
   ...props
 }: SummaryPanelProps) {
-    const displayedPriorities = priorities.slice(0, maxItems);
-    const hasUrgent = priorities.some((p) => p.severity === "critical");
-    const effectiveVariant = hasUrgent ? "urgent" : variant;
+  const [expandedId, setExpandedId] = React.useState<string | null>(null);
+  const displayedPriorities = priorities.slice(0, maxItems);
+  const hasUrgent = priorities.some((p) => p.severity === "critical");
+  const effectiveVariant = hasUrgent ? "urgent" : variant;
 
-    return (
-      <motion.div
-        ref={ref}
-        data-slot="summary-panel"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className={cn(
-          summaryPanelVariants({ variant: effectiveVariant }),
-          className
-        )}
-        {...props}
-      >
-        {/* Header */}
-        <div className="p-6 pb-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <Sparkles className="size-5 text-[--ds-violet-500]" />
-                <h2 className="font-bold text-lg">{title}</h2>
-                {hasUrgent && (
-                  <Badge variant="destructive" size="sm" icon={<AlertTriangle />}>
-                    Action Needed
-                  </Badge>
-                )}
-              </div>
-              {subtitle && (
-                <p className="text-sm text-muted-foreground">{subtitle}</p>
-              )}
-            </div>
+  const toggleExpand = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
-            {onRefresh && (
-              <button
-                onClick={onRefresh}
-                disabled={isRefreshing}
-                className="rounded-lg p-2 hover:bg-muted transition-colors disabled:opacity-50"
-              >
-                <RefreshCw
-                  className={cn(
-                    "size-5 text-muted-foreground",
-                    isRefreshing && "animate-spin"
-                  )}
-                />
-              </button>
-            )}
-          </div>
+  return (
+    <motion.div
+      ref={ref}
+      data-slot="summary-panel"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={cn(
+        summaryPanelVariants({ variant: effectiveVariant }),
+        className
+      )}
+      {...props}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 pb-3">
+        <div className="flex items-center gap-2">
+          <Sparkles className="size-4 text-[--ds-violet-500]" />
+          <h2 className="font-semibold">{title}</h2>
+          {hasUrgent && (
+            <Badge variant="destructive" size="sm">
+              <AlertTriangle className="size-3 mr-1" />
+              Action Needed
+            </Badge>
+          )}
+        </div>
 
-          {/* Last updated */}
+        <div className="flex items-center gap-2">
           {lastUpdated && (
-            <div className="flex items-center gap-1.5 mt-3 text-xs text-muted-foreground">
+            <span className="text-xs text-muted-foreground flex items-center gap-1">
               <Clock className="size-3" />
-              Updated{" "}
               {new Date(lastUpdated).toLocaleTimeString("en-US", {
                 hour: "numeric",
                 minute: "2-digit",
               })}
-            </div>
+            </span>
+          )}
+          {onRefresh && (
+            <button
+              onClick={onRefresh}
+              disabled={isRefreshing}
+              className="rounded-md p-1.5 hover:bg-muted transition-colors disabled:opacity-50"
+            >
+              <RefreshCw
+                className={cn(
+                  "size-4 text-muted-foreground",
+                  isRefreshing && "animate-spin"
+                )}
+              />
+            </button>
           )}
         </div>
+      </div>
 
-        {/* Priority List */}
-        <div className="px-4 pb-4">
-          <div className="space-y-2">
-            {displayedPriorities.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
-                onClick={() => onItemClick?.(item)}
+      {subtitle && (
+        <p className="px-4 pb-3 text-sm text-muted-foreground">{subtitle}</p>
+      )}
+
+      {/* Priority List */}
+      <div className="px-2 pb-2">
+        {displayedPriorities.map((item, index) => {
+          const isExpanded = expandedId === item.id;
+
+          return (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.03 }}
+              className="mb-1 last:mb-0"
+            >
+              {/* Collapsed row */}
+              <button
+                onClick={() => {
+                  toggleExpand(item.id);
+                  onItemClick?.(item);
+                }}
                 className={cn(
-                  "group relative rounded-xl border bg-card p-4 transition-all duration-200",
-                  "hover:shadow-md hover:border-[--ds-teal-300]",
-                  onItemClick && "cursor-pointer",
-                  item.severity === "critical" &&
-                    "border-[--ds-severity-critical]/30 bg-[--ds-severity-critical-bg]"
+                  "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-all",
+                  "hover:bg-muted/50",
+                  isExpanded && "bg-muted/30",
+                  item.severity === "critical" && "bg-[--ds-severity-critical-bg]/30"
                 )}
               >
-                {/* Priority number */}
-                <div
+                <SeverityBadge severity={item.severity} size="sm" />
+
+                {item.isAiSuggested && (
+                  <Sparkles className="size-3 text-[--ds-violet-500] shrink-0" />
+                )}
+
+                <span className="flex-1 font-medium text-sm truncate">
+                  {item.title}
+                </span>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="text-sm font-semibold tabular-nums">
+                    {item.signalCount}
+                  </span>
+                  <span className="text-xs text-muted-foreground">sig</span>
+                </div>
+
+                <ChevronDown
                   className={cn(
-                    "absolute -left-3 top-4 flex size-6 items-center justify-center rounded-full text-xs font-bold",
-                    index === 0
-                      ? "bg-[--ds-teal-500] text-white"
-                      : "bg-muted text-muted-foreground"
+                    "size-4 text-muted-foreground transition-transform shrink-0",
+                    isExpanded && "rotate-180"
                   )}
-                >
-                  {index + 1}
-                </div>
+                />
+              </button>
 
-                <div className="pl-3">
-                  {/* Header */}
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <SeverityBadge severity={item.severity} size="sm" />
-                        {item.isAiSuggested && (
-                          <Badge variant="ai" size="sm">
-                            AI
-                          </Badge>
-                        )}
+              {/* Expanded details */}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-4 py-3 ml-3 border-l-2 border-muted">
+                      {item.description && (
+                        <p className="text-sm text-muted-foreground mb-2">
+                          {item.description}
+                        </p>
+                      )}
+                      <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                        <Sparkles className="size-3 text-[--ds-violet-400] mt-0.5 shrink-0" />
+                        <span className="italic">{item.reason}</span>
                       </div>
-                      <h3 className="font-semibold text-sm">{item.title}</h3>
                     </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
+      </div>
 
-                    <div className="shrink-0 text-right">
-                      <span className="text-lg font-bold tabular-nums">
-                        {item.signalCount}
-                      </span>
-                      <span className="text-xs text-muted-foreground block">
-                        signals
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  {item.description && (
-                    <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
-                      {item.description}
-                    </p>
-                  )}
-
-                  {/* Reason */}
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <Sparkles className="size-3 text-[--ds-violet-400]" />
-                    <span className="italic">{item.reason}</span>
-                  </div>
-
-                  {/* Hover arrow */}
-                  {onItemClick && (
-                    <ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* Footer */}
+      {priorities.length > maxItems && (
+        <div className="px-4 pb-3 pt-1 border-t">
+          <button className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-1.5">
+            View all {priorities.length} priorities
+          </button>
         </div>
-
-        {/* Footer */}
-        {priorities.length > maxItems && (
-          <div className="px-6 pb-6 pt-2 border-t">
-            <button className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2">
-              View all {priorities.length} priorities
-            </button>
-          </div>
-        )}
-
-        {/* AI Attribution */}
-        <div className="px-6 pb-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-          <Sparkles className="size-3 text-[--ds-violet-400]" />
-          <span>Prioritized by AI based on signal analysis</span>
-        </div>
-      </motion.div>
-    );
+      )}
+    </motion.div>
+  );
 }
 
 export { SummaryPanel, summaryPanelVariants };

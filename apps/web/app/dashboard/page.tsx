@@ -1,11 +1,10 @@
 "use client";
 
 import {
-  MetricCard,
-  SummaryPanel,
-  ProblemCard,
   AIInsight,
-  TrendList,
+  ProblemCard,
+  StatPill,
+  SummaryPanel,
   type PriorityItem,
   type Problem,
 } from "@repo/design-system";
@@ -117,105 +116,66 @@ const mockProblems: Problem[] = [
   },
 ];
 
-const mockTrends = [
-  { id: "t1", title: "Mobile checkout issues", trend: "hot" as const, count: 47, isNew: false },
-  { id: "t2", title: "iOS 18 compatibility", trend: "emerging" as const, count: 32, isNew: true },
-  { id: "t3", title: "Enterprise performance", trend: "rising" as const, count: 28 },
-  { id: "t4", title: "Pricing confusion", trend: "emerging" as const, count: 19, isNew: true },
-  { id: "t5", title: "API rate limits", trend: "stable" as const, count: 15 },
-  { id: "t6", title: "Documentation gaps", trend: "declining" as const, count: 8 },
-];
-
 export default function DashboardPage() {
   return (
-    <div className="flex h-full">
-      {/* Sidebar with metrics and trends */}
-      <aside className="w-80 shrink-0 border-r bg-muted/30 p-4 overflow-y-auto">
-        <div className="space-y-4">
-          <h2 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide px-1">
-            Overview
-          </h2>
-          
-          <MetricCard
-            title="Total Problems"
-            value={156}
-            previousValue={142}
-            trend="up"
-            trendIsPositive={false}
-            icon={AlertTriangle}
-            variant="warning"
-            size="sm"
-          />
-          
-          <MetricCard
-            title="Critical Issues"
-            value={3}
-            previousValue={1}
-            trend="up"
-            trendIsPositive={false}
-            icon={AlertTriangle}
-            variant="warning"
-            size="sm"
-          />
-          
-          <MetricCard
-            title="Signals This Week"
-            value={234}
-            previousValue={198}
-            trend="up"
-            icon={MessageSquare}
-            variant="highlighted"
-            size="sm"
-          />
-          
-          <MetricCard
-            title="AI Insights"
-            value={12}
-            description="New patterns detected"
-            icon={Sparkles}
-            variant="ai"
-            size="sm"
-          />
-          
-          <MetricCard
-            title="Active Users Affected"
-            value="2.4K"
-            previousValue={1800}
-            trend="up"
-            trendIsPositive={false}
-            icon={Users}
-            size="sm"
-          />
-        </div>
+    <div className="flex flex-col h-full">
+      {/* Compact Stats Header Bar */}
+      <header className="flex items-center gap-4 px-6 py-3 border-b bg-muted/30 overflow-x-auto">
+        <StatPill
+          icon={AlertTriangle}
+          label="Problems"
+          value={156}
+          trend="+10%"
+          negative
+        />
+        <StatPill
+          icon={AlertTriangle}
+          label="Critical"
+          value={3}
+          variant="critical"
+        />
+        <StatPill
+          icon={MessageSquare}
+          label="Signals"
+          value={234}
+          trend="+18%"
+          variant="signal"
+        />
+        <StatPill
+          icon={Sparkles}
+          label="AI Insights"
+          value={12}
+          variant="ai"
+        />
+        <StatPill
+          icon={Users}
+          label="Users Affected"
+          value="2.4K"
+          trend="+33%"
+          negative
+        />
+      </header>
 
-        <div className="mt-6">
-          <TrendList
-            trends={mockTrends}
-            title="Trending Topics"
-            maxItems={6}
-          />
-        </div>
-      </aside>
-
-      {/* Main content area */}
-      <main className="flex-1 overflow-y-auto p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* Summary Panel */}
+      {/* Main content area - full width */}
+      <main className="flex-1 min-h-0 overflow-y-auto p-6">
+        <div className="max-w-3xl mx-auto space-y-6">
+          {/* Summary Panel - now compact by default */}
           <SummaryPanel
             title="What Matters Right Now"
-            subtitle="AI-prioritized based on signal analysis and business impact"
+            subtitle="AI-prioritized based on signal analysis"
             priorities={mockPriorities}
             lastUpdated={new Date()}
             maxItems={5}
+            compact
           />
 
-          {/* AI Insight */}
+          {/* AI Insight - collapsible */}
           <AIInsight
             type="pattern"
             title="Payment issues cluster detected"
-            description="We've identified a pattern: 78% of checkout abandonment reports mention discount code application. This suggests a specific bug rather than general UX issues."
+            description="78% of checkout abandonment reports mention discount code application. This suggests a specific bug rather than general UX issues."
             confidence={0.87}
-            explanation="This insight is based on semantic analysis of 47 support tickets, 12 Slack mentions, and 8 user interviews from the past 7 days. The discount code correlation was identified by our clustering algorithm."
+            explanation="Based on semantic analysis of 47 support tickets, 12 Slack mentions, and 8 user interviews from the past 7 days."
             relatedProblems={[
               "Users can't complete checkout on mobile",
               "Discount codes not applying correctly",
@@ -225,14 +185,18 @@ export default function DashboardPage() {
             defaultExpanded={false}
           />
 
-          {/* Problem Cards */}
-          <div className="space-y-4">
-            <h2 className="font-semibold text-lg">Top Problems</h2>
-            <div className="grid gap-4">
+          {/* Problem Cards - collapsible */}
+          <div className="space-y-2">
+            <h2 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide px-1">
+              Top Problems
+            </h2>
+            <div className="space-y-2">
               {mockProblems.map((problem) => (
                 <ProblemCard
                   key={problem.id}
                   problem={problem}
+                  collapsible
+                  defaultExpanded={false}
                 />
               ))}
             </div>

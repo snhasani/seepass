@@ -3,6 +3,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "framer-motion";
 import {
+  ChevronDown,
   Link2,
   Lock,
   MessageSquare,
@@ -19,7 +20,7 @@ import { SignalSource, type SignalSourceType } from "./signal-source";
 const problemCardVariants = cva(
   [
     "relative flex flex-col rounded-xl border bg-card text-card-foreground transition-all duration-300",
-    "hover:shadow-lg",
+    "hover:shadow-md",
   ],
   {
     variants: {
@@ -86,6 +87,12 @@ export interface ProblemCardProps
   onMenuClick?: (problem: Problem) => void;
   selected?: boolean;
   compact?: boolean;
+  /** Start collapsed with expandable details (default: false for backwards compat) */
+  collapsible?: boolean;
+  /** Control expanded state externally */
+  expanded?: boolean;
+  /** Default expanded state when collapsible */
+  defaultExpanded?: boolean;
   ref?: React.Ref<HTMLDivElement>;
 }
 
@@ -98,54 +105,143 @@ function ProblemCard({
   onMenuClick,
   selected,
   compact = false,
+  collapsible = false,
+  expanded: controlledExpanded,
+  defaultExpanded = false,
   ref,
   ...props
 }: ProblemCardProps) {
+  const [internalExpanded, setInternalExpanded] =
+    React.useState(defaultExpanded);
+  const isExpanded = controlledExpanded ?? internalExpanded;
+
   const effectiveVariant = problem.isImmutable
     ? "immutable"
     : problem.aiConfidence
       ? "aiSuggested"
       : variant;
 
+  const handleClick = () => {
+    if (collapsible) {
+      setInternalExpanded(!isExpanded);
+    }
+    onSelect?.(problem);
+  };
+
+  // Calculate frequency change percentage
+  const frequencyChange = problem.previousFrequency
+    ? Math.round(
+        ((problem.frequency - problem.previousFrequency) /
+          problem.previousFrequency) *
+          100
+      )
+    : null;
+
+  // Collapsed view - minimal one-liner
+  if (collapsible && !isExpanded) {
+    return (
+      <motion.div
+        ref={ref}
+        data-slot="problem-card"
+        data-problem-id={problem.id}
+        data-collapsed="true"
+        initial={{ opacity: 0, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={cn(
+          "flex items-center gap-3 rounded-lg border bg-card px-4 py-3 cursor-pointer transition-all",
+          "hover:bg-muted/50 hover:border-[--ds-teal-300]",
+          effectiveVariant === "aiSuggested" &&
+            "border-[--ds-violet-200] bg-[--ds-ai-bg]/30",
+          effectiveVariant === "highlighted" &&
+            "border-[--ds-amber-200] bg-[--ds-problem-bg]/30",
+          selected && "ring-2 ring-primary",
+          className
+        )}
+        onClick={handleClick}
+        {...props}
+      >
+        {/* Severity + AI indicator */}
+        <div className="flex items-center gap-2 shrink-0">
+          <SeverityBadge severity={problem.severity} size="sm" />
+          {problem.aiConfidence !== undefined && (
+            <Sparkles className="size-3.5 text-[--ds-violet-500]" />
+          )}
+        </div>
+
+        {/* Title */}
+        <span className="flex-1 font-medium text-sm truncate">
+          {problem.title}
+        </span>
+
+        {/* Signal count */}
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-sm font-semibold tabular-nums">
+            {problem.frequency}
+          </span>
+          <span className="text-xs text-muted-foreground">signals</span>
+          {frequencyChange !== null && frequencyChange !== 0 && (
+            <span
+              className={cn(
+                "text-xs font-medium",
+                frequencyChange > 0
+                  ? "text-[--ds-severity-critical]"
+                  : "text-[--ds-status-active]"
+              )}
+            >
+              {frequencyChange > 0 ? "+" : ""}
+              {frequencyChange}%
+            </span>
+          )}
+        </div>
+
+        {/* Expand indicator */}
+        <ChevronDown className="size-4 text-muted-foreground shrink-0" />
+      </motion.div>
+    );
+  }
+
+  // Expanded/full view
   return (
     <motion.div
       ref={ref}
       data-slot="problem-card"
       data-problem-id={problem.id}
+      data-collapsed="false"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
       className={cn(
         problemCardVariants({ variant: effectiveVariant, size }),
         selected && "ring-2 ring-primary",
-        onSelect && "cursor-pointer",
+        (onSelect || collapsible) && "cursor-pointer",
         className
       )}
-      onClick={() => onSelect?.(problem)}
+      onClick={handleClick}
       {...props}
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            {problem.isImmutable ? (
+            {problem.isImmutable && (
               <Lock className="size-3.5 text-[--ds-teal-500]" />
-            ) : null}
-            {problem.aiConfidence !== undefined ? (
+            )}
+            {problem.aiConfidence !== undefined && (
               <Sparkles className="size-3.5 text-[--ds-violet-500]" />
-            ) : null}
+            )}
             <h3 className="font-semibold truncate">{problem.title}</h3>
+            {collapsible && (
+              <ChevronDown className="size-4 text-muted-foreground rotate-180 ml-auto shrink-0" />
+            )}
           </div>
-          {!compact && problem.description ? (
+          {!compact && problem.description && (
             <p className="text-sm text-muted-foreground line-clamp-2">
               {problem.description}
             </p>
-          ) : null}
+          )}
         </div>
 
-        {onMenuClick ? (
+        {onMenuClick && (
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -155,34 +251,34 @@ function ProblemCard({
           >
             <MoreHorizontal className="size-4 text-muted-foreground" />
           </button>
-        ) : null}
+        )}
       </div>
 
       {/* Metadata Row */}
       <div className="flex flex-wrap items-center gap-2">
         <SeverityBadge severity={problem.severity} size="sm" />
 
-        {problem.clusterName ? (
+        {problem.clusterName && (
           <Badge variant="signal" size="sm">
             {problem.clusterName}
           </Badge>
-        ) : null}
+        )}
 
-        {problem.aiConfidence !== undefined ? (
+        {problem.aiConfidence !== undefined && (
           <Badge variant="ai" size="sm">
             {Math.round(problem.aiConfidence * 100)}% confidence
           </Badge>
-        ) : null}
+        )}
       </div>
 
       {/* Frequency */}
-      {!compact ? (
+      {!compact && (
         <FrequencyIndicator
           count={problem.frequency}
           previousCount={problem.previousFrequency}
           size="sm"
         />
-      ) : null}
+      )}
 
       {/* Sources */}
       <div className="flex flex-wrap items-center gap-1.5">
@@ -196,45 +292,45 @@ function ProblemCard({
             showLabel={!compact}
           />
         ))}
-        {problem.sources.length > (compact ? 2 : 4) ? (
+        {problem.sources.length > (compact ? 2 : 4) && (
           <span className="text-xs text-muted-foreground">
             +{problem.sources.length - (compact ? 2 : 4)} more
           </span>
-        ) : null}
+        )}
       </div>
 
       {/* Tags */}
-      {!compact && problem.tags && problem.tags.length > 0 ? (
+      {!compact && problem.tags && problem.tags.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {problem.tags.slice(0, 4).map((tag) => (
             <Badge key={tag} variant="secondary" size="sm">
               {tag}
             </Badge>
           ))}
-          {problem.tags.length > 4 ? (
+          {problem.tags.length > 4 && (
             <Badge variant="secondary" size="sm">
               +{problem.tags.length - 4}
             </Badge>
-          ) : null}
+          )}
         </div>
-      ) : null}
+      )}
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-2 border-t text-xs text-muted-foreground">
         <div className="flex items-center gap-3">
           {problem.linkedSolutions !== undefined &&
-          problem.linkedSolutions > 0 ? (
-            <span className="flex items-center gap-1">
-              <Link2 className="size-3" />
-              {problem.linkedSolutions}
-            </span>
-          ) : null}
-          {problem.comments !== undefined && problem.comments > 0 ? (
+            problem.linkedSolutions > 0 && (
+              <span className="flex items-center gap-1">
+                <Link2 className="size-3" />
+                {problem.linkedSolutions}
+              </span>
+            )}
+          {problem.comments !== undefined && problem.comments > 0 && (
             <span className="flex items-center gap-1">
               <MessageSquare className="size-3" />
               {problem.comments}
             </span>
-          ) : null}
+          )}
         </div>
         <time>
           {new Date(problem.createdAt).toLocaleDateString("en-US", {
