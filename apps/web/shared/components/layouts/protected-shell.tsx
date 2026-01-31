@@ -7,6 +7,7 @@ import { LogOut, Monitor, Moon, Sun } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
 import { Button } from "@/shared/components/ui/button";
 import { useAuthStore } from "@/features/auth";
+import { useTheme } from "@/shared/providers/theme-provider";
 
 type ProtectedShellProps = {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ export function ProtectedShell({ children }: ProtectedShellProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, isAuthenticated, signOut } = useAuthStore();
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -71,27 +73,41 @@ export function ProtectedShell({ children }: ProtectedShellProps) {
                 </div>
                 <div className="flex items-center gap-1 px-1 pb-1">
                   <Button
-                    variant="ghost"
+                    variant={theme === "light" ? "secondary" : "ghost"}
                     size="icon-sm"
                     aria-label="Light theme"
+                    aria-pressed={theme === "light"}
+                    onClick={() => setTheme("light")}
                   >
                     <Sun className="h-4 w-4" />
                   </Button>
                   <Button
-                    variant="ghost"
+                    variant={theme === "dark" ? "secondary" : "ghost"}
                     size="icon-sm"
                     aria-label="Dark theme"
+                    aria-pressed={theme === "dark"}
+                    onClick={() => setTheme("dark")}
                   >
                     <Moon className="h-4 w-4" />
                   </Button>
                   <Button
-                    variant="ghost"
+                    variant={theme === "system" ? "secondary" : "ghost"}
                     size="icon-sm"
                     aria-label="System theme"
+                    aria-pressed={theme === "system"}
+                    onClick={() => setTheme("system")}
                   >
                     <Monitor className="h-4 w-4" />
                   </Button>
                 </div>
+                {theme === "system" ? (
+                  <div className="px-2 pb-1 text-xs text-muted-foreground">
+                    Using system:{" "}
+                    <span className="font-medium text-foreground">
+                      {resolvedTheme === "dark" ? "Dark" : "Light"}
+                    </span>
+                  </div>
+                ) : null}
                 <div className="my-1 h-px bg-border" />
                 <Button
                   variant="ghost"

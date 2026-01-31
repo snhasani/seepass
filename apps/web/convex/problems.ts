@@ -34,6 +34,25 @@ export const create = mutation({
   },
 });
 
+export const createConfirmed = mutation({
+  args: {
+    userId: v.string(),
+    title: v.string(),
+    description: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const now = Date.now();
+    return await ctx.db.insert("problems", {
+      userId: args.userId,
+      title: args.title,
+      description: args.description,
+      status: "confirmed",
+      createdAt: now,
+      updatedAt: now,
+    });
+  },
+});
+
 export const confirm = mutation({
   args: {
     id: v.id("problems"),

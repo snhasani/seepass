@@ -1,6 +1,5 @@
 "use client";
 
-import type { Id } from "@/convex/_generated/dataModel";
 import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { AssistantChatTransport, useChatRuntime } from "@assistant-ui/react-ai-sdk";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
@@ -9,12 +8,12 @@ import { useProblemThreadSync } from "../hooks/use-problem-thread-sync";
 import { ProblemThread } from "./problem-thread";
 
 interface ProblemDiscoveryAssistantProps {
-  problemId: Id<"problems">;
+  userId: string | undefined;
   onProblemConfirmed?: () => void;
 }
 
 export function ProblemDiscoveryAssistant({
-  problemId,
+  userId,
   onProblemConfirmed,
 }: ProblemDiscoveryAssistantProps) {
   const runtime = useChatRuntime({
@@ -29,7 +28,7 @@ export function ProblemDiscoveryAssistant({
       <TooltipProvider>
         <div className="flex h-full min-h-0 flex-col">
           <ThreadSync
-            problemId={problemId}
+            userId={userId}
             onProblemConfirmed={onProblemConfirmed}
           />
           <ProblemThread />
@@ -40,12 +39,12 @@ export function ProblemDiscoveryAssistant({
 }
 
 function ThreadSync({
-  problemId,
+  userId,
   onProblemConfirmed,
 }: {
-  problemId: Id<"problems">;
+  userId: string | undefined;
   onProblemConfirmed?: () => void;
 }) {
-  useProblemThreadSync({ problemId, onProblemConfirmed });
+  useProblemThreadSync({ userId, onProblemConfirmed });
   return null;
 }
