@@ -18,17 +18,19 @@ export default function AssistantProblemPage() {
 
   if (!problemId) {
     return (
-      <div className="flex h-dvh items-center justify-center">
+      <div className="flex h-full items-center justify-center">
         <div className="animate-pulse text-muted-foreground">Loading...</div>
       </div>
     );
   }
 
   return (
-    <ProblemDiscoveryAssistant
-      key={key}
-      problemId={problemId}
-      onProblemConfirmed={handleProblemConfirmed}
-    />
+    <div className="flex h-full min-h-0 flex-col">
+      <ProblemDiscoveryAssistant
+        key={key}
+        problemId={problemId}
+        onProblemConfirmed={handleProblemConfirmed}
+      />
+    </div>
   );
 }

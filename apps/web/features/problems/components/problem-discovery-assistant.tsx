@@ -27,8 +27,11 @@ export function ProblemDiscoveryAssistant({
   return (
     <AssistantRuntimeProvider runtime={runtime}>
       <TooltipProvider>
-        <div className="h-dvh">
-          <ThreadSync problemId={problemId} onProblemConfirmed={onProblemConfirmed} />
+        <div className="flex h-full min-h-0 flex-col">
+          <ThreadSync
+            problemId={problemId}
+            onProblemConfirmed={onProblemConfirmed}
+          />
           <ProblemThread />
         </div>
       </TooltipProvider>
