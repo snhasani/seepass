@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
 import {
   Headphones,
@@ -63,9 +62,10 @@ export function ShowcaseNode({
   const Icon = config.icon;
 
   // Calculate pixel positions
-  const targetPosition = isClustering && node.clusteredPosition
-    ? node.clusteredPosition
-    : node.initialPosition;
+  const targetPosition =
+    isClustering && node.clusteredPosition
+      ? node.clusteredPosition
+      : node.initialPosition;
 
   const x = targetPosition.x * viewportWidth;
   const y = targetPosition.y * viewportHeight;
@@ -89,9 +89,9 @@ export function ShowcaseNode({
   return (
     <motion.div
       className={cn(
-        "absolute pointer-events-none",
+        "pointer-events-none absolute",
         "w-[160px] sm:w-[180px]",
-        className
+        className,
       )}
       style={{
         left: 0,
@@ -126,14 +126,14 @@ export function ShowcaseNode({
       <div
         className={cn(
           "rounded-xl border-2 border-amber-300 bg-white p-3 shadow-lg",
-          "transition-shadow duration-300"
+          "transition-shadow duration-300",
         )}
       >
         {/* Source badge */}
         <div
           className={cn(
-            "mb-2 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium text-white",
-            config.bgClass
+            "mb-2 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 font-medium text-[10px] text-white",
+            config.bgClass,
           )}
         >
           <Icon className="size-3" />
@@ -141,7 +141,7 @@ export function ShowcaseNode({
         </div>
 
         {/* Title */}
-        <p className="text-xs font-medium leading-tight text-slate-800">
+        <p className="font-medium text-slate-800 text-xs leading-tight">
           {node.title}
         </p>
       </div>

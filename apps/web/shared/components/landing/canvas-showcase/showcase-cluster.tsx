@@ -1,12 +1,8 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
 import { Brain } from "lucide-react";
-import {
-  type ShowcaseClusterData,
-  SPRING_EASING,
-} from "./animation-config";
+import { type ShowcaseClusterData, SPRING_EASING } from "./animation-config";
 
 interface ShowcaseClusterProps {
   cluster: ShowcaseClusterData;
@@ -30,7 +26,7 @@ export function ShowcaseCluster({
 
   return (
     <motion.div
-      className="absolute pointer-events-none"
+      className="pointer-events-none absolute"
       style={{
         left: x - width / 2,
         top: y - height / 2,
@@ -39,9 +35,7 @@ export function ShowcaseCluster({
       }}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={
-        isVisible
-          ? { opacity: 1, scale: 1 }
-          : { opacity: 0, scale: 0.8 }
+        isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
       }
       transition={{
         duration: 0.5,
@@ -49,11 +43,11 @@ export function ShowcaseCluster({
       }}
     >
       {/* Cluster background */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-dashed border-indigo-300 bg-indigo-50/50" />
+      <div className="absolute inset-0 rounded-2xl border-2 border-indigo-300 border-dashed bg-indigo-50/50" />
 
       {/* Cluster label */}
       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-        <div className="flex items-center gap-1.5 rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700">
+        <div className="flex items-center gap-1.5 rounded-full bg-indigo-100 px-3 py-1 font-medium text-indigo-700 text-xs">
           <Brain className="size-3" />
           {cluster.label}
         </div>
@@ -78,17 +72,13 @@ export function ShowcaseInsight({
 
   return (
     <motion.div
-      className="absolute pointer-events-none"
+      className="pointer-events-none absolute"
       style={{
         left: x - 100,
         top: y + 80,
       }}
       initial={{ opacity: 0, y: 20 }}
-      animate={
-        isVisible
-          ? { opacity: 1, y: 0 }
-          : { opacity: 0, y: 20 }
-      }
+      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
         duration: 0.5,
         ease: "easeOut",
@@ -97,11 +87,11 @@ export function ShowcaseInsight({
       <div className="rounded-xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white p-3 shadow-lg">
         <div className="mb-2 flex items-center gap-1.5">
           <Brain className="size-3.5 text-indigo-600" />
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-indigo-600">
+          <span className="font-semibold text-[10px] text-indigo-600 uppercase tracking-wide">
             AI Insight
           </span>
         </div>
-        <p className="text-xs font-medium text-slate-800">
+        <p className="font-medium text-slate-800 text-xs">
           3 problems share a common root cause
         </p>
         <div className="mt-2 flex items-center gap-1.5 text-[10px] text-slate-500">

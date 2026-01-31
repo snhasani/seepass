@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/shared/lib/utils";
 import { ShowcaseNode } from "./showcase-node";
@@ -49,7 +48,7 @@ export function CanvasViewport({
       className={cn(
         "relative overflow-hidden rounded-xl bg-slate-50",
         "border border-slate-200",
-        className
+        className,
       )}
       style={{ width, height }}
     >
@@ -61,7 +60,7 @@ export function CanvasViewport({
 
       {/* SVG layer for connections */}
       <svg
-        className="absolute inset-0 pointer-events-none overflow-visible"
+        className="pointer-events-none absolute inset-0 overflow-visible"
         width={width}
         height={height}
       >
@@ -99,11 +98,12 @@ export function CanvasViewport({
       {/* AI Scan line */}
       {showScanLine && (
         <motion.div
-          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent"
+          className="absolute right-0 left-0 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent"
           initial={{ top: 0, opacity: 0 }}
           animate={{ top: height, opacity: [0, 1, 1, 0] }}
           transition={{
-            duration: ANIMATION_TIMING.SCANNING_END - ANIMATION_TIMING.SCANNING_START,
+            duration:
+              ANIMATION_TIMING.SCANNING_END - ANIMATION_TIMING.SCANNING_START,
             ease: "linear",
           }}
         />

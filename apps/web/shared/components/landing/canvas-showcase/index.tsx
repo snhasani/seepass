@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { CanvasViewport } from "./canvas-viewport";
 import { useShowcaseAnimation } from "./use-showcase-animation";
@@ -18,7 +17,7 @@ export function CanvasShowcase() {
   const [isVisible, setIsVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [viewport, setViewport] = useState<"desktop" | "tablet" | "mobile">(
-    "desktop"
+    "desktop",
   );
 
   // Check for reduced motion preference
@@ -63,7 +62,7 @@ export function CanvasShowcase() {
       {
         threshold: 0.5,
         rootMargin: "0px",
-      }
+      },
     );
 
     if (containerRef.current) {
@@ -88,10 +87,7 @@ export function CanvasShowcase() {
   });
 
   return (
-    <div
-      ref={containerRef}
-      className="flex justify-center"
-    >
+    <div ref={containerRef} className="flex justify-center">
       <CanvasViewport
         nodes={nodes}
         connections={connections}

@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { motion } from "framer-motion";
 import {
   type ShowcaseConnectionData,
@@ -31,9 +30,10 @@ export function ShowcaseConnection({
 
   // Get positions based on clustering state
   const getPosition = (node: ShowcaseNodeData) => {
-    const pos = isClustering && node.clusteredPosition
-      ? node.clusteredPosition
-      : node.initialPosition;
+    const pos =
+      isClustering && node.clusteredPosition
+        ? node.clusteredPosition
+        : node.initialPosition;
     return {
       x: pos.x * viewportWidth,
       y: pos.y * viewportHeight,

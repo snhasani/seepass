@@ -141,7 +141,7 @@ export function useShowcaseAnimation({
         isClustering,
       };
     },
-    [nodes, connections]
+    [nodes, connections],
   );
 
   // Animation loop
@@ -156,7 +156,7 @@ export function useShowcaseAnimation({
 
       animationRef.current = requestAnimationFrame(animate);
     },
-    [calculateState]
+    [calculateState],
   );
 
   // Start/stop animation based on visibility

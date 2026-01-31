@@ -8,13 +8,10 @@ interface ProblemsSidebarProps {
 }
 
 export function ProblemsSidebar({ userId }: ProblemsSidebarProps) {
-  const problems = useQuery(
-    api.problems.list,
-    userId ? { userId } : "skip"
-  );
+  const problems = useQuery(api.problems.list, userId ? { userId } : "skip");
 
   return (
-    <aside className="flex h-full w-72 shrink-0 flex-col">
+    <aside className="flex h-full w-144 shrink-0 flex-col">
       <div className="flex items-center justify-between pb-3">
         <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Problems
@@ -35,9 +32,7 @@ export function ProblemsSidebar({ userId }: ProblemsSidebarProps) {
                   {problem.title ?? "Draft problem"}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  {problem.status === "confirmed"
-                    ? "Confirmed"
-                    : "In progress"}
+                  {problem.status === "confirmed" ? "Confirmed" : "In progress"}
                 </div>
               </div>
             </div>
