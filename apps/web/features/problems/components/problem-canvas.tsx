@@ -2,9 +2,24 @@
 
 import { Button } from "@/shared/components/ui/button";
 import { cn } from "@/shared/lib/utils";
-import { Minus, Plus, RotateCcw } from "lucide-react";
+import {
+  Minus,
+  Plus,
+  RotateCcw,
+  StickyNote as StickyNoteIcon,
+  X,
+} from "lucide-react";
 import * as React from "react";
 import type { Problem } from "../types";
+
+// Draft sticky note (not yet saved as a problem)
+interface DraftStickyNote {
+  id: string;
+  title: string;
+  description: string;
+  x: number;
+  y: number;
+}
 
 interface ProblemCanvasProps {
   className?: string;
@@ -196,6 +211,118 @@ function StickyNote({
   );
 }
 
+// Draft sticky note component (editable)
+interface DraftStickyNoteProps {
+  note: DraftStickyNote;
+  isDragging: boolean;
+  onDragStart: (e: React.MouseEvent) => void;
+  onUpdate: (
+    id: string,
+    updates: Partial<Pick<DraftStickyNote, "title" | "description">>
+  ) => void;
+  onDelete: (id: string) => void;
+}
+
+function DraftStickyNoteComponent({
+  note,
+  isDragging,
+  onDragStart,
+  onUpdate,
+  onDelete,
+}: DraftStickyNoteProps) {
+  const titleRef = React.useRef<HTMLTextAreaElement>(null);
+  const [isEditing, setIsEditing] = React.useState(note.title === "");
+
+  // Focus title on mount if empty (just created)
+  React.useEffect(() => {
+    if (isEditing && titleRef.current) {
+      titleRef.current.focus();
+    }
+  }, [isEditing]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Don't start drag if clicking on editable area
+    if ((e.target as HTMLElement).tagName === "TEXTAREA") {
+      return;
+    }
+    onDragStart(e);
+  };
+
+  return (
+    <div
+      className={cn(
+        "absolute pointer-events-auto cursor-grab active:cursor-grabbing select-none",
+        isDragging && "z-50 cursor-grabbing"
+      )}
+      style={{
+        left: note.x,
+        top: note.y,
+        width: STICKY_WIDTH,
+        minHeight: STICKY_MIN_HEIGHT,
+      }}
+      onMouseDown={handleMouseDown}
+    >
+      <div
+        className={cn(
+          "relative w-full rounded-sm p-4 transition-all",
+          !isDragging && "hover:shadow-lg"
+        )}
+        style={{
+          backgroundColor: "#f8fafc",
+          borderLeft: "4px dashed #94a3b8",
+          boxShadow: isDragging
+            ? "8px 8px 20px rgba(148, 163, 184, 0.4), 0 4px 8px rgba(0,0,0,0.15)"
+            : "4px 4px 12px rgba(148, 163, 184, 0.3), 0 2px 4px rgba(0,0,0,0.08)",
+          transform: isDragging ? "scale(1.02)" : undefined,
+        }}
+      >
+        {/* Delete button */}
+        <button
+          onClick={() => onDelete(note.id)}
+          className="absolute -top-2 -right-2 z-20 flex size-6 items-center justify-center rounded-full bg-slate-200 text-slate-500 shadow-sm transition-colors hover:bg-red-100 hover:text-red-600"
+        >
+          <X className="size-3.5" />
+        </button>
+
+        {/* Paper texture effect */}
+        <div
+          className="absolute inset-0 rounded-sm opacity-30 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E")`,
+          }}
+        />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col gap-2">
+          <textarea
+            ref={titleRef}
+            value={note.title}
+            onChange={(e) => onUpdate(note.id, { title: e.target.value })}
+            onFocus={() => setIsEditing(true)}
+            onBlur={() => setIsEditing(false)}
+            placeholder="What's the problem?"
+            className="w-full resize-none border-none bg-transparent p-0 font-medium text-sm leading-snug text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-0"
+            rows={2}
+          />
+          <textarea
+            value={note.description}
+            onChange={(e) => onUpdate(note.id, { description: e.target.value })}
+            placeholder="Add details..."
+            className="w-full resize-none border-none bg-transparent p-0 text-xs leading-relaxed text-slate-600 placeholder:text-slate-400 focus:outline-none focus:ring-0"
+            rows={3}
+          />
+          <div className="pt-1">
+            <span className="inline-flex items-center gap-1 rounded-full bg-slate-200 px-1.5 py-0.5 text-[10px] font-medium text-slate-600">
+              <span className="size-1.5 rounded-full bg-amber-500" />
+              To be verified
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface StickyPosition {
   x: number;
   y: number;
@@ -203,6 +330,7 @@ interface StickyPosition {
 
 interface DragState {
   index: number;
+  type: "scheduled" | "draft";
   startX: number;
   startY: number;
   offsetX: number;
@@ -223,6 +351,9 @@ export function ProblemCanvas({
 
   // Sticky note positions (initialized from grid layout, then user can drag)
   const [dragState, setDragState] = React.useState<DragState | null>(null);
+
+  // Draft sticky notes (user-created, not yet saved)
+  const [draftNotes, setDraftNotes] = React.useState<DraftStickyNote[]>([]);
 
   // Compute initial positions for sticky notes
   const getInitialPositions = React.useCallback(
@@ -248,15 +379,60 @@ export function ProblemCanvas({
     setStickyPositions(getInitialPositions(scheduledProblems));
   }, [scheduledProblems, getInitialPositions]);
 
-  // Handle drag start
-  const handleDragStart = React.useCallback(
+  // Create a new draft sticky note
+  const createDraftNote = React.useCallback((x: number, y: number) => {
+    const newNote: DraftStickyNote = {
+      id: `draft-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: "",
+      description: "",
+      x: x - STICKY_WIDTH / 2, // Center on click position
+      y: y - STICKY_MIN_HEIGHT / 2,
+    };
+    setDraftNotes((prev) => [...prev, newNote]);
+  }, []);
+
+  // Update a draft note
+  const updateDraftNote = React.useCallback(
+    (
+      id: string,
+      updates: Partial<Pick<DraftStickyNote, "title" | "description">>
+    ) => {
+      setDraftNotes((prev) =>
+        prev.map((note) => (note.id === id ? { ...note, ...updates } : note))
+      );
+    },
+    []
+  );
+
+  // Delete a draft note
+  const deleteDraftNote = React.useCallback((id: string) => {
+    setDraftNotes((prev) => prev.filter((note) => note.id !== id));
+  }, []);
+
+  // Handle double-click to create new note
+  const handleDoubleClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      // Convert screen coordinates to canvas coordinates
+      const canvasX =
+        (e.clientX - rect.left - viewState.offset.x) / viewState.scale;
+      const canvasY =
+        (e.clientY - rect.top - viewState.offset.y) / viewState.scale;
+
+      createDraftNote(canvasX, canvasY);
+    },
+    [viewState, createDraftNote]
+  );
+
+  // Handle drag start for scheduled problems
+  const handleScheduledDragStart = React.useCallback(
     (index: number, e: React.MouseEvent) => {
       e.stopPropagation();
       const pos = stickyPositions[index];
       if (!pos) return;
 
-      // Calculate offset from the sticky note's top-left corner
-      // Account for canvas transform (scale and offset)
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
 
@@ -267,6 +443,7 @@ export function ProblemCanvas({
 
       setDragState({
         index,
+        type: "scheduled",
         startX: pos.x,
         startY: pos.y,
         offsetX: mouseXInCanvas - pos.x,
@@ -274,6 +451,34 @@ export function ProblemCanvas({
       });
     },
     [stickyPositions, viewState]
+  );
+
+  // Handle drag start for draft notes
+  const handleDraftDragStart = React.useCallback(
+    (noteId: string, e: React.MouseEvent) => {
+      e.stopPropagation();
+      const noteIndex = draftNotes.findIndex((n) => n.id === noteId);
+      const note = draftNotes[noteIndex];
+      if (!note) return;
+
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      const mouseXInCanvas =
+        (e.clientX - rect.left - viewState.offset.x) / viewState.scale;
+      const mouseYInCanvas =
+        (e.clientY - rect.top - viewState.offset.y) / viewState.scale;
+
+      setDragState({
+        index: noteIndex,
+        type: "draft",
+        startX: note.x,
+        startY: note.y,
+        offsetX: mouseXInCanvas - note.x,
+        offsetY: mouseYInCanvas - note.y,
+      });
+    },
+    [draftNotes, viewState]
   );
 
   // Handle drag move and end
@@ -293,11 +498,25 @@ export function ProblemCanvas({
       const newX = mouseXInCanvas - dragState.offsetX;
       const newY = mouseYInCanvas - dragState.offsetY;
 
-      setStickyPositions((prev) => {
-        const updated = [...prev];
-        updated[dragState.index] = { x: newX, y: newY };
-        return updated;
-      });
+      if (dragState.type === "scheduled") {
+        setStickyPositions((prev) => {
+          const updated = [...prev];
+          updated[dragState.index] = { x: newX, y: newY };
+          return updated;
+        });
+      } else {
+        setDraftNotes((prev) => {
+          const updated = [...prev];
+          if (updated[dragState.index]) {
+            updated[dragState.index] = {
+              ...updated[dragState.index],
+              x: newX,
+              y: newY,
+            };
+          }
+          return updated;
+        });
+      }
     };
 
     const handleMouseUp = () => {
@@ -433,11 +652,12 @@ export function ProblemCanvas({
         className
       )}
     >
-      {/* Canvas for grid */}
+      {/* Canvas for grid - double-click to create new sticky note */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 h-full w-full"
         style={{ width: "100%", height: "100%" }}
+        onDoubleClick={handleDoubleClick}
       />
 
       {/* Content layer with transform */}
@@ -459,11 +679,49 @@ export function ProblemCanvas({
               x={pos.x}
               y={pos.y}
               colorIndex={index}
-              isDragging={dragState?.index === index}
-              onDragStart={(e) => handleDragStart(index, e)}
+              isDragging={
+                dragState?.type === "scheduled" && dragState?.index === index
+              }
+              onDragStart={(e) => handleScheduledDragStart(index, e)}
             />
           );
         })}
+
+        {/* Draft sticky notes (user-created) */}
+        {draftNotes.map((note, index) => (
+          <DraftStickyNoteComponent
+            key={note.id}
+            note={note}
+            isDragging={
+              dragState?.type === "draft" && dragState?.index === index
+            }
+            onDragStart={(e) => handleDraftDragStart(note.id, e)}
+            onUpdate={updateDraftNote}
+            onDelete={deleteDraftNote}
+          />
+        ))}
+      </div>
+
+      {/* Toolbar */}
+      <div className="absolute top-3 left-3 flex items-center gap-2">
+        <Button
+          onClick={() => {
+            // Create in center of visible canvas
+            const centerX =
+              (dimensions.width / 2 - viewState.offset.x) / viewState.scale;
+            const centerY =
+              (dimensions.height / 2 - viewState.offset.y) / viewState.scale;
+            createDraftNote(centerX, centerY);
+          }}
+          size="sm"
+          className="gap-2 shadow-sm"
+        >
+          <StickyNoteIcon className="size-4" />
+          Add Note
+        </Button>
+        <span className="text-xs text-muted-foreground bg-background/80 px-2 py-1 rounded backdrop-blur-sm">
+          or double-click on canvas
+        </span>
       </div>
 
       {/* Zoom controls */}
