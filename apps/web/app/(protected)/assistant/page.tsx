@@ -6,6 +6,7 @@ import {
   ProblemDiscoveryAssistant,
   ProblemsList,
 } from "@/features/problems";
+import type { Problem } from "@/features/problems/types";
 import { Button } from "@/shared/components/ui/button";
 import { MessageSquare, LayoutGrid, List, Plus } from "lucide-react";
 import { useCallback, useState } from "react";
@@ -16,6 +17,7 @@ export default function AssistantProblemPage() {
   const user = useAuthStore((state) => state.user);
   const [key, setKey] = useState(0);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [scheduledProblems, setScheduledProblems] = useState<Problem[]>([]);
 
   const handleProblemConfirmed = useCallback(() => {
     setKey((k) => k + 1);
@@ -27,7 +29,8 @@ export default function AssistantProblemPage() {
     setViewMode("chat");
   }, []);
 
-  const handleStartWorkshop = useCallback(() => {
+  const handleStartWorkshop = useCallback((problems: Problem[]) => {
+    setScheduledProblems(problems);
     setViewMode("workshop");
   }, []);
 
@@ -101,7 +104,10 @@ export default function AssistantProblemPage() {
       )}
       {viewMode === "workshop" && (
         <div className="flex min-h-0 flex-1">
-          <ProblemCanvas className="flex-1" />
+          <ProblemCanvas
+            className="flex-1"
+            scheduledProblems={scheduledProblems}
+          />
         </div>
       )}
     </div>
