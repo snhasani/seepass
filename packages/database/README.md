@@ -20,6 +20,8 @@ const records = await prisma.patternRecord.findMany();
 
 ## Setup
 
-1. Set `DATABASE_URL` in your `.env` file
+1. Set `DATABASE_URL` in your `.env` file (or create `prisma.config.ts` with URL)
 2. Run `pnpm db:migrate` to create tables
 3. Run `pnpm db:seed` to load seed data
+
+**Note:** Prisma 7 uses `prisma.config.ts` for datasource URL configuration instead of schema.prisma.
