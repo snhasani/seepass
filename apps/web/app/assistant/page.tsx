@@ -1,24 +1,20 @@
 "use client";
 
-import { ProblemDiscoveryAssistant } from "@/components/problem-discovery-assistant";
-import { api } from "@/convex/_generated/api";
-import { useAuthStore } from "@/lib/auth-store";
-import { useMutation } from "convex/react";
-import { useEffect, useState } from "react";
-import type { Id } from "@/convex/_generated/dataModel";
+import { useAuthStore } from "@/features/auth";
+import {
+  ProblemDiscoveryAssistant,
+  useCreateProblem,
+} from "@/features/problems";
+import { useCallback, useState } from "react";
 
 export default function AssistantProblemPage() {
   const user = useAuthStore((state) => state.user);
-  const createProblem = useMutation(api.problems.create);
-  const [problemId, setProblemId] = useState<Id<"problems"> | null>(null);
+  const { problemId, reset } = useCreateProblem({ userId: user?.id });
+  const [key, setKey] = useState(0);
 
-  useEffect(() => {
-    if (!user || problemId) return;
-
-    createProblem({ userId: user.id }).then((id) => {
-      setProblemId(id);
-    });
-  }, [user, problemId, createProblem]);
+  const handleProblemConfirmed = useCallback(() => {
+    reset().then(() => setKey((k) => k + 1));
+  }, [reset]);
 
   if (!problemId) {
     return (
@@ -28,5 +24,11 @@ export default function AssistantProblemPage() {
     );
   }
 
-  return <ProblemDiscoveryAssistant problemId={problemId} />;
+  return (
+    <ProblemDiscoveryAssistant
+      key={key}
+      problemId={problemId}
+      onProblemConfirmed={handleProblemConfirmed}
+    />
+  );
 }

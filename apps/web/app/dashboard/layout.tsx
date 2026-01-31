@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LogOut, Monitor, Moon, Sun } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { useAuthStore } from "@/lib/auth-store";
+import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
+import { Button } from "@/shared/components/ui/button";
+import { useAuthStore } from "@/features/auth";
 
 export default function DashboardLayout({
   children,

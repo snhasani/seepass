@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { ConvexClientProvider } from "@/shared/providers/convex-client-provider";
 import "./globals.css";
 
 const geistSans = Geist({

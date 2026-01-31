@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,10 +8,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useAuthStore } from "@/lib/auth-store";
+} from "@/shared/components/ui/card";
+import { Input } from "@/shared/components/ui/input";
+import { Label } from "@/shared/components/ui/label";
+import { useAuthStore } from "@/features/auth";
 import { CheckCircle2, Target } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
