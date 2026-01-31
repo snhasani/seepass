@@ -77,7 +77,16 @@ export interface Solution {
 }
 
 export interface SolutionCardProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "children">,
+  extends Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      | "children"
+      | "onSelect"
+      | "onDrag"
+      | "onDragStart"
+      | "onDragEnd"
+      | "onAnimationStart"
+      | "onAnimationEnd"
+    >,
     VariantProps<typeof solutionCardVariants> {
   solution: Solution;
   onSelect?: (solution: Solution) => void;
