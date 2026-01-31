@@ -5,7 +5,7 @@ echo "Generating patterns..."
 pnpm gen:patterns
 
 echo "Running migrations..."
-cd apps/web && pnpm db:migrate
+pnpm db:migrate
 
 echo "Seeding database..."
 pnpm db:seed

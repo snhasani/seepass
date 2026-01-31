@@ -5,7 +5,7 @@ Create Prisma schema for PatternRecord table and seed script that loads generate
 
 ## Prisma Schema
 
-Location: `prisma/schema.prisma` (or `apps/web/prisma/schema.prisma`)
+Location: `packages/database/prisma/schema.prisma`
 
 ```prisma
 datasource db {
@@ -46,7 +46,7 @@ npx prisma migrate dev --name init_pattern_records
 
 ## Seed Script
 
-Location: `prisma/seed.ts` (or `apps/web/prisma/seed.ts`)
+Location: `packages/database/prisma/seed.ts`
 
 ```typescript
 import { PrismaClient } from '@prisma/client';
@@ -97,20 +97,50 @@ main()
   });
 ```
 
+## Package Structure
+
+Create `packages/database/` package:
+
+```
+packages/database/
+  prisma/
+    schema.prisma
+    migrations/
+    seed.ts
+  src/
+    index.ts          # Export prisma client + types
+  package.json
+  tsconfig.json
+```
+
 ## Package.json Scripts
 
-Add to root or `apps/web/package.json`:
+Add to `packages/database/package.json`:
 
 ```json
 {
   "scripts": {
-    "db:migrate": "prisma migrate dev",
+    "db:migrate": "npx prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
-    "db:reset": "prisma migrate reset",
-    "db:studio": "prisma studio"
+    "db:reset": "npx prisma migrate reset",
+    "db:studio": "npx prisma studio",
+    "db:generate": "npx prisma generate"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
+  }
+}
+```
+
+Add to root `package.json`:
+
+```json
+{
+  "scripts": {
+    "db:migrate": "pnpm --filter @repo/database db:migrate",
+    "db:seed": "pnpm --filter @repo/database db:seed",
+    "db:reset": "pnpm --filter @repo/database db:reset",
+    "db:studio": "pnpm --filter @repo/database db:studio"
   }
 }
 ```
@@ -179,3 +209,5 @@ echo "✓ Seed validation complete"
 - `record` column stores full JSONB (LLM-ready)
 - Indexes support common query patterns (priorities by date, timeline by entity)
 - No Priority table needed (computed on read from PatternRecord)
+- Prisma client exported from `@repo/database` package for reuse across apps
+- Apps import: `import { prisma } from '@repo/database'`
