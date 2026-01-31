@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { LogOut, User } from "lucide-react";
+import { LogOut, Monitor, Moon, Sun } from "lucide-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/lib/auth-store";
 
@@ -41,20 +42,69 @@ export default function DashboardLayout({
           <span className="font-semibold">SeePass</span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <User className="h-4 w-4" />
-            <span>{user?.name || user?.email}</span>
+        <div className="relative flex items-center" data-slot="user-menu">
+          <div className="group relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Open user menu"
+              className="rounded-full p-0"
+            >
+              <Avatar className="size-8">
+                <AvatarFallback className="text-xs font-semibold">
+                  {(user?.name || user?.email || "U").slice(0, 2).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+            </Button>
+
+            <div className="pointer-events-none absolute right-0 top-full z-20 mt-2 w-56 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+              <div className="rounded-md border bg-background p-1">
+                <div className="px-2 py-1.5 text-xs text-muted-foreground">
+                  <div className="text-sm font-medium text-foreground">
+                    {user?.name || "User"}
+                  </div>
+                  <div className="truncate">{user?.email}</div>
+                </div>
+                <div className="my-1 h-px bg-border" />
+                <div className="px-2 py-1.5 text-xs uppercase tracking-wide text-muted-foreground">
+                  Theme
+                </div>
+                <div className="flex items-center gap-1 px-1 pb-1">
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    aria-label="Light theme"
+                  >
+                    <Sun className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    aria-label="Dark theme"
+                  >
+                    <Moon className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    aria-label="System theme"
+                  >
+                    <Monitor className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="my-1 h-px bg-border" />
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="w-full justify-start gap-2"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Log out
+                </Button>
+              </div>
+            </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleSignOut}
-            className="gap-2"
-          >
-            <LogOut className="h-4 w-4" />
-            Sign Out
-          </Button>
         </div>
       </header>
 
