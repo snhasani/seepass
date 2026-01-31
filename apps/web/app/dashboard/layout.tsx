@@ -38,7 +38,7 @@ export default function DashboardLayout({
       {/* Header */}
       <header className="flex h-14 shrink-0 items-center justify-between border-b bg-background px-4">
         <div className="flex items-center gap-3">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-fuchsia-600 text-sm font-bold text-white">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold text-white">
             S
           </span>
           <span className="font-semibold">SeePass</span>
