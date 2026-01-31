@@ -19,14 +19,28 @@ export const ProblemQuestionTool: ToolCallMessagePartComponent<
   const helperText = args?.helperText;
   const isAnswered = result !== undefined;
 
-  const canSubmitText = useMemo(
-    () => allowFreeText && text.trim().length > 0 && !isAnswered,
-    [allowFreeText, text, isAnswered]
+  const canSubmit = useMemo(
+    () =>
+      !isAnswered &&
+      (!!selectedOption || (allowFreeText && text.trim().length > 0)),
+    [isAnswered, selectedOption, allowFreeText, text]
   );
-  const canSubmitOption = useMemo(
-    () => !isAnswered && !!selectedOption,
-    [isAnswered, selectedOption]
-  );
+
+  const handleSubmit = () => {
+    if (selectedOption) {
+      aui.part().addToolResult({
+        answer: selectedOption,
+        mode: "option",
+        question,
+      });
+    } else if (text.trim().length > 0) {
+      aui.part().addToolResult({
+        answer: text.trim(),
+        mode: "text",
+        question,
+      });
+    }
+  };
 
   return (
     <div className="mb-4 space-y-4 rounded-2xl border border-dashed p-4">
@@ -63,53 +77,28 @@ export const ProblemQuestionTool: ToolCallMessagePartComponent<
               </button>
             );
           })}
-          <div>
-            <Button
-              type="button"
-              variant="default"
-              disabled={!canSubmitOption}
-              onClick={() => {
-                if (!selectedOption) return;
-                aui.part().addToolResult({
-                  answer: selectedOption,
-                  mode: "option",
-                  question,
-                });
-              }}
-            >
-              Submit selection
-            </Button>
-          </div>
         </div>
       ) : null}
       {allowFreeText ? (
-        <div className="space-y-2">
-          <textarea
-            className={cn(
-              "min-h-24 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/20"
-            )}
-            placeholder="Describe the user problem in your own words..."
-            value={text}
-            onChange={(event) => setText(event.target.value)}
-            disabled={isAnswered}
-          />
-          <Button
-            type="button"
-            variant="default"
-            disabled={!canSubmitText}
-            onClick={() =>
-              aui.part().addToolResult({
-                answer: text.trim(),
-                mode: "text",
-                question,
-              })
-            }
-          >
-            Send answer
-          </Button>
-        </div>
+        <textarea
+          className={cn(
+            "min-h-24 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/20"
+          )}
+          placeholder="Describe the user problem in your own words..."
+          value={text}
+          onChange={(event) => setText(event.target.value)}
+          disabled={isAnswered}
+        />
       ) : null}
+      <Button
+        type="button"
+        variant="default"
+        disabled={!canSubmit}
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
     </div>
   );
 };
