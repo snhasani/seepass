@@ -55,13 +55,13 @@ export default function SignUpPage() {
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
-        <CardContent className="space-y-4">
+        <CardContent className="flex flex-col gap-4">
           {error && (
             <div className="rounded-md bg-red-500/10 px-3 py-2 text-sm text-red-300">
               {error}
             </div>
           )}
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="name" className="text-slate-200">
               Name
             </Label>
@@ -74,7 +74,7 @@ export default function SignUpPage() {
               className="border-white/10 bg-white/5 text-white placeholder:text-slate-400"
             />
           </div>
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="email" className="text-slate-200">
               Email
             </Label>
@@ -87,7 +87,7 @@ export default function SignUpPage() {
               className="border-white/10 bg-white/5 text-white placeholder:text-slate-400"
             />
           </div>
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="password" className="text-slate-200">
               Password
             </Label>

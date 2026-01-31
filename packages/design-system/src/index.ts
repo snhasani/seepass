@@ -5,35 +5,23 @@
 export { cn } from "./utils/cn";
 
 // Primitives
-export {
-  Badge,
-  badgeVariants,
-  type BadgeProps,
-} from "./primitives/badge";
+export { Badge, badgeVariants, type BadgeProps } from "./primitives/badge";
 
-export {
-  Progress,
-  type ProgressProps,
-} from "./primitives/progress";
+export { Progress, type ProgressProps } from "./primitives/progress";
 
-export {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "./primitives/tabs";
+export { Tabs, TabsContent, TabsList, TabsTrigger } from "./primitives/tabs";
 
 export {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
-  SelectSeparator,
-  SelectScrollUpButton,
+  SelectLabel,
   SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
 } from "./primitives/select";
 
 export {
@@ -42,25 +30,22 @@ export {
   type TextareaProps,
 } from "./primitives/textarea";
 
-export {
-  Switch,
-  type SwitchProps,
-} from "./primitives/switch";
+export { Switch, type SwitchProps } from "./primitives/switch";
 
 // Problem Management Components
 export {
   SignalSource,
   sourceConfig,
-  type SignalSourceType,
   type SignalSourceProps,
+  type SignalSourceType,
 } from "./components/signal-source";
 
 export {
   SeverityBadge,
   SeverityBar,
   severityConfig,
-  type SeverityLevel,
   type SeverityBadgeProps,
+  type SeverityLevel,
 } from "./components/severity-badge";
 
 export {
@@ -78,8 +63,8 @@ export {
 
 // AI Insight Components
 export {
-  ConfidenceIndicator,
   ConfidenceBar,
+  ConfidenceIndicator,
   getConfidenceLevel,
   type ConfidenceIndicatorProps,
 } from "./components/confidence-indicator";
@@ -93,8 +78,8 @@ export {
 export {
   AIInsight,
   aiInsightVariants,
-  type InsightType,
   type AIInsightProps,
+  type InsightType,
 } from "./components/ai-insight";
 
 // Prioritization Components
@@ -102,21 +87,21 @@ export {
   PriorityIndicator,
   PrioritySelector,
   priorityLevels,
-  type PriorityLevel,
   type PriorityIndicatorProps,
+  type PriorityLevel,
 } from "./components/priority-indicator";
 
 export {
+  AgreementToggle,
   VoteButton,
   VotePair,
-  AgreementToggle,
   voteButtonVariants,
   type VoteButtonProps,
 } from "./components/vote-button";
 
 export {
-  DecisionTrail,
   DecisionItem,
+  DecisionTrail,
   type Decision,
   type DecisionType,
 } from "./components/decision-trail";
@@ -136,10 +121,10 @@ export {
 } from "./components/group-container";
 
 export {
-  ConnectionLine,
   ConnectionLayer,
-  type ConnectionPoint,
+  ConnectionLine,
   type ConnectionLineProps,
+  type ConnectionPoint,
 } from "./components/connection-line";
 
 // Solution Components
@@ -148,8 +133,8 @@ export {
   EffortSelector,
   EstimateComparison,
   effortLevels,
-  type EffortLevel,
   type EffortEstimateProps,
+  type EffortLevel,
 } from "./components/effort-estimate";
 
 export {
@@ -157,8 +142,8 @@ export {
   solutionCardVariants,
   statusConfig,
   type Solution,
-  type SolutionStatus,
   type SolutionCardProps,
+  type SolutionStatus,
 } from "./components/solution-card";
 
 // Summary/Dashboard Components
@@ -171,10 +156,10 @@ export {
 export {
   TrendIndicator,
   TrendList,
-  trendIndicatorVariants,
   trendConfig,
-  type TrendType,
+  trendIndicatorVariants,
   type TrendIndicatorProps,
+  type TrendType,
 } from "./components/trend-indicator";
 
 export {

@@ -15,11 +15,18 @@ interface AuthState {
   signOut: () => void;
 }
 
+// Mock user for development - set to null to disable auto-login
+const MOCK_USER: User | null = {
+  id: "dev-user-123",
+  email: "dev@seepass.local",
+  name: "Dev User",
+};
+
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      user: null,
-      isAuthenticated: false,
+      user: MOCK_USER,
+      isAuthenticated: MOCK_USER !== null,
 
       signIn: async (email: string, _password: string) => {
         // Mock authentication - accept any credentials
