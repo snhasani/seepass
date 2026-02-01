@@ -1,0 +1,2667 @@
+[
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2025-11-07",
+    "score": 14.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-01",
+        "end": "2025-11-07"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0083794867079705,
+          "current": 0.00728952966274039,
+          "delta_pct": -13.007444050163025,
+          "z": -0.520297762006521
+        },
+        "dropoff_rate": {
+          "baseline": 0.7778698690235615,
+          "current": 0.7820069764847762,
+          "delta_pct": 0.531850843690341,
+          "z": 0.053185084369034095
+        },
+        "ticket_rate": {
+          "baseline": 0.002943148932605982,
+          "current": 0.0026094370393900277,
+          "delta_pct": -11.338600283488624,
+          "z": -0.37795334278295417
+        },
+        "affected_accounts": 83,
+        "revenue_at_risk": 1299
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.16
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2025-11-07",
+    "score": 6.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-11-01",
+        "end": "2025-11-07"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.009457375649828464,
+          "current": 0.009460135265676328,
+          "delta_pct": 0.02917950972914802,
+          "z": 0.0011671803891659207
+        },
+        "dropoff_rate": {
+          "baseline": 0.4267503783572465,
+          "current": 0.44267772820778195,
+          "delta_pct": 3.7322403583675694,
+          "z": 0.3732240358367569
+        },
+        "ticket_rate": {
+          "baseline": 0.00039725383794866496,
+          "current": 0.00041922612617748033,
+          "delta_pct": 5.531044921372095,
+          "z": 0.1843681640457365
+        },
+        "affected_accounts": 20,
+        "revenue_at_risk": 706
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.11
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-08",
+    "windowEnd": "2025-11-14",
+    "score": 4.5,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-08",
+        "end": "2025-11-14"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0033784554675221445,
+          "current": 0.002953701190623736,
+          "delta_pct": -12.572439713403577,
+          "z": -0.5028975885361431
+        },
+        "dropoff_rate": {
+          "baseline": 0.6900433980277739,
+          "current": 0.729175385562787,
+          "delta_pct": 5.670945863239471,
+          "z": 0.567094586323947
+        },
+        "ticket_rate": {
+          "baseline": 0.0009977004557847977,
+          "current": 0.0010128333799051237,
+          "delta_pct": 1.516780315432686,
+          "z": 0.0505593438477562
+        },
+        "affected_accounts": 22,
+        "revenue_at_risk": 259
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.22
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-11-08",
+    "windowEnd": "2025-11-14",
+    "score": 7,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-11-08",
+        "end": "2025-11-14"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005194617456756532,
+          "current": 0.004262480203752988,
+          "delta_pct": -17.94429061934353,
+          "z": -0.7177716247737412
+        },
+        "dropoff_rate": {
+          "baseline": 0.46247393215307964,
+          "current": 0.4677091166502834,
+          "delta_pct": 1.1319955857470745,
+          "z": 0.11319955857470745
+        },
+        "ticket_rate": {
+          "baseline": 0.00023743921360000968,
+          "current": 0.00024892290332464154,
+          "delta_pct": 4.836475639604035,
+          "z": 0.16121585465346783
+        },
+        "affected_accounts": 44,
+        "revenue_at_risk": 969
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.18
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-15",
+    "windowEnd": "2025-11-21",
+    "score": 13.4,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-15",
+        "end": "2025-11-21"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.013304531031288206,
+          "current": 0.012156121073297674,
+          "delta_pct": -8.631720691919327,
+          "z": -0.3452688276767731
+        },
+        "dropoff_rate": {
+          "baseline": 0.7261994433938526,
+          "current": 0.6961335717989816,
+          "delta_pct": -4.140167259611186,
+          "z": -0.4140167259611186
+        },
+        "ticket_rate": {
+          "baseline": 0.0014534083135426044,
+          "current": 0.0011443371330910187,
+          "delta_pct": -21.265268512070183,
+          "z": -0.7088422837356727
+        },
+        "affected_accounts": 86,
+        "revenue_at_risk": 1021
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.33
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-22",
+    "windowEnd": "2025-11-28",
+    "score": 7.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-22",
+        "end": "2025-11-28"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.008173649964854122,
+          "current": 0.006901644212551536,
+          "delta_pct": -15.562273375689978,
+          "z": -0.6224909350275991
+        },
+        "dropoff_rate": {
+          "baseline": 0.791344182624016,
+          "current": 0.714717202545565,
+          "delta_pct": -9.68314189463853,
+          "z": -0.968314189463853
+        },
+        "ticket_rate": {
+          "baseline": 0.0012393549047410488,
+          "current": 0.0011528762429230965,
+          "delta_pct": -6.977715704124411,
+          "z": -0.23259052347081371
+        },
+        "affected_accounts": 68,
+        "revenue_at_risk": 918
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.12
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-11-22",
+    "windowEnd": "2025-11-28",
+    "score": 6.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-11-22",
+        "end": "2025-11-28"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.01134867731994018,
+          "current": 0.009894333967148797,
+          "delta_pct": -12.815091237425802,
+          "z": -0.5126036494970321
+        },
+        "dropoff_rate": {
+          "baseline": 0.41956286792410535,
+          "current": 0.42126766547402833,
+          "delta_pct": 0.4063270799815766,
+          "z": 0.04063270799815766
+        },
+        "ticket_rate": {
+          "baseline": 0.0009065853946842252,
+          "current": 0.0010524965779770263,
+          "delta_pct": 16.09458790626378,
+          "z": 0.5364862635421259
+        },
+        "affected_accounts": 32,
+        "revenue_at_risk": 1494
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.33
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-29",
+    "windowEnd": "2025-12-05",
+    "score": 14,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-29",
+        "end": "2025-12-05"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.009941436289809645,
+          "current": 0.009237414769614323,
+          "delta_pct": -7.081688195466997,
+          "z": -0.28326752781867987
+        },
+        "dropoff_rate": {
+          "baseline": 0.7005443123285658,
+          "current": 0.7326872456220537,
+          "delta_pct": 4.588279817253346,
+          "z": 0.4588279817253346
+        },
+        "ticket_rate": {
+          "baseline": 0.0027079651318490505,
+          "current": 0.002430681252679587,
+          "delta_pct": -10.239566082600508,
+          "z": -0.34131886942001693
+        },
+        "affected_accounts": 65,
+        "revenue_at_risk": 1265
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.35
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-11-29",
+    "windowEnd": "2025-12-05",
+    "score": 18.9,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-11-29",
+        "end": "2025-12-05"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.00631891469983384,
+          "current": 0.0053101061342632015,
+          "delta_pct": -15.964902415871606,
+          "z": -0.6385960966348643
+        },
+        "dropoff_rate": {
+          "baseline": 0.4863032831577584,
+          "current": 0.5054365466233112,
+          "delta_pct": 3.9344302471727053,
+          "z": 0.3934430247172705
+        },
+        "ticket_rate": {
+          "baseline": 0.0004959295152686536,
+          "current": 0.0004496358845069701,
+          "delta_pct": -9.334719821345061,
+          "z": -0.3111573273781687
+        },
+        "affected_accounts": 99,
+        "revenue_at_risk": 1358
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.22
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-06",
+    "windowEnd": "2025-12-12",
+    "score": 14.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-06",
+        "end": "2025-12-12"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0045597513830289245,
+          "current": 0.0049417302428044416,
+          "delta_pct": 8.377186115831133,
+          "z": 0.3350874446332453
+        },
+        "dropoff_rate": {
+          "baseline": 0.7959119624691084,
+          "current": 0.8276992901779943,
+          "delta_pct": 3.993824594654157,
+          "z": 0.3993824594654156
+        },
+        "ticket_rate": {
+          "baseline": 0.0013708635061979294,
+          "current": 0.0011811237483702033,
+          "delta_pct": -13.840893493033937,
+          "z": -0.4613631164344646
+        },
+        "affected_accounts": 61,
+        "revenue_at_risk": 245
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.18
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-13",
+    "windowEnd": "2025-12-19",
+    "score": 8.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-13",
+        "end": "2025-12-19"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.013642546394839881,
+          "current": 0.013058349568726268,
+          "delta_pct": -4.282168513163925,
+          "z": -0.171286740526557
+        },
+        "dropoff_rate": {
+          "baseline": 0.6989566945820116,
+          "current": 0.6474286008875452,
+          "delta_pct": -7.3721439531073,
+          "z": -0.73721439531073
+        },
+        "ticket_rate": {
+          "baseline": 0.003335767385363579,
+          "current": 0.003942380336073357,
+          "delta_pct": 18.185109470505267,
+          "z": 0.606170315683509
+        },
+        "affected_accounts": 57,
+        "revenue_at_risk": 14
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.26
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-13",
+    "windowEnd": "2025-12-19",
+    "score": 15.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-13",
+        "end": "2025-12-19"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.011081644793041051,
+          "current": 0.011033960232639502,
+          "delta_pct": -0.43030219152569804,
+          "z": -0.01721208766102792
+        },
+        "dropoff_rate": {
+          "baseline": 0.4022471952717751,
+          "current": 0.3768270586494862,
+          "delta_pct": -6.319531104527407,
+          "z": -0.6319531104527406
+        },
+        "ticket_rate": {
+          "baseline": 0.0008039325492456554,
+          "current": 0.0006220323847417337,
+          "delta_pct": -22.626296780072153,
+          "z": -0.7542098926690718
+        },
+        "affected_accounts": 91,
+        "revenue_at_risk": 1063
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.17
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-20",
+    "windowEnd": "2025-12-26",
+    "score": 11.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-20",
+        "end": "2025-12-26"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0033492815634235742,
+          "current": 0.0034462120028068205,
+          "delta_pct": 2.894066609442226,
+          "z": 0.11576266437768903
+        },
+        "dropoff_rate": {
+          "baseline": 0.683134313672781,
+          "current": 0.7498853169475352,
+          "delta_pct": 9.771285373717555,
+          "z": 0.9771285373717554
+        },
+        "ticket_rate": {
+          "baseline": 0.003979264745861293,
+          "current": 0.0033104819807361755,
+          "delta_pct": -16.806691884994503,
+          "z": -0.5602230628331502
+        },
+        "affected_accounts": 37,
+        "revenue_at_risk": 842
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.2
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-20",
+    "windowEnd": "2025-12-26",
+    "score": 16.2,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-20",
+        "end": "2025-12-26"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.006183555513154715,
+          "current": 0.005778213060603133,
+          "delta_pct": -6.555168004706497,
+          "z": -0.26220672018825986
+        },
+        "dropoff_rate": {
+          "baseline": 0.5215341975796036,
+          "current": 0.5628023015723405,
+          "delta_pct": 7.91282799560578,
+          "z": 0.7912827995605779
+        },
+        "ticket_rate": {
+          "baseline": 0.0005985135846305637,
+          "current": 0.000546836948892368,
+          "delta_pct": -8.634162542875863,
+          "z": -0.28780541809586213
+        },
+        "affected_accounts": 70,
+        "revenue_at_risk": 916
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.25
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-27",
+    "windowEnd": "2026-01-02",
+    "score": 6.2,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-27",
+        "end": "2026-01-02"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004987802312709391,
+          "current": 0.004430946663404959,
+          "delta_pct": -11.164348833262917,
+          "z": -0.44657395333051664
+        },
+        "dropoff_rate": {
+          "baseline": 0.43014141261810435,
+          "current": 0.4016922547755829,
+          "delta_pct": -6.613908126018936,
+          "z": -0.6613908126018935
+        },
+        "ticket_rate": {
+          "baseline": 0.000869295691186562,
+          "current": 0.0009540460213004564,
+          "delta_pct": 9.749309811741123,
+          "z": 0.3249769937247042
+        },
+        "affected_accounts": 51,
+        "revenue_at_risk": 187
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.11
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2026-01-03",
+    "windowEnd": "2026-01-09",
+    "score": 19.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2026-01-03",
+        "end": "2026-01-09"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005492252835072577,
+          "current": 0.005958105382889791,
+          "delta_pct": 8.48199385218322,
+          "z": 0.33927975408732874
+        },
+        "dropoff_rate": {
+          "baseline": 0.7222301147412509,
+          "current": 0.7818325810872893,
+          "delta_pct": 8.25255900155753,
+          "z": 0.8252559001557531
+        },
+        "ticket_rate": {
+          "baseline": 0.0020157762475311756,
+          "current": 0.002329934509856139,
+          "delta_pct": 15.584976889658725,
+          "z": 0.5194992296552907
+        },
+        "affected_accounts": 64,
+        "revenue_at_risk": 231
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.23
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2026-01-03",
+    "windowEnd": "2026-01-09",
+    "score": 15.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2026-01-03",
+        "end": "2026-01-09"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.01094506015116349,
+          "current": 0.011464925015307978,
+          "delta_pct": 4.749767081812024,
+          "z": 0.18999068327248095
+        },
+        "dropoff_rate": {
+          "baseline": 0.4625256987288594,
+          "current": 0.4909795887261651,
+          "delta_pct": 6.15185060538352,
+          "z": 0.615185060538352
+        },
+        "ticket_rate": {
+          "baseline": 0.00034659594092518087,
+          "current": 0.000296063926196674,
+          "delta_pct": -14.579517173115175,
+          "z": -0.4859839057705059
+        },
+        "affected_accounts": 59,
+        "revenue_at_risk": 819
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.22
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2026-01-10",
+    "windowEnd": "2026-01-16",
+    "score": 12.7,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2026-01-10",
+        "end": "2026-01-16"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.01311831380892545,
+          "current": 0.010858502221040829,
+          "delta_pct": -17.226387634873387,
+          "z": -0.6890555053949354
+        },
+        "dropoff_rate": {
+          "baseline": 0.7615430988837034,
+          "current": 0.7111748441735606,
+          "delta_pct": -6.613972969353197,
+          "z": -0.6613972969353197
+        },
+        "ticket_rate": {
+          "baseline": 0.0009713428102433682,
+          "current": 0.0009745203652189046,
+          "delta_pct": 0.3271301276981963,
+          "z": 0.010904337589939878
+        },
+        "affected_accounts": 88,
+        "revenue_at_risk": 1141
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.3
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2026-01-10",
+    "windowEnd": "2026-01-16",
+    "score": 17.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2026-01-10",
+        "end": "2026-01-16"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.010369760557543486,
+          "current": 0.009752064127719168,
+          "delta_pct": -5.956708705052733,
+          "z": -0.23826834820210935
+        },
+        "dropoff_rate": {
+          "baseline": 0.5632409334299154,
+          "current": 0.5572600721910331,
+          "delta_pct": -1.0618655150756209,
+          "z": -0.1061865515075621
+        },
+        "ticket_rate": {
+          "baseline": 0.0007993892117403446,
+          "current": 0.0009506257236706774,
+          "delta_pct": 18.91900837654249,
+          "z": 0.6306336125514164
+        },
+        "affected_accounts": 88,
+        "revenue_at_risk": 524
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.26
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2026-01-17",
+    "windowEnd": "2026-01-23",
+    "score": 13.4,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2026-01-17",
+        "end": "2026-01-23"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.013136038234457373,
+          "current": 0.010613761749235883,
+          "delta_pct": -19.201196283102025,
+          "z": -0.768047851324081
+        },
+        "dropoff_rate": {
+          "baseline": 0.6727391924359836,
+          "current": 0.6169694375907278,
+          "delta_pct": -8.289951807819305,
+          "z": -0.8289951807819305
+        },
+        "ticket_rate": {
+          "baseline": 0.0019704000659286976,
+          "current": 0.002115871359300646,
+          "delta_pct": 7.382830313872549,
+          "z": 0.24609434379575162
+        },
+        "affected_accounts": 93,
+        "revenue_at_risk": 1434
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.22
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2026-01-17",
+    "windowEnd": "2026-01-23",
+    "score": 11,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2026-01-17",
+        "end": "2026-01-23"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0034515250199474395,
+          "current": 0.002827041680778741,
+          "delta_pct": -18.09296863153576,
+          "z": -0.7237187452614304
+        },
+        "dropoff_rate": {
+          "baseline": 0.41827526440611107,
+          "current": 0.4007900693135192,
+          "delta_pct": -4.180308179929854,
+          "z": -0.4180308179929854
+        },
+        "ticket_rate": {
+          "baseline": 0.0003391386275645345,
+          "current": 0.00032913136102559275,
+          "delta_pct": -2.950789360329499,
+          "z": -0.09835964534431664
+        },
+        "affected_accounts": 77,
+        "revenue_at_risk": 1075
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.3
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "weekday_seasonality",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2026-01-24",
+    "windowEnd": "2026-01-30",
+    "score": 8.9,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2026-01-24",
+        "end": "2026-01-30"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.007178047788795084,
+          "current": 0.0070605003530281535,
+          "delta_pct": -1.6375961713492853,
+          "z": -0.06550384685397141
+        },
+        "dropoff_rate": {
+          "baseline": 0.4608859429368749,
+          "current": 0.4539775911410988,
+          "delta_pct": -1.4989287266507696,
+          "z": -0.14989287266507692
+        },
+        "ticket_rate": {
+          "baseline": 0.0006690279136411845,
+          "current": 0.0006128034018171343,
+          "delta_pct": -8.403911208733915,
+          "z": -0.28013037362446386
+        },
+        "affected_accounts": 51,
+        "revenue_at_risk": 221
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.17
+      },
+      "hypotheses_hints": [
+        "weekday seasonality",
+        "stable baseline",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "month_cycle_lift",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-26",
+    "windowEnd": "2025-12-03",
+    "score": -1.4,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-26",
+        "end": "2025-12-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.00936668847128749,
+          "current": 0.009249022838714092,
+          "delta_pct": -1.2562137935310664,
+          "z": -0.05024855174124265
+        },
+        "dropoff_rate": {
+          "baseline": 0.7321935796993785,
+          "current": 0.6512406282228717,
+          "delta_pct": -11.056222523795443,
+          "z": -1.1056222523795443
+        },
+        "ticket_rate": {
+          "baseline": 0.002871598328649998,
+          "current": 0.0025866005643703236,
+          "delta_pct": -9.924708530306814,
+          "z": -0.3308236176768938
+        },
+        "affected_accounts": 16,
+        "revenue_at_risk": 755
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.32
+      },
+      "hypotheses_hints": [
+        "month-cycle demand",
+        "marketing/calendar effect",
+        "no bug indicated"
+      ]
+    }
+  },
+  {
+    "scenario": "month_cycle_lift",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-11-26",
+    "windowEnd": "2025-12-03",
+    "score": 0.4,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-11-26",
+        "end": "2025-12-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.006303987587336451,
+          "current": 0.006709549410893032,
+          "delta_pct": 6.43341722898186,
+          "z": 0.2573366891592744
+        },
+        "dropoff_rate": {
+          "baseline": 0.47561650318093596,
+          "current": 0.42043140766986514,
+          "delta_pct": -11.602855481673032,
+          "z": -1.1602855481673031
+        },
+        "ticket_rate": {
+          "baseline": 0.00029879126981832086,
+          "current": 0.00029105924895106146,
+          "delta_pct": -2.5877666613086907,
+          "z": -0.08625888871028971
+        },
+        "affected_accounts": 17,
+        "revenue_at_risk": 562
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.12
+      },
+      "hypotheses_hints": [
+        "month-cycle demand",
+        "marketing/calendar effect",
+        "no bug indicated"
+      ]
+    }
+  },
+  {
+    "scenario": "month_cycle_lift",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-27",
+    "windowEnd": "2026-01-03",
+    "score": 2.5,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-27",
+        "end": "2026-01-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.014596712487749755,
+          "current": 0.015461957223771344,
+          "delta_pct": 5.92766855377704,
+          "z": 0.2371067421510816
+        },
+        "dropoff_rate": {
+          "baseline": 0.7625163031858393,
+          "current": 0.7003076130805383,
+          "delta_pct": -8.158342299750085,
+          "z": -0.8158342299750085
+        },
+        "ticket_rate": {
+          "baseline": 0.0029158416867256167,
+          "current": 0.0030936176228615496,
+          "delta_pct": 6.096899462863801,
+          "z": 0.20322998209546
+        },
+        "affected_accounts": 20,
+        "revenue_at_risk": 141
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.12
+      },
+      "hypotheses_hints": [
+        "month-cycle demand",
+        "marketing/calendar effect",
+        "no bug indicated"
+      ]
+    }
+  },
+  {
+    "scenario": "month_cycle_lift",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-27",
+    "windowEnd": "2026-01-03",
+    "score": 1.4,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-27",
+        "end": "2026-01-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0025957418773323295,
+          "current": 0.0026831482470566436,
+          "delta_pct": 3.3672982081770955,
+          "z": 0.13469192832708382
+        },
+        "dropoff_rate": {
+          "baseline": 0.4156937738531269,
+          "current": 0.38213485573330686,
+          "delta_pct": -8.072990318993108,
+          "z": -0.8072990318993107
+        },
+        "ticket_rate": {
+          "baseline": 0.0008721404893323778,
+          "current": 0.0009552809836681936,
+          "delta_pct": 9.5329244947061,
+          "z": 0.3177641498235367
+        },
+        "affected_accounts": 15,
+        "revenue_at_risk": 317
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.17
+      },
+      "hypotheses_hints": [
+        "month-cycle demand",
+        "marketing/calendar effect",
+        "no bug indicated"
+      ]
+    }
+  },
+  {
+    "scenario": "gradual_trend",
+    "entityType": "surface",
+    "entityKey": "/search",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2025-11-14",
+    "score": 7.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/search",
+      "window": {
+        "start": "2025-11-01",
+        "end": "2025-11-14"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005165507224388421,
+          "current": 0.005165507224388421,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.5341683291248046,
+          "current": 0.5341683291248046,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0002434762210585177,
+          "current": 0.0002434762210585177,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 30,
+        "revenue_at_risk": 1143
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.23
+      },
+      "hypotheses_hints": [
+        "slow trend",
+        "monitor channel mix",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "gradual_trend",
+    "entityType": "surface",
+    "entityKey": "/search",
+    "windowStart": "2025-11-15",
+    "windowEnd": "2025-11-28",
+    "score": 5.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/search",
+      "window": {
+        "start": "2025-11-15",
+        "end": "2025-11-28"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005300078930100426,
+          "current": 0.005300078930100426,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.6338366660405882,
+          "current": 0.6338366660405882,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0005794864235213027,
+          "current": 0.0005794864235213027,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 24,
+        "revenue_at_risk": 972
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.22
+      },
+      "hypotheses_hints": [
+        "slow trend",
+        "monitor channel mix",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "gradual_trend",
+    "entityType": "surface",
+    "entityKey": "/search",
+    "windowStart": "2025-11-29",
+    "windowEnd": "2025-12-12",
+    "score": 5.3,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/search",
+      "window": {
+        "start": "2025-11-29",
+        "end": "2025-12-12"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004751252888469025,
+          "current": 0.004751252888469025,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.53743207056541,
+          "current": 0.53743207056541,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0005810939340153709,
+          "current": 0.0005810939340153709,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 23,
+        "revenue_at_risk": 655
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.35
+      },
+      "hypotheses_hints": [
+        "slow trend",
+        "monitor channel mix",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "gradual_trend",
+    "entityType": "surface",
+    "entityKey": "/search",
+    "windowStart": "2025-12-13",
+    "windowEnd": "2025-12-26",
+    "score": 6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/search",
+      "window": {
+        "start": "2025-12-13",
+        "end": "2025-12-26"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004832808490842581,
+          "current": 0.004832808490842581,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.47717968447832393,
+          "current": 0.47717968447832393,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0005420877668075263,
+          "current": 0.0005420877668075263,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 25,
+        "revenue_at_risk": 1038
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.32
+      },
+      "hypotheses_hints": [
+        "slow trend",
+        "monitor channel mix",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "gradual_trend",
+    "entityType": "surface",
+    "entityKey": "/search",
+    "windowStart": "2025-12-27",
+    "windowEnd": "2026-01-09",
+    "score": 4.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/search",
+      "window": {
+        "start": "2025-12-27",
+        "end": "2026-01-09"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0025847928600851444,
+          "current": 0.0025847928600851444,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.6199682742357254,
+          "current": 0.6199682742357254,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0003892715566791594,
+          "current": 0.0003892715566791594,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 20,
+        "revenue_at_risk": 639
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.25
+      },
+      "hypotheses_hints": [
+        "slow trend",
+        "monitor channel mix",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "gradual_trend",
+    "entityType": "surface",
+    "entityKey": "/search",
+    "windowStart": "2026-01-10",
+    "windowEnd": "2026-01-23",
+    "score": 5,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/search",
+      "window": {
+        "start": "2026-01-10",
+        "end": "2026-01-23"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005338675155304373,
+          "current": 0.005338675155304373,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.5728798250551336,
+          "current": 0.5728798250551336,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0002056020444491878,
+          "current": 0.0002056020444491878,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 19,
+        "revenue_at_risk": 1154
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.17
+      },
+      "hypotheses_hints": [
+        "slow trend",
+        "monitor channel mix",
+        "not incident"
+      ]
+    }
+  },
+  {
+    "scenario": "promo_week",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-18",
+    "windowEnd": "2025-12-24",
+    "score": 7,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-18",
+        "end": "2025-12-24"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.009382995896041394,
+          "current": 0.010430916308781455,
+          "delta_pct": 11.168292348738747,
+          "z": 0.4467316939495499
+        },
+        "dropoff_rate": {
+          "baseline": 0.5287074275780469,
+          "current": 0.4971202642228057,
+          "delta_pct": -5.974412634968771,
+          "z": -0.5974412634968771
+        },
+        "ticket_rate": {
+          "baseline": 0.00038588977749459447,
+          "current": 0.0004279311744442748,
+          "delta_pct": 10.894664591178298,
+          "z": 0.36315548637260997
+        },
+        "affected_accounts": 31,
+        "revenue_at_risk": 250
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.27
+      },
+      "hypotheses_hints": [
+        "campaign-driven lift",
+        "monitor support volume",
+        "no technical incident"
+      ]
+    }
+  },
+  {
+    "scenario": "promo_week",
+    "entityType": "surface",
+    "entityKey": "/cart",
+    "windowStart": "2025-12-18",
+    "windowEnd": "2025-12-24",
+    "score": 4.2,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/cart",
+      "window": {
+        "start": "2025-12-18",
+        "end": "2025-12-24"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005368992883712054,
+          "current": 0.005794851676835842,
+          "delta_pct": 7.931818915531045,
+          "z": 0.31727275662124177
+        },
+        "dropoff_rate": {
+          "baseline": 0.5606956642470322,
+          "current": 0.5056278323134705,
+          "delta_pct": -9.821340781636543,
+          "z": -0.9821340781636543
+        },
+        "ticket_rate": {
+          "baseline": 0.0010390353265218436,
+          "current": 0.0010480371080256693,
+          "delta_pct": 0.8663595234975298,
+          "z": 0.028878650783250994
+        },
+        "affected_accounts": 32,
+        "revenue_at_risk": 48
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.19
+      },
+      "hypotheses_hints": [
+        "campaign-driven lift",
+        "monitor support volume",
+        "no technical incident"
+      ]
+    }
+  },
+  {
+    "scenario": "promo_week",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-18",
+    "windowEnd": "2025-12-24",
+    "score": 1.3,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-18",
+        "end": "2025-12-24"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.012938123608008029,
+          "current": 0.01191843618424547,
+          "delta_pct": -7.881262033479293,
+          "z": -0.3152504813391717
+        },
+        "dropoff_rate": {
+          "baseline": 0.7756783523713239,
+          "current": 0.661871650198693,
+          "delta_pct": -14.67189355287701,
+          "z": -1.467189355287701
+        },
+        "ticket_rate": {
+          "baseline": 0.002986719674617052,
+          "current": 0.0031481629370166283,
+          "delta_pct": 5.4053704394027555,
+          "z": 0.18017901464675853
+        },
+        "affected_accounts": 41,
+        "revenue_at_risk": 135
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.26
+      },
+      "hypotheses_hints": [
+        "campaign-driven lift",
+        "monitor support volume",
+        "no technical incident"
+      ]
+    }
+  },
+  {
+    "scenario": "cart_recovery_push",
+    "entityType": "surface",
+    "entityKey": "/cart",
+    "windowStart": "2025-12-25",
+    "windowEnd": "2026-01-03",
+    "score": -1.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/cart",
+      "window": {
+        "start": "2025-12-25",
+        "end": "2026-01-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004760635953396559,
+          "current": 0.004760635953396559,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.47494593360461296,
+          "current": 0.3732933516816573,
+          "delta_pct": -21.402979735285044,
+          "z": -2.1402979735285044
+        },
+        "ticket_rate": {
+          "baseline": 0.0010526622072793543,
+          "current": 0.0010484897138326732,
+          "delta_pct": -0.39637534413485226,
+          "z": -0.013212511471161741
+        },
+        "affected_accounts": 33,
+        "revenue_at_risk": 208
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.1",
+        "share": 0.23
+      },
+      "hypotheses_hints": [
+        "dropoff decreased",
+        "recovery flow effective",
+        "keep variant"
+      ]
+    }
+  },
+  {
+    "scenario": "cart_recovery_push",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-25",
+    "windowEnd": "2026-01-03",
+    "score": 3,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-25",
+        "end": "2026-01-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.00885724865924567,
+          "current": 0.00885724865924567,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.7387888310360723,
+          "current": 0.6407447598400724,
+          "delta_pct": -13.270919520873587,
+          "z": -1.3270919520873588
+        },
+        "ticket_rate": {
+          "baseline": 0.0011490508310496809,
+          "current": 0.0011925058848272132,
+          "delta_pct": 3.7818217091262403,
+          "z": 0.12606072363754134
+        },
+        "affected_accounts": 40,
+        "revenue_at_risk": 93
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.1",
+        "share": 0.11
+      },
+      "hypotheses_hints": [
+        "dropoff decreased",
+        "recovery flow effective",
+        "keep variant"
+      ]
+    }
+  },
+  {
+    "scenario": "speed_improvement",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-11-15",
+    "windowEnd": "2025-11-28",
+    "score": 1.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-11-15",
+        "end": "2025-11-28"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004299287274945527,
+          "current": 0.004196107408193253,
+          "delta_pct": -2.3999295732937864,
+          "z": -0.09599718293175145
+        },
+        "dropoff_rate": {
+          "baseline": 0.5975964408367872,
+          "current": 0.5086994255074725,
+          "delta_pct": -14.875760505674407,
+          "z": -1.4875760505674405
+        },
+        "ticket_rate": {
+          "baseline": 0.0007811993402894585,
+          "current": 0.0007400858921511801,
+          "delta_pct": -5.262862629024315,
+          "z": -0.17542875430081048
+        },
+        "affected_accounts": 40,
+        "revenue_at_risk": 368
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.19
+      },
+      "hypotheses_hints": [
+        "dropoff improved without error spike",
+        "performance regression reversed",
+        "confirm latency dashboards"
+      ]
+    }
+  },
+  {
+    "scenario": "speed_improvement",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-15",
+    "windowEnd": "2025-11-28",
+    "score": -1.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-15",
+        "end": "2025-11-28"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005453245326876641,
+          "current": 0.004748229260980028,
+          "delta_pct": -12.928376107010989,
+          "z": -0.5171350442804395
+        },
+        "dropoff_rate": {
+          "baseline": 0.7678226508316585,
+          "current": 0.6237589640853135,
+          "delta_pct": -18.76262527424842,
+          "z": -1.876262527424842
+        },
+        "ticket_rate": {
+          "baseline": 0.002416240670531988,
+          "current": 0.0023338061631716024,
+          "delta_pct": -3.411684455350049,
+          "z": -0.11372281517833498
+        },
+        "affected_accounts": 44,
+        "revenue_at_risk": 436
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.22
+      },
+      "hypotheses_hints": [
+        "dropoff improved without error spike",
+        "performance regression reversed",
+        "confirm latency dashboards"
+      ]
+    }
+  },
+  {
+    "scenario": "payment_method_added",
+    "entityType": "surface",
+    "entityKey": "/payment",
+    "windowStart": "2025-11-11",
+    "windowEnd": "2025-12-01",
+    "score": 2.8,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/payment",
+      "window": {
+        "start": "2025-11-11",
+        "end": "2025-12-01"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004309484133962542,
+          "current": 0.003454656461625622,
+          "delta_pct": -19.83596286154352,
+          "z": -0.7934385144617409
+        },
+        "dropoff_rate": {
+          "baseline": 0.7328177799936384,
+          "current": 0.6793341519889211,
+          "delta_pct": -7.298352941870704,
+          "z": -0.7298352941870703
+        },
+        "ticket_rate": {
+          "baseline": 0.0030238561818841845,
+          "current": 0.002033208518640523,
+          "delta_pct": -32.76107075391338,
+          "z": -1.0920356917971126
+        },
+        "affected_accounts": 57,
+        "revenue_at_risk": 482
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "payment failed",
+          "count": 17,
+          "snippets": [
+            "Card rejected unexpectedly.",
+            "3DS challenge stuck."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.15
+      },
+      "hypotheses_hints": [
+        "payment friction reduced",
+        "fewer payment complaints",
+        "consider expanding markets"
+      ]
+    }
+  },
+  {
+    "scenario": "payment_method_added",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-11",
+    "windowEnd": "2025-12-01",
+    "score": 2.2,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-11",
+        "end": "2025-12-01"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.014064404024742544,
+          "current": 0.01072357752750878,
+          "delta_pct": -23.75377222779207,
+          "z": -0.9501508891116828
+        },
+        "dropoff_rate": {
+          "baseline": 0.7282638985314407,
+          "current": 0.688757070691426,
+          "delta_pct": -5.424795588478439,
+          "z": -0.5424795588478438
+        },
+        "ticket_rate": {
+          "baseline": 0.0031843669548630715,
+          "current": 0.0024650471681148716,
+          "delta_pct": -22.58909845957533,
+          "z": -0.7529699486525111
+        },
+        "affected_accounts": 53,
+        "revenue_at_risk": 37
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.28
+      },
+      "hypotheses_hints": [
+        "payment friction reduced",
+        "fewer payment complaints",
+        "consider expanding markets"
+      ]
+    }
+  },
+  {
+    "scenario": "checkout_payment_timeout",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-16",
+    "windowEnd": "2025-11-19",
+    "score": 267.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-16",
+        "end": "2025-11-19"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.010902207808569073,
+          "current": 0.09141259040683508,
+          "delta_pct": 738.4777836924491,
+          "z": 29.53911134769796
+        },
+        "dropoff_rate": {
+          "baseline": 0.7255811274936423,
+          "current": 0.8510520182410255,
+          "delta_pct": 17.29246889052838,
+          "z": 1.729246889052838
+        },
+        "ticket_rate": {
+          "baseline": 0.0015479414234869182,
+          "current": 0.01214440710330382,
+          "delta_pct": 684.5521102437539,
+          "z": 22.8184036747918
+        },
+        "affected_accounts": 38,
+        "revenue_at_risk": 59740
+      },
+      "top_error_signatures": [
+        {
+          "sig": "PAYMENT_PROVIDER_TIMEOUT",
+          "count": 785,
+          "example": "Upstream timeout during confirmPayment"
+        }
+      ],
+      "top_ticket_topics": [
+        {
+          "topic": "checkout error",
+          "count": 35,
+          "snippets": [
+            "Can't subscribe, error on checkout",
+            "Payment fails after submit",
+            "Stuck on processing payment"
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.69
+      },
+      "hypotheses_hints": [
+        "errors+dropoffs co-occur",
+        "concentrated in one signature",
+        "release correlated"
+      ]
+    }
+  },
+  {
+    "scenario": "backend_latency_regression",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-02",
+    "windowEnd": "2025-12-03",
+    "score": 57.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-02",
+        "end": "2025-12-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.010435574261471629,
+          "current": 0.010766087054026884,
+          "delta_pct": 3.167173978872597,
+          "z": 0.12668695915490388
+        },
+        "dropoff_rate": {
+          "baseline": 0.7226802146644332,
+          "current": 0.8779040724691004,
+          "delta_pct": 21.478913446764732,
+          "z": 2.147891344676473
+        },
+        "ticket_rate": {
+          "baseline": 0.0029576526381075384,
+          "current": 0.008633877826854586,
+          "delta_pct": 191.91655962611603,
+          "z": 6.397218654203868
+        },
+        "affected_accounts": 117,
+        "revenue_at_risk": 12170
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "site slow",
+          "count": 28,
+          "snippets": [
+            "Pages take forever to load.",
+            "Checkout spinning for a long time."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.1",
+        "share": 0.67
+      },
+      "hypotheses_hints": [
+        "dropoff spike without big error spike",
+        "suspect latency regression",
+        "check p95 and rollback"
+      ]
+    }
+  },
+  {
+    "scenario": "backend_latency_regression",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-02",
+    "windowEnd": "2025-12-03",
+    "score": 104.1,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-02",
+        "end": "2025-12-03"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.006851784058846533,
+          "current": 0.006899496511754477,
+          "delta_pct": 0.6963507970794991,
+          "z": 0.027854031883179965
+        },
+        "dropoff_rate": {
+          "baseline": 0.41304638792062176,
+          "current": 0.6792540725087747,
+          "delta_pct": 64.4498275189643,
+          "z": 6.44498275189643
+        },
+        "ticket_rate": {
+          "baseline": 0.0006993401272222398,
+          "current": 0.004908809911459684,
+          "delta_pct": 601.9202417223427,
+          "z": 20.064008057411424
+        },
+        "affected_accounts": 121,
+        "revenue_at_risk": 13804
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "site slow",
+          "count": 28,
+          "snippets": [
+            "Pages take forever to load.",
+            "Checkout spinning for a long time."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.1",
+        "share": 0.7
+      },
+      "hypotheses_hints": [
+        "dropoff spike without big error spike",
+        "suspect latency regression",
+        "check p95 and rollback"
+      ]
+    }
+  },
+  {
+    "scenario": "frontend_js_crash_pdp",
+    "entityType": "surface",
+    "entityKey": "/pdp",
+    "windowStart": "2025-12-25",
+    "windowEnd": "2025-12-25",
+    "score": 202.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/pdp",
+      "window": {
+        "start": "2025-12-25",
+        "end": "2025-12-25"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.00810550319775939,
+          "current": 0.04752607208676636,
+          "delta_pct": 486.34326490555236,
+          "z": 19.453730596222094
+        },
+        "dropoff_rate": {
+          "baseline": 0.5315839097835123,
+          "current": 0.696668317320291,
+          "delta_pct": 31.055192698366156,
+          "z": 3.105519269836616
+        },
+        "ticket_rate": {
+          "baseline": 0.0010100756453350185,
+          "current": 0.009136072986992077,
+          "delta_pct": 804.493938566537,
+          "z": 26.816464618884574
+        },
+        "affected_accounts": 112,
+        "revenue_at_risk": 16836
+      },
+      "top_error_signatures": [
+        {
+          "sig": "PDP_RENDER_CRASH",
+          "count": 649,
+          "example": "TypeError: Cannot read properties of undefined"
+        }
+      ],
+      "top_ticket_topics": [
+        {
+          "topic": "product page broken",
+          "count": 43,
+          "snippets": [
+            "Product page is blank.",
+            "Add to cart button missing."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.7
+      },
+      "hypotheses_hints": [
+        "frontend crash blocks early funnel",
+        "release correlated",
+        "rollback or hotfix"
+      ]
+    }
+  },
+  {
+    "scenario": "shipping_tax_bug",
+    "entityType": "surface",
+    "entityKey": "/shipping",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2025-11-06",
+    "score": 80.7,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/shipping",
+      "window": {
+        "start": "2025-11-01",
+        "end": "2025-11-06"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.007528804888948798,
+          "current": 0.009168064481559768,
+          "delta_pct": 21.773171396926045,
+          "z": 0.8709268558770419
+        },
+        "dropoff_rate": {
+          "baseline": 0.6983232221752406,
+          "current": 0.9210458052880132,
+          "delta_pct": 31.893910447228624,
+          "z": 3.1893910447228624
+        },
+        "ticket_rate": {
+          "baseline": 0.0021069988885428757,
+          "current": 0.009185228698188438,
+          "delta_pct": 335.9389436859462,
+          "z": 11.19796478953154
+        },
+        "affected_accounts": 51,
+        "revenue_at_risk": 30967
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "shipping too high",
+          "count": 69,
+          "snippets": [
+            "Shipping costs look wrong.",
+            "Why is shipping €25?"
+          ]
+        },
+        {
+          "topic": "wrong tax",
+          "count": 17,
+          "snippets": [
+            "VAT calculated twice.",
+            "Tax seems incorrect for my address."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.1",
+        "share": 0.21
+      },
+      "hypotheses_hints": [
+        "late-step friction",
+        "pricing/shipping logic issue",
+        "errors not primary signal"
+      ]
+    }
+  },
+  {
+    "scenario": "shipping_tax_bug",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-11-01",
+    "windowEnd": "2025-11-06",
+    "score": 153.9,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-11-01",
+        "end": "2025-11-06"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.008620135953649879,
+          "current": 0.010468764309501805,
+          "delta_pct": 21.445466356817636,
+          "z": 0.8578186542727054
+        },
+        "dropoff_rate": {
+          "baseline": 0.7553807035740465,
+          "current": 0.8773592707770878,
+          "delta_pct": 16.147959118614715,
+          "z": 1.6147959118614712
+        },
+        "ticket_rate": {
+          "baseline": 0.0013639953553210944,
+          "current": 0.01918371968436986,
+          "delta_pct": 1306.4358510849822,
+          "z": 43.54786170283274
+        },
+        "affected_accounts": 50,
+        "revenue_at_risk": 46062
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "shipping too high",
+          "count": 75,
+          "snippets": [
+            "Shipping costs look wrong.",
+            "Why is shipping €25?"
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.1",
+        "share": 0.23
+      },
+      "hypotheses_hints": [
+        "late-step friction",
+        "pricing/shipping logic issue",
+        "errors not primary signal"
+      ]
+    }
+  },
+  {
+    "scenario": "inventory_sync_incident",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-12",
+    "windowEnd": "2025-12-13",
+    "score": 138.6,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-12",
+        "end": "2025-12-13"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.009661889903247357,
+          "current": 0.012871037827936069,
+          "delta_pct": 33.214494853746146,
+          "z": 1.3285797941498458
+        },
+        "dropoff_rate": {
+          "baseline": 0.7410114383976907,
+          "current": 0.9479484116099774,
+          "delta_pct": 27.926285950423686,
+          "z": 2.792628595042369
+        },
+        "ticket_rate": {
+          "baseline": 0.003555784645024687,
+          "current": 0.029507267430424693,
+          "delta_pct": 729.8384288180036,
+          "z": 24.327947627266795
+        },
+        "affected_accounts": 69,
+        "revenue_at_risk": 58323
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "out of stock after checkout",
+          "count": 50,
+          "snippets": [
+            "Item was available then vanished.",
+            "Order canceled due to stock."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.14
+      },
+      "hypotheses_hints": [
+        "purchase fails late funnel",
+        "inventory/fulfillment sync issue",
+        "check stock sync jobs"
+      ]
+    }
+  },
+  {
+    "scenario": "inventory_sync_incident",
+    "entityType": "surface",
+    "entityKey": "/order-confirm",
+    "windowStart": "2025-12-12",
+    "windowEnd": "2025-12-13",
+    "score": 181.9,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/order-confirm",
+      "window": {
+        "start": "2025-12-12",
+        "end": "2025-12-13"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.0027139800637960435,
+          "current": 0.0033804722333242165,
+          "delta_pct": 24.55774006666617,
+          "z": 0.9823096026666468
+        },
+        "dropoff_rate": {
+          "baseline": 0.779295330955647,
+          "current": 0.9336573995836078,
+          "delta_pct": 19.80790369148847,
+          "z": 1.9807903691488467
+        },
+        "ticket_rate": {
+          "baseline": 0.0011043344920035451,
+          "current": 0.02230049219727516,
+          "delta_pct": 1919.3602897267447,
+          "z": 63.97867632422482
+        },
+        "affected_accounts": 64,
+        "revenue_at_risk": 28313
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [
+        {
+          "topic": "out of stock after checkout",
+          "count": 47,
+          "snippets": [
+            "Item was available then vanished.",
+            "Order canceled due to stock."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.33
+      },
+      "hypotheses_hints": [
+        "purchase fails late funnel",
+        "inventory/fulfillment sync issue",
+        "check stock sync jobs"
+      ]
+    }
+  },
+  {
+    "scenario": "fraud_3ds_false_positive",
+    "entityType": "surface",
+    "entityKey": "/payment",
+    "windowStart": "2025-11-16",
+    "windowEnd": "2025-11-23",
+    "score": 200.9,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/payment",
+      "window": {
+        "start": "2025-11-16",
+        "end": "2025-11-23"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.004405278499703855,
+          "current": 0.02352739270310849,
+          "delta_pct": 434.0727653130243,
+          "z": 17.362910612520974
+        },
+        "dropoff_rate": {
+          "baseline": 0.7061692486749962,
+          "current": 0.8007035353872926,
+          "delta_pct": 13.386916364550498,
+          "z": 1.3386916364550496
+        },
+        "ticket_rate": {
+          "baseline": 0.003173849402461201,
+          "current": 0.007830067090690136,
+          "delta_pct": 146.7056907179721,
+          "z": 4.89018969059907
+        },
+        "affected_accounts": 55,
+        "revenue_at_risk": 87957
+      },
+      "top_error_signatures": [
+        {
+          "sig": "3DS_CHALLENGE_FAILED",
+          "count": 275,
+          "example": "3DS challenge loop / auth failed"
+        }
+      ],
+      "top_ticket_topics": [
+        {
+          "topic": "payment rejected",
+          "count": 26,
+          "snippets": [
+            "Payment rejected repeatedly.",
+            "3DS keeps looping."
+          ]
+        }
+      ],
+      "release": {
+        "top": "web@1.42.0",
+        "share": 0.28
+      },
+      "hypotheses_hints": [
+        "segment concentrated (country=DE, device=iOS)",
+        "fraud/3DS false positives",
+        "review risk rules"
+      ]
+    }
+  },
+  {
+    "scenario": "analytics_outage",
+    "entityType": "surface",
+    "entityKey": "/checkout",
+    "windowStart": "2025-12-12",
+    "windowEnd": "2025-12-12",
+    "score": 5.3,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/checkout",
+      "window": {
+        "start": "2025-12-12",
+        "end": "2025-12-12"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.013503380617126824,
+          "current": 0.013503380617126824,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.6881565261166543,
+          "current": 0.6881565261166543,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0026957679577171803,
+          "current": 0.0026957679577171803,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 24,
+        "revenue_at_risk": 467
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.31
+      },
+      "hypotheses_hints": [
+        "tracking/pixel outage likely",
+        "business signals stable",
+        "check instrumentation deploy"
+      ]
+    }
+  },
+  {
+    "scenario": "event_schema_change",
+    "entityType": "surface",
+    "entityKey": "/cart",
+    "windowStart": "2025-11-20",
+    "windowEnd": "2025-11-20",
+    "score": 4.5,
+    "record": {
+      "entity_type": "surface",
+      "entity_key": "/cart",
+      "window": {
+        "start": "2025-11-20",
+        "end": "2025-11-20"
+      },
+      "signals": {
+        "error_rate": {
+          "baseline": 0.005716883374378085,
+          "current": 0.005716883374378085,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "dropoff_rate": {
+          "baseline": 0.5823372685583308,
+          "current": 0.5823372685583308,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "ticket_rate": {
+          "baseline": 0.0014950175235047937,
+          "current": 0.0014950175235047937,
+          "delta_pct": 0,
+          "z": 0
+        },
+        "affected_accounts": 21,
+        "revenue_at_risk": 297
+      },
+      "top_error_signatures": [],
+      "top_ticket_topics": [],
+      "release": {
+        "top": "web@1.41.2",
+        "share": 0.43
+      },
+      "hypotheses_hints": [
+        "one key event missing",
+        "schema/SDK deploy",
+        "validate event pipeline"
+      ]
+    }
+  }
+]

@@ -44,9 +44,6 @@
     "lint": "eslint src/",
     "test": "jest"
   },
-  "jest": {
-    "preset": "@repo/jest-presets/browser"
-  },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-progress": "^1.1.4",
@@ -64,7 +61,6 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@repo/eslint-config": "workspace:*",
-    "@repo/jest-presets": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "bunchee": "^6.4.0",

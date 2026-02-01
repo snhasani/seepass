@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as patternRecords from "../patternRecords.js";
 import type * as problems from "../problems.js";
 import type * as threads from "../threads.js";
 import type * as waitlist from "../waitlist.js";
@@ -19,6 +20,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  patternRecords: typeof patternRecords;
   problems: typeof problems;
   threads: typeof threads;
   waitlist: typeof waitlist;

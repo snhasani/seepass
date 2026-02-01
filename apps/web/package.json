@@ -8,14 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check .",
-    "lint:fix": "biome check --write ."
+    "lint:fix": "biome check --write .",
+    "db:seed": "convex run patternRecords:seedIfEmpty",
+    "db:seed:replace": "convex import --table patternRecords convex/seed-data.json --replace",
+    "db:clear": "convex run patternRecords:clear"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.23",
     "@assistant-ui/react": "^0.12.3",
     "@assistant-ui/react-ai-sdk": "^1.3.3",
     "@assistant-ui/react-markdown": "^0.12.1",
-    "@repo/database": "workspace:*",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.15",
