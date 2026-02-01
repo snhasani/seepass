@@ -7,8 +7,7 @@ import {
 } from "@assistant-ui/react-ai-sdk";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { lastAssistantMessageIsCompleteWithToolCalls } from "ai";
-import type { Message } from "ai";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useProblemThreadSync } from "../hooks/use-problem-thread-sync";
 import { ProblemThread } from "./problem-thread";
 
@@ -19,32 +18,15 @@ interface ProblemDiscoveryAssistantProps {
   onProblemConfirmed?: () => void;
 }
 
-// Load messages from localStorage
-function loadMessagesFromStorage(): Message[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) return [];
-    const parsed = JSON.parse(stored);
-    // Validate the shape
-    if (Array.isArray(parsed)) {
-      return parsed.filter(
-        (m) =>
-          m &&
-          typeof m === "object" &&
-          "id" in m &&
-          "role" in m &&
-          "content" in m
-      );
-    }
-    return [];
-  } catch {
-    return [];
-  }
+// Simple storage format for localStorage
+interface StoredMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
 }
 
 // Save messages to localStorage
-function saveMessagesToStorage(messages: Message[]): void {
+function saveMessagesToStorage(messages: StoredMessage[]): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
@@ -67,14 +49,11 @@ export function ProblemDiscoveryAssistant({
   userId,
   onProblemConfirmed,
 }: ProblemDiscoveryAssistantProps) {
-  const [initialMessages] = useState<Message[]>(() => loadMessagesFromStorage());
-
   const runtime = useChatRuntime({
     transport: new AssistantChatTransport({
       api: "/api/problem-chat",
     }),
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
-    initialMessages,
   });
 
   return (
@@ -113,15 +92,17 @@ function MessagePersistence() {
     const messages = thread.messages;
     if (messages.length === 0) return;
 
-    // Convert to AI SDK format for storage
-    const messagesToStore: Message[] = messages.map((m) => ({
+    // Convert to simple format for storage
+    const messagesToStore: StoredMessage[] = messages.map((m) => ({
       id: m.id,
       role: m.role as "user" | "assistant",
       content:
         typeof m.content === "string"
           ? m.content
           : m.content
-              .filter((p): p is { type: "text"; text: string } => p.type === "text")
+              .filter(
+                (p): p is { type: "text"; text: string } => p.type === "text"
+              )
               .map((p) => p.text)
               .join("\n"),
     }));
