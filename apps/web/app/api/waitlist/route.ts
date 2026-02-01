@@ -1,8 +1,6 @@
 import { api } from "@/convex/_generated/api";
-import { ConvexHttpClient } from "convex/browser";
+import { getConvexClient } from "../convex-client";
 import { NextResponse } from "next/server";
-
-const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 // Qualified roles that can book a call
 const QUALIFIED_ROLES = [
@@ -16,6 +14,13 @@ const QUALIFIED_ROLES = [
 ];
 
 export async function POST(request: Request) {
+  const convex = getConvexClient();
+  if (!convex) {
+    return NextResponse.json(
+      { error: "Convex not configured" },
+      { status: 503 }
+    );
+  }
   try {
     const body = await request.json();
     const { name, email, company, role } = body;

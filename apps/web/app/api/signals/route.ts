@@ -1,10 +1,15 @@
 import { api } from "@/convex/_generated/api";
-import { ConvexHttpClient } from "convex/browser";
+import { getConvexClient } from "../convex-client";
 import { NextRequest, NextResponse } from "next/server";
 
-const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
-
 export async function GET(request: NextRequest) {
+  const convex = getConvexClient();
+  if (!convex) {
+    return NextResponse.json(
+      { error: "Convex not configured" },
+      { status: 503 }
+    );
+  }
   try {
     const searchParams = request.nextUrl.searchParams;
     const scenario = searchParams.get("scenario");
