@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useMemo, useState } from "react";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { cn } from "@/shared/lib/utils";
 import { Input } from "@/shared/components/ui/input";
 import { Label } from "@/shared/components/ui/label";
@@ -14,9 +16,10 @@ import {
   Loader2,
   X,
 } from "lucide-react";
+import type { Id } from "@/convex/_generated/dataModel";
 
 interface Signal {
-  id: string;
+  _id: Id<"patternRecords">;
   scenario: string;
   entityType: string;
   entityKey: string;
@@ -56,15 +59,6 @@ interface Signal {
 interface FilterOption {
   value: string;
   count: number;
-}
-
-interface SignalsResponse {
-  data: Signal[];
-  meta: { total: number };
-  filters: {
-    scenarios: FilterOption[];
-    entities: FilterOption[];
-  };
 }
 
 type SignalType = "investigate" | "watch" | "opportunity";
@@ -322,14 +316,6 @@ function SignalRow({ signal }: { signal: Signal }) {
 }
 
 export default function SignalsPage() {
-  const [signals, setSignals] = useState<Signal[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [total, setTotal] = useState(0);
-  const [filterOptions, setFilterOptions] = useState<
-    SignalsResponse["filters"] | null
-  >(null);
-
   const [trend, setTrend] = useState("");
   const [entityKey, setEntityKey] = useState("");
   const [minScore, setMinScore] = useState("");
@@ -338,66 +324,63 @@ export default function SignalsPage() {
     "score" | "date" | "accounts" | "revenue" | "badge"
   >("score");
 
-  const fetchSignals = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+  const signalsData = useQuery(api.patternRecords.list, {
+    scenario: trend || undefined,
+    entityKey: entityKey || undefined,
+    minScore: minScore ? parseFloat(minScore) : undefined,
+  });
 
-    const params = new URLSearchParams();
-    if (trend) params.set("scenario", trend);
-    if (entityKey) params.set("entityKey", entityKey);
-    if (minScore) params.set("minScore", minScore);
+  const aggregatesData = useQuery(api.patternRecords.aggregates);
 
-    try {
-      const res = await fetch(`/api/signals?${params.toString()}`);
-      if (!res.ok) throw new Error("Failed to fetch signals");
-      const data: SignalsResponse = await res.json();
-      let sorted = [...data.data];
-      if (badge) {
-        sorted = sorted.filter((s) => scenarioToType(s.scenario) === badge);
-      }
-      const badgeOrder: Record<SignalType, number> = {
-        investigate: 0,
-        watch: 1,
-        opportunity: 2,
-      };
-      sorted.sort((a, b) => {
-        switch (sortBy) {
-          case "date":
-            return (
-              new Date(b.windowEnd).getTime() - new Date(a.windowEnd).getTime()
-            );
-          case "accounts":
-            return (
-              (b.record.signals.affected_accounts ?? 0) -
-              (a.record.signals.affected_accounts ?? 0)
-            );
-          case "revenue":
-            return (
-              (b.record.signals.revenue_at_risk ?? 0) -
-              (a.record.signals.revenue_at_risk ?? 0)
-            );
-          case "badge":
-            return (
-              badgeOrder[scenarioToType(a.scenario)] -
-              badgeOrder[scenarioToType(b.scenario)]
-            );
-          default:
-            return b.score - a.score;
-        }
-      });
-      setSignals(sorted);
-      setTotal(data.meta.total);
-      setFilterOptions(data.filters);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Unknown error");
-    } finally {
-      setLoading(false);
+  const signals = useMemo(() => {
+    if (!signalsData?.data) return [];
+    let filtered = [...signalsData.data];
+    if (badge) {
+      filtered = filtered.filter((s) => scenarioToType(s.scenario) === badge);
     }
-  }, [trend, entityKey, minScore, badge, sortBy]);
+    const badgeOrder: Record<SignalType, number> = {
+      investigate: 0,
+      watch: 1,
+      opportunity: 2,
+    };
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case "date":
+          return (
+            new Date(b.windowEnd).getTime() - new Date(a.windowEnd).getTime()
+          );
+        case "accounts":
+          return (
+            (b.record.signals.affected_accounts ?? 0) -
+            (a.record.signals.affected_accounts ?? 0)
+          );
+        case "revenue":
+          return (
+            (b.record.signals.revenue_at_risk ?? 0) -
+            (a.record.signals.revenue_at_risk ?? 0)
+          );
+        case "badge":
+          return (
+            badgeOrder[scenarioToType(a.scenario)] -
+            badgeOrder[scenarioToType(b.scenario)]
+          );
+        default:
+          return b.score - a.score;
+      }
+    });
+    return filtered;
+  }, [signalsData, badge, sortBy]);
 
-  useEffect(() => {
-    fetchSignals();
-  }, [fetchSignals]);
+  const filterOptions = useMemo(() => {
+    if (!aggregatesData) return null;
+    return {
+      scenarios: aggregatesData.scenarios,
+      entities: aggregatesData.entities,
+    };
+  }, [aggregatesData]);
+
+  const loading = signalsData === undefined || aggregatesData === undefined;
+  const total = signalsData?.meta.total ?? 0;
 
   const clearFilters = () => {
     setTrend("");
@@ -540,10 +523,6 @@ export default function SignalsPage() {
           <div className="flex items-center justify-center py-20">
             <Loader2 className="size-6 animate-spin text-muted-foreground" />
           </div>
-        ) : error ? (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-            {error}
-          </div>
         ) : signals.length === 0 ? (
           <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50/50 py-20 text-center text-sm text-muted-foreground">
             No signals found
@@ -551,7 +530,7 @@ export default function SignalsPage() {
         ) : (
           <div className="space-y-3">
             {signals.map((signal) => (
-              <SignalRow key={signal.id} signal={signal} />
+              <SignalRow key={signal._id} signal={signal} />
             ))}
           </div>
         )}

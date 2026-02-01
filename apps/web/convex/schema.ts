@@ -17,4 +17,18 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_problem", ["problemId"]),
+
+  patternRecords: defineTable({
+    scenario: v.string(),
+    entityType: v.string(),
+    entityKey: v.string(),
+    windowStart: v.string(),
+    windowEnd: v.string(),
+    score: v.number(),
+    record: v.any(),
+  })
+    .index("by_entity", ["entityKey"])
+    .index("by_scenario", ["scenario"])
+    .index("by_score", ["score"])
+    .index("by_window", ["windowStart", "windowEnd"]),
 });

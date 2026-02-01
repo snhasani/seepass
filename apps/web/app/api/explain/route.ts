@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { ConvexHttpClient } from "convex/browser";
+import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
+
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,8 +16,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const record = await prisma.patternRecord.findUnique({
-      where: { id: patternRecordId },
+    const record = await convex.query(api.patternRecords.getById, {
+      id: patternRecordId as Id<"patternRecords">,
     });
 
     if (!record) {

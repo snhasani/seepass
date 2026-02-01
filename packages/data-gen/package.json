@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "gen:patterns": "tsx src/index.ts",
+    "gen:patterns": "tsx src/index.ts && cp out/pattern_records_seed.json ../../apps/web/convex/seed-data.json",
     "lint": "eslint src/",
     "check-types": "tsc --noEmit",
     "test": "node -e \"const data = require('./out/pattern_records_seed.json'); console.log('Records:', data.length);\""

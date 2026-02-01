@@ -8,12 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "check-types": "turbo run check-types",
-    "gen:patterns": "pnpm --filter @repo/data-gen gen:patterns",
-    "db:migrate": "pnpm --filter @repo/database db:migrate",
-    "db:seed": "pnpm --filter @repo/database db:seed",
-    "db:reset": "pnpm --filter @repo/database db:reset",
-    "db:studio": "pnpm --filter @repo/database db:studio"
+    "check-types": "turbo run check-types"
   },
   "devDependencies": {
     "prettier": "^3.8.1",
