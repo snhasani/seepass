@@ -38,7 +38,7 @@ import { ToolFallback } from "./tool-fallback";
 export const ProblemThread: FC = () => {
   return (
     <ThreadPrimitive.Root
-      className="aui-root aui-thread-root @container flex h-full flex-col bg-background"
+      className="aui-root aui-thread-root @container flex h-full w-full flex-1 flex-col bg-background"
       style={{
         ["--thread-max-width" as string]: "48rem",
       }}
