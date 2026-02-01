@@ -46,7 +46,7 @@ export function ShowcaseCluster({
       <div className="absolute inset-0 rounded-2xl border-2 border-indigo-300 border-dashed bg-indigo-50/50" />
 
       {/* Cluster label */}
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+      <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2">
         <div className="flex items-center gap-1.5 rounded-full bg-indigo-100 px-3 py-1 font-medium text-indigo-700 text-xs">
           <Brain className="size-3" />
           {cluster.label}

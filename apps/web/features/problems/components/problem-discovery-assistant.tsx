@@ -1,15 +1,48 @@
 "use client";
 
-import { AssistantRuntimeProvider } from "@assistant-ui/react";
-import { AssistantChatTransport, useChatRuntime } from "@assistant-ui/react-ai-sdk";
+import { AssistantRuntimeProvider, useThread } from "@assistant-ui/react";
+import {
+  AssistantChatTransport,
+  useChatRuntime,
+} from "@assistant-ui/react-ai-sdk";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { lastAssistantMessageIsCompleteWithToolCalls } from "ai";
+import { useEffect, useRef } from "react";
 import { useProblemThreadSync } from "../hooks/use-problem-thread-sync";
 import { ProblemThread } from "./problem-thread";
+
+const STORAGE_KEY = "seepass:discovery-chat";
 
 interface ProblemDiscoveryAssistantProps {
   userId: string | undefined;
   onProblemConfirmed?: () => void;
+}
+
+// Simple storage format for localStorage
+interface StoredMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+}
+
+// Save messages to localStorage
+function saveMessagesToStorage(messages: StoredMessage[]): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+  } catch {
+    // Ignore storage errors
+  }
+}
+
+// Clear messages from localStorage
+export function clearDiscoveryChat(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Ignore storage errors
+  }
 }
 
 export function ProblemDiscoveryAssistant({
@@ -26,11 +59,9 @@ export function ProblemDiscoveryAssistant({
   return (
     <AssistantRuntimeProvider runtime={runtime}>
       <TooltipProvider>
-        <div className="flex h-full min-h-0 flex-col">
-          <ThreadSync
-            userId={userId}
-            onProblemConfirmed={onProblemConfirmed}
-          />
+        <div className="flex h-full w-full min-h-0 flex-col">
+          <ThreadSync userId={userId} onProblemConfirmed={onProblemConfirmed} />
+          <MessagePersistence />
           <ProblemThread />
         </div>
       </TooltipProvider>
@@ -46,5 +77,43 @@ function ThreadSync({
   onProblemConfirmed?: () => void;
 }) {
   useProblemThreadSync({ userId, onProblemConfirmed });
+  return null;
+}
+
+// Component to handle message persistence
+function MessagePersistence() {
+  const thread = useThread();
+  const prevMessagesRef = useRef<string>("");
+
+  useEffect(() => {
+    // Don't save while running to avoid partial state
+    if (thread.isRunning) return;
+
+    const messages = thread.messages;
+    if (messages.length === 0) return;
+
+    // Convert to simple format for storage
+    const messagesToStore: StoredMessage[] = messages.map((m) => ({
+      id: m.id,
+      role: m.role as "user" | "assistant",
+      content:
+        typeof m.content === "string"
+          ? m.content
+          : m.content
+              .filter(
+                (p): p is { type: "text"; text: string } => p.type === "text"
+              )
+              .map((p) => p.text)
+              .join("\n"),
+    }));
+
+    // Only save if messages changed
+    const messagesKey = JSON.stringify(messagesToStore);
+    if (messagesKey !== prevMessagesRef.current) {
+      prevMessagesRef.current = messagesKey;
+      saveMessagesToStorage(messagesToStore);
+    }
+  }, [thread.messages, thread.isRunning]);
+
   return null;
 }

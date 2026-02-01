@@ -6,7 +6,11 @@ export default defineSchema({
     userId: v.string(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
-    status: v.union(v.literal("draft"), v.literal("confirmed"), v.literal("resolved")),
+    status: v.union(
+      v.literal("draft"),
+      v.literal("confirmed"),
+      v.literal("resolved")
+    ),
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_user", ["userId"]),
@@ -31,4 +35,12 @@ export default defineSchema({
     .index("by_scenario", ["scenario"])
     .index("by_score", ["score"])
     .index("by_window", ["windowStart", "windowEnd"]),
+  
+  waitlist: defineTable({
+    name: v.string(),
+    email: v.string(),
+    company: v.optional(v.string()),
+    role: v.optional(v.string()),
+    createdAt: v.number(),
+  }).index("by_email", ["email"]),
 });
