@@ -1,25 +1,57 @@
-This is the [assistant-ui](https://github.com/Yonom/assistant-ui) starter project.
+# Seepass Web App
 
-## Getting Started
+Next.js app for the Seepass AI Product Assistant: dashboard, signals, and assistant (Discover + Workshop).
 
-First, add your OpenAI API key to `.env.local` file:
+## Setup
 
-```
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
+1. **Copy env from example**
 
-Then, run the development server:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Fill in `.env.local`**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   | Variable | Where to get it |
+   |----------|-----------------|
+   | `CONVEX_DEPLOY_KEY` | Convex dashboard → Settings → Deploy Key |
+   | `NEXT_PUBLIC_CONVEX_URL` | Convex dashboard (e.g. `https://your-project.convex.cloud`) |
+   | `OPENAI_API_KEY` | OpenAI API keys |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Install and run**
+
+   ```bash
+   pnpm install
+   pnpm dev
+   ```
+
+   For Convex backend (separate terminal):
+
+   ```bash
+   pnpm dev:convex
+   ```
+
+4. **Optional: seed pattern records**
+
+   ```bash
+   pnpm db:seed
+   ```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Next.js dev server (Turbopack) |
+| `pnpm dev:convex` | Convex dev (sync schema + run functions) |
+| `pnpm build` | Production build |
+| `pnpm db:seed` | Seed Convex `patternRecords` if empty |
+| `pnpm db:seed:replace` | Replace `patternRecords` from `convex/seed-data.json` |
+
+## Structure
+
+* `app/(protected)/` — Dashboard, Signals, Assistant (Discover, Workshop), auth-gated layout
+* `app/api/` — Routes: chat, explain, problem-chat, signals, waitlist
+* `app/auth/` — Sign-in, sign-up
+* `convex/` — Convex schema, functions, seed data
+* `features/` — Auth store, problems (discovery + workshop canvas)
+* `shared/` — UI components, dashboard blocks, layouts, providers
