@@ -53,13 +53,13 @@ function ChatRow({
     <button
       type="button"
       onClick={() => onSelect?.(chat.id)}
-      className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-slate-50"
+      className="flex w-full cursor-pointer items-center gap-3 rounded-md px-2 py-2.5 text-left transition-colors hover:bg-slate-100"
     >
       <span
         className={cn("size-2 shrink-0 rounded-full", statusColors[chat.status])}
         title={chat.status}
       />
-      <span className="flex-1 truncate text-sm font-medium text-foreground">
+      <span className="flex-1 truncate text-sm text-slate-700">
         {chat.title || "Draft problem"}
       </span>
       <span className="shrink-0 text-xs text-muted-foreground">
@@ -75,14 +75,16 @@ export function RecentChatsList({
   className,
 }: RecentChatsListProps) {
   return (
-    <div className={cn("flex flex-col", className)}>
-      <h3 className="mb-2 px-3 text-sm font-semibold text-foreground">
-        Recent Chats
-      </h3>
+    <div
+      className={cn(
+        "flex flex-col rounded-lg border border-slate-200 bg-white p-4",
+        className
+      )}
+    >
       {chats.length === 0 ? (
         <RecentChatsEmptyState />
       ) : (
-        <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col gap-1">
           {chats.map((chat) => (
             <ChatRow key={chat.id} chat={chat} onSelect={onSelect} />
           ))}
@@ -96,7 +98,7 @@ export function RecentChatsEmptyState({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-slate-200 bg-slate-50/50 py-8 text-center",
+        "flex flex-col items-center justify-center gap-2 py-6 text-center",
         className
       )}
     >

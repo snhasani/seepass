@@ -1,13 +1,7 @@
 "use client";
 
 import { cn } from "@/shared/lib/utils";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/shared/components/ui/card";
-import { AlertTriangle, Eye, Lightbulb } from "lucide-react";
+import { AlertTriangle, ArrowRight, Eye, Lightbulb } from "lucide-react";
 
 export type SurfacingType = "investigate" | "monitor" | "note";
 
@@ -31,17 +25,17 @@ const typeConfig: Record<
   investigate: {
     label: "Investigate",
     icon: AlertTriangle,
-    colors: "bg-rose-50 text-rose-700 border-rose-200",
+    colors: "bg-rose-100 text-rose-700 border-rose-300",
   },
   monitor: {
     label: "Monitor",
     icon: Eye,
-    colors: "bg-amber-50 text-amber-700 border-amber-200",
+    colors: "bg-amber-100 text-amber-700 border-amber-300",
   },
   note: {
     label: "Note",
     icon: Lightbulb,
-    colors: "bg-slate-50 text-slate-600 border-slate-200",
+    colors: "bg-slate-100 text-slate-700 border-slate-300",
   },
 };
 
@@ -76,48 +70,58 @@ export function SurfacingCard({
   const dateRange = formatDateRange(windowStart, windowEnd);
 
   return (
-    <Card
+    <div
       className={cn(
-        "cursor-pointer transition-all hover:shadow-md",
-        onClick && "hover:border-slate-300",
+        "flex h-full flex-col rounded-lg border border-slate-200 bg-white p-4",
         className
       )}
-      onClick={onClick}
     >
-      <CardHeader className="pb-2">
-        <div className="flex items-center justify-between gap-2">
-          <span
-            className={cn(
-              "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
-              config.colors
-            )}
-          >
-            <Icon className="size-3" />
-            {config.label}
+      <div className="flex items-start justify-between gap-2">
+        <button
+          type="button"
+          onClick={onClick}
+          className="group flex cursor-pointer items-center gap-1.5 text-left"
+        >
+          <h3 className="text-sm font-semibold text-foreground group-hover:text-slate-600 group-hover:underline">
+            {title}
+          </h3>
+          <ArrowRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+        </button>
+        {dateRange && (
+          <span className="shrink-0 text-xs text-muted-foreground">
+            {dateRange}
           </span>
-          {dateRange && (
-            <span className="text-xs text-muted-foreground">{dateRange}</span>
+        )}
+      </div>
+
+      <p className="mt-3 line-clamp-2 min-h-10 text-sm text-slate-700">
+        {description}
+      </p>
+
+      <div className="mt-8 flex items-center justify-between gap-2">
+        <span
+          className={cn(
+            "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
+            config.colors
           )}
-        </div>
-        <CardTitle className="text-base">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {description}
-        </p>
+        >
+          <Icon className="size-3" />
+          {config.label}
+        </span>
+
         {(affectedAccounts !== undefined || revenueAtRisk !== undefined) && (
-          <div className="mt-3 flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             {affectedAccounts !== undefined && (
-              <span className="text-muted-foreground">
-                <span className="font-semibold text-foreground">
+              <span>
+                <span className="font-medium text-foreground">
                   {affectedAccounts}
                 </span>{" "}
                 accounts
               </span>
             )}
             {revenueAtRisk !== undefined && (
-              <span className="text-muted-foreground">
-                <span className="font-semibold text-foreground">
+              <span>
+                <span className="font-medium text-foreground">
                   {formatCurrency(revenueAtRisk)}
                 </span>{" "}
                 at risk
@@ -125,8 +129,8 @@ export function SurfacingCard({
             )}
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -134,7 +138,7 @@ export function SurfacingEmptyState({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50/50 py-12 text-sm text-muted-foreground",
+        "flex items-center justify-center rounded-lg border border-dashed border-slate-300 bg-slate-50/50 py-10 text-sm text-muted-foreground",
         className
       )}
     >

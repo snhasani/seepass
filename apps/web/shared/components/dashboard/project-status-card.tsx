@@ -1,12 +1,6 @@
 "use client";
 
 import { cn } from "@/shared/lib/utils";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/shared/components/ui/card";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -18,8 +12,7 @@ export interface StatusItem {
 }
 
 export interface ProjectStatusCardProps {
-  title?: string;
-  items: StatusItem[];
+  items?: StatusItem[];
   className?: string;
 }
 
@@ -27,8 +20,8 @@ function StatusRow({ item }: { item: StatusItem }) {
   const content = (
     <>
       <span className="size-2 shrink-0 rounded-sm bg-slate-300" />
-      <span className="flex-1 text-sm">
-        <span className="font-medium text-foreground">{item.label}</span>
+      <span className="flex-1 text-sm text-slate-700">
+        <span className="font-medium">{item.label}</span>
         {item.value && (
           <span className="text-muted-foreground">: {item.value}</span>
         )}
@@ -40,7 +33,7 @@ function StatusRow({ item }: { item: StatusItem }) {
   );
 
   const rowClass =
-    "flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-slate-50";
+    "flex cursor-pointer items-center gap-3 rounded-md px-2 py-2.5 transition-colors hover:bg-slate-100";
 
   if (item.href) {
     return (
@@ -72,22 +65,21 @@ const defaultItems: StatusItem[] = [
 ];
 
 export function ProjectStatusCard({
-  title = "Where Things Stand",
   items = defaultItems,
   className,
 }: ProjectStatusCardProps) {
   return (
-    <Card className={cn("", className)}>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <div className="flex flex-col gap-0.5">
-          {items.map((item, idx) => (
-            <StatusRow key={idx} item={item} />
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div
+      className={cn(
+        "flex flex-col rounded-lg border border-slate-200 bg-white p-4",
+        className
+      )}
+    >
+      <div className="flex flex-col gap-1">
+        {items.map((item, idx) => (
+          <StatusRow key={idx} item={item} />
+        ))}
+      </div>
+    </div>
   );
 }

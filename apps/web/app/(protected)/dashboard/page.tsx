@@ -1,173 +1,134 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { useAuthStore } from "@/features/auth";
 import {
-  AIInsight,
-  ProblemCard,
-  SummaryPanel,
-  type PriorityItem,
-  type Problem,
-} from "@repo/design-system";
+  SurfacingCard,
+  SurfacingEmptyState,
+  RecentChatsList,
+  ProjectStatusCard,
+  type SurfacingType,
+  type ChatItem,
+} from "@/shared/components/dashboard";
+import { ArrowRight } from "lucide-react";
 
-// Mock data for the dashboard
-const mockPriorities: PriorityItem[] = [
+const mockSurfacingItems: Array<{
+  type: SurfacingType;
+  title: string;
+  description: string;
+  affectedAccounts?: number;
+  revenueAtRisk?: number;
+  windowStart?: string;
+  windowEnd?: string;
+}> = [
   {
-    id: "1",
-    title: "Checkout flow abandonment spike",
-    description:
-      "Users are dropping off at the payment step at 3x the normal rate",
-    severity: "critical",
-    signalCount: 47,
-    reason: "High impact on revenue, affecting 12% of all transactions",
-    isAiSuggested: true,
+    type: "investigate",
+    title: "Checkout",
+    description: "Error spike detected — 3x baseline rate affecting payment flow",
+    affectedAccounts: 83,
+    revenueAtRisk: 1299,
+    windowStart: "2025-11-01",
+    windowEnd: "2025-11-07",
   },
   {
-    id: "2",
-    title: "Mobile app crashes on iOS 18",
-    severity: "high",
-    signalCount: 32,
-    reason: "Increasing trend, 85% of affected users are premium subscribers",
-    isAiSuggested: true,
+    type: "monitor",
+    title: "Product Page",
+    description: "Dropoff rate trending up, ticket volume steady",
+    affectedAccounts: 44,
+    revenueAtRisk: 969,
+    windowStart: "2025-11-08",
+    windowEnd: "2025-11-14",
   },
   {
-    id: "3",
-    title: "Slow search performance",
-    description: "Search queries taking 5+ seconds on average",
-    severity: "medium",
-    signalCount: 28,
-    reason: "Consistently mentioned in support tickets this week",
-  },
-  {
-    id: "4",
-    title: "Confusing pricing page layout",
-    severity: "medium",
-    signalCount: 19,
-    reason: "New pattern emerging from user interviews",
-    isAiSuggested: true,
-  },
-  {
-    id: "5",
-    title: "Email notification delays",
-    severity: "low",
-    signalCount: 12,
-    reason: "Long-standing issue with stable signal count",
+    type: "note",
+    title: "Search",
+    description: "Weekday seasonality pattern — stable baseline, no action needed",
+    windowStart: "2025-11-01",
+    windowEnd: "2025-11-07",
   },
 ];
 
-const mockProblems: Problem[] = [
-  {
-    id: "prob-1",
-    title: "Users can't complete checkout on mobile",
-    description:
-      "Multiple reports of the checkout button being unresponsive on mobile devices, particularly after applying discount codes.",
-    severity: "critical",
-    sources: [
-      { type: "support", timestamp: new Date("2026-01-30T14:22:00") },
-      { type: "slack", timestamp: new Date("2026-01-30T11:05:00") },
-      { type: "intercom", timestamp: new Date("2026-01-29T16:45:00") },
-    ],
-    frequency: 47,
-    previousFrequency: 23,
-    tags: ["mobile", "checkout", "payments"],
-    clusterName: "Payment Issues",
-    aiConfidence: 0.92,
-    linkedSolutions: 2,
-    comments: 8,
-    createdAt: new Date("2026-01-28T09:00:00"),
-  },
-  {
-    id: "prob-2",
-    title: "Dashboard loading extremely slowly",
-    description:
-      "Enterprise customers reporting 10+ second load times on their main dashboard view.",
-    severity: "high",
-    sources: [
-      { type: "email", timestamp: new Date("2026-01-30T09:15:00") },
-      { type: "zendesk", timestamp: new Date("2026-01-29T14:30:00") },
-    ],
-    frequency: 32,
-    previousFrequency: 28,
-    tags: ["performance", "enterprise", "dashboard"],
-    linkedSolutions: 1,
-    comments: 5,
-    createdAt: new Date("2026-01-25T11:30:00"),
-  },
-  {
-    id: "prob-3",
-    title: "Confusing onboarding flow for teams",
-    description:
-      "New team admins struggling to understand how to invite members and set up permissions.",
-    severity: "medium",
-    sources: [
-      { type: "survey", timestamp: new Date("2026-01-29T10:00:00") },
-      { type: "interview", timestamp: new Date("2026-01-28T15:00:00") },
-      { type: "analytics", timestamp: new Date("2026-01-27T12:00:00") },
-    ],
-    frequency: 24,
-    previousFrequency: 30,
-    tags: ["onboarding", "teams", "UX"],
-    clusterName: "Onboarding",
-    aiConfidence: 0.78,
-    linkedSolutions: 3,
-    comments: 12,
-    createdAt: new Date("2026-01-20T14:00:00"),
-  },
-];
+function SectionHeader({
+  title,
+  viewAllHref,
+  viewAllLabel = "View all",
+}: {
+  title: string;
+  viewAllHref?: string;
+  viewAllLabel?: string;
+}) {
+  return (
+    <div className="mb-4 flex items-center justify-between">
+      <h2 className="text-lg font-semibold text-foreground">
+        {title}
+      </h2>
+      {viewAllHref && (
+        <Link
+          href={viewAllHref}
+          className="flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <span>{viewAllLabel}</span>
+          <ArrowRight className="size-3" />
+        </Link>
+      )}
+    </div>
+  );
+}
 
 export default function DashboardPage() {
+  const router = useRouter();
+  const user = useAuthStore((state) => state.user);
+  const problems = useQuery(
+    api.problems.listRecent,
+    user?.id ? { userId: user.id, limit: 5 } : "skip"
+  );
+
+  const recentChats: ChatItem[] =
+    problems?.map((p) => ({
+      id: p._id,
+      title: p.title || "Draft problem",
+      updatedAt: p.updatedAt,
+      status: p.status,
+    })) ?? [];
+
+  const handleSelectChat = (id: string) => {
+    router.push(`/assistant?problem=${id}`);
+  };
+
   return (
-    <div className="flex flex-col h-full ds-gradient-subtle">
-      {/* Compact Stats Header Bar */}
-
-      {/* Main content area - full width */}
-      <main className="flex-1 min-h-0 overflow-y-auto p-6">
-        <div className="max-w-3xl mx-auto space-y-6">
-          {/* Summary Panel - now compact by default */}
-          <SummaryPanel
-            title="What Matters Right Now"
-            subtitle="AI-prioritized based on signal analysis"
-            priorities={mockPriorities}
-            lastUpdated={new Date()}
-            maxItems={5}
-            compact
-            className="bg-white"
-          />
-
-          {/* AI Insight - collapsible */}
-          <AIInsight
-            type="pattern"
-            title="Payment issues cluster detected"
-            description="78% of checkout abandonment reports mention discount code application. This suggests a specific bug rather than general UX issues."
-            confidence={0.87}
-            explanation="Based on semantic analysis of 47 support tickets, 12 Slack mentions, and 8 user interviews from the past 7 days."
-            relatedProblems={[
-              "Users can't complete checkout on mobile",
-              "Discount codes not applying correctly",
-              "Cart total not updating",
-            ]}
-            expandable
-            defaultExpanded={false}
-            className="bg-white"
-          />
-
-          {/* Problem Cards - collapsible */}
-          <div className="space-y-2">
-            <h2 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide px-1">
-              Top Problems
-            </h2>
-            <div className="space-y-2">
-              {mockProblems.map((problem) => (
-                <ProblemCard
-                  key={problem.id}
-                  problem={problem}
-                  collapsible
-                  defaultExpanded={false}
-                  className="bg-white"
-                />
+    <div className="h-full overflow-y-auto bg-slate-50/50 p-6">
+      <div className="mx-auto max-w-5xl space-y-8">
+        <section>
+          <SectionHeader title="What's Surfacing" viewAllHref="/insights" />
+          {mockSurfacingItems.length === 0 ? (
+            <SurfacingEmptyState />
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {mockSurfacingItems.map((item, idx) => (
+                <SurfacingCard key={idx} {...item} />
               ))}
             </div>
+          )}
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-2">
+          <div className="flex flex-col">
+            <SectionHeader title="Recent Chats" viewAllHref="/assistant" viewAllLabel="View all chats" />
+            <RecentChatsList
+              chats={recentChats}
+              onSelect={handleSelectChat}
+              className="flex-1"
+            />
           </div>
-        </div>
-      </main>
+          <div className="flex flex-col">
+            <SectionHeader title="Where Things Stand" viewAllHref="/project" viewAllLabel="View project" />
+            <ProjectStatusCard className="flex-1" />
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
