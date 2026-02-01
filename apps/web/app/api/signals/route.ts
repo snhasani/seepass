@@ -62,8 +62,8 @@ export async function GET(request: NextRequest) {
         offset: offset ? parseInt(offset) : 0,
       },
       filters: {
-        scenarios: scenarios.map((s) => ({ value: s.scenario, count: s._count })),
-        entities: entities.map((e) => ({ value: e.entityKey, count: e._count })),
+        scenarios: scenarios.map((s: { scenario: string; _count: number }) => ({ value: s.scenario, count: s._count })),
+        entities: entities.map((e: { entityKey: string; _count: number }) => ({ value: e.entityKey, count: e._count })),
       },
     });
   } catch (error) {
