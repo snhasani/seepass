@@ -11,3 +11,9 @@ export {
   type RecentChatsListProps,
   type ChatItem,
 } from "./recent-chats-list";
+
+export {
+  ProjectStatusCard,
+  type ProjectStatusCardProps,
+  type StatusItem,
+} from "./project-status-card";
