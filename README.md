@@ -32,8 +32,8 @@ cd seepass
 pnpm install
 
 # Set up environment variables (Convex + OpenAI)
-cp apps/web/.env.example apps/web/.env
-# Edit apps/web/.env: set NEXT_PUBLIC_CONVEX_URL, CONVEX_DEPLOY_KEY, OPENAI_API_KEY
+cp apps/web/.env.example apps/web/.env.local
+# Edit apps/web/.env.local: set NEXT_PUBLIC_CONVEX_URL, CONVEX_DEPLOY_KEY, OPENAI_API_KEY
 
 # Run Convex backend (separate terminal)
 cd apps/web && pnpm dev:convex
@@ -45,7 +45,7 @@ cd apps/web && pnpm db:seed
 pnpm dev
 ```
 
-Optional: generate pattern records from `packages/data-gen` then import: `pnpm --filter data-gen gen:patterns`, then in `apps/web`: `pnpm db:seed:replace`.
+Optional: generate pattern records from `packages/data-gen` then import into Convex: run `pnpm gen:patterns` from `packages/data-gen`, then in `apps/web`: `pnpm db:seed:replace`.
 
 ### Data & Convex
 
