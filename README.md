@@ -14,7 +14,7 @@ AI Product Assistant for mid-size product teams: surfaces data-driven insights (
 
 * App: Next.js (App Router) + TypeScript
 * UI: Tailwind CSS; canvas in Workshop (hybrid canvas for problems/ideas)
-* API: Next.js API routes (chat, explain, problem-chat, signals, waitlist)
+* API: Next.js API routes (chat, explain, problem-chat, signals, wait-list)
 * AI: OpenAI via AI SDK (chat, explain, problem discovery; no custom embeddings)
 * Data/Realtime: Convex (single source of truth for data + realtime)
 * Infrastructure: Next.js deployment + Convex backend
@@ -25,7 +25,7 @@ Step-by-step instructions to run the project locally, including everything that 
 
 ```bash
 # Clone the repo
-git clone https://github.com/safer-spaces/seepass.git
+git clone git@github.com:safer-spaces/seepass.git
 cd seepass
 
 # Install dependencies

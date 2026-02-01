@@ -28,8 +28,17 @@ const uiMessageSchema: z.ZodType<UIMessageInput> = z.custom<UIMessageInput>(
   "Invalid UI message"
 );
 
+const signalContextSchema = z.object({
+  id: z.string(),
+  scenario: z.string(),
+  entityKey: z.string(),
+  summary: z.string(),
+  metrics: z.any(),
+}).nullish();
+
 const requestSchema = z.object({
   messages: z.array(uiMessageSchema),
+  signalContext: signalContextSchema,
 });
 
 export async function POST(req: Request) {
@@ -39,8 +48,8 @@ export async function POST(req: Request) {
   if (!parsed.success) {
     return new Response("Invalid request body", { status: 400 });
   }
-  const { messages } = parsed.data;
-  const system = await buildSystemPrompt();
+  const { messages, signalContext } = parsed.data;
+  const system = await buildSystemPrompt(signalContext ?? undefined);
 
   const result = streamText({
     model: openai.responses("gpt-5-nano"),
