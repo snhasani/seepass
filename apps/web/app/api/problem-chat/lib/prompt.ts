@@ -26,16 +26,59 @@ You are a product discovery assistant. Your goal is to identify and articulate t
 - If the user confirms the summary, do not send a textual response. The UI will handle confirmation feedback and start a new session.
 `;
 
-export async function buildSystemPrompt() {
+interface SignalContext {
+  id: string;
+  scenario: string;
+  entityKey: string;
+  summary: string;
+  metrics: Record<string, unknown>;
+}
+
+function formatSignalContext(signal: SignalContext): string {
+  const metrics = signal.metrics;
+  const parts: string[] = [];
+  parts.push(`- Scenario: ${signal.scenario.replace(/_/g, " ")}`);
+  parts.push(`- Entity: ${signal.entityKey}`);
+  parts.push(`- Summary: ${signal.summary}`);
+  if (metrics.error_rate && typeof metrics.error_rate === "object") {
+    const er = metrics.error_rate as { delta_pct?: number };
+    if (er.delta_pct) parts.push(`- Error rate change: ${er.delta_pct > 0 ? "+" : ""}${er.delta_pct.toFixed(1)}%`);
+  }
+  if (metrics.dropoff_rate && typeof metrics.dropoff_rate === "object") {
+    const dr = metrics.dropoff_rate as { delta_pct?: number };
+    if (dr.delta_pct) parts.push(`- Dropoff rate change: ${dr.delta_pct > 0 ? "+" : ""}${dr.delta_pct.toFixed(1)}%`);
+  }
+  if (typeof metrics.affected_accounts === "number") {
+    parts.push(`- Affected accounts: ${metrics.affected_accounts}`);
+  }
+  if (typeof metrics.revenue_at_risk === "number") {
+    parts.push(`- Revenue at risk: $${(metrics.revenue_at_risk / 1000).toFixed(1)}k`);
+  }
+  return parts.join("\n");
+}
+
+export async function buildSystemPrompt(signalContext?: SignalContext) {
   const platformContext = await fetchPlatformContext();
-  if (!platformContext) {
-    return BASE_SYSTEM_PROMPT;
+  let prompt = BASE_SYSTEM_PROMPT;
+
+  if (signalContext) {
+    prompt += `
+
+### Active Signal Investigation
+The user is exploring a specific signal. Use this context to guide your investigation:
+${formatSignalContext(signalContext)}
+
+Focus on helping the user understand the root cause and impact of this signal. Reference the metrics when relevant.`;
   }
 
-  return `${BASE_SYSTEM_PROMPT}
+  if (platformContext) {
+    prompt += `
 
 ### Platform context (sanitized, no PII)
 ${platformContext}
 
 Use this to tailor the problem framing and suggestions. Do not repeat it verbatim.`;
+  }
+
+  return prompt;
 }

@@ -21,7 +21,7 @@ export default function WorkshopPage() {
   }
 
   return (
-    <div className="flex h-full min-h-0 flex-col">
+    <div className="flex h-full min-h-0 flex-col bg-slate-50/50">
       <HybridCanvas className="flex-1" problems={problems ?? []} />
     </div>
   );

@@ -2,6 +2,30 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+  discovers: defineTable({
+    userId: v.string(),
+    signalId: v.optional(v.id("patternRecords")),
+    title: v.optional(v.string()),
+    signalContext: v.optional(v.object({
+      scenario: v.string(),
+      entityKey: v.string(),
+      summary: v.string(),
+      metrics: v.any(),
+    })),
+    prePrompts: v.optional(v.array(v.string())),
+    messages: v.array(v.any()),
+    status: v.union(
+      v.literal("active"),
+      v.literal("completed"),
+      v.literal("archived")
+    ),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_signal", ["signalId"])
+    .index("by_status", ["userId", "status"]),
+
   problems: defineTable({
     userId: v.string(),
     title: v.optional(v.string()),

@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as discovers from "../discovers.js";
 import type * as patternRecords from "../patternRecords.js";
 import type * as problems from "../problems.js";
 import type * as threads from "../threads.js";
@@ -20,6 +21,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  discovers: typeof discovers;
   patternRecords: typeof patternRecords;
   problems: typeof problems;
   threads: typeof threads;
