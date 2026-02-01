@@ -3,7 +3,7 @@
 import { cn } from "@/shared/lib/utils";
 import { AlertTriangle, ArrowRight, Eye, Lightbulb } from "lucide-react";
 
-export type SurfacingType = "investigate" | "monitor" | "note";
+export type SurfacingType = "investigate" | "watch" | "opportunity";
 
 export interface SurfacingCardProps {
   type: SurfacingType;
@@ -27,15 +27,15 @@ const typeConfig: Record<
     icon: AlertTriangle,
     colors: "bg-rose-100 text-rose-700 border-rose-300",
   },
-  monitor: {
-    label: "Monitor",
+  watch: {
+    label: "Watch",
     icon: Eye,
     colors: "bg-amber-100 text-amber-700 border-amber-300",
   },
-  note: {
-    label: "Note",
+  opportunity: {
+    label: "Opportunity",
     icon: Lightbulb,
-    colors: "bg-slate-100 text-slate-700 border-slate-300",
+    colors: "bg-emerald-100 text-emerald-700 border-emerald-300",
   },
 };
 

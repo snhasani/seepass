@@ -34,7 +34,7 @@ const mockSurfacingItems: Array<{
     windowEnd: "2025-11-07",
   },
   {
-    type: "monitor",
+    type: "watch",
     title: "Product Page",
     description: "Dropoff rate trending up, ticket volume steady",
     affectedAccounts: 44,
@@ -43,9 +43,10 @@ const mockSurfacingItems: Array<{
     windowEnd: "2025-11-14",
   },
   {
-    type: "note",
-    title: "Search",
-    description: "Weekday seasonality pattern — stable baseline, no action needed",
+    type: "opportunity",
+    title: "Cart Recovery",
+    description: "Push notification campaign showing 12% lift in conversions",
+    affectedAccounts: 156,
     windowStart: "2025-11-01",
     windowEnd: "2025-11-07",
   },
@@ -102,7 +103,7 @@ export default function DashboardPage() {
     <div className="h-full overflow-y-auto bg-slate-50/50 p-6">
       <div className="mx-auto max-w-5xl space-y-8">
         <section>
-          <SectionHeader title="What's Surfacing" viewAllHref="/insights" />
+          <SectionHeader title="What's Surfacing" viewAllHref="/signals" />
           {mockSurfacingItems.length === 0 ? (
             <SurfacingEmptyState />
           ) : (
