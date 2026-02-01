@@ -12,6 +12,17 @@ export const list = query({
   },
 });
 
+export const listRecent = query({
+  args: { userId: v.string(), limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("problems")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .order("desc")
+      .take(args.limit ?? 5);
+  },
+});
+
 export const get = query({
   args: { id: v.id("problems") },
   handler: async (ctx, args) => {
