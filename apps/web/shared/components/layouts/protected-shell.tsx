@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LogOut, Monitor, Moon, Sun } from "lucide-react";
+import { LogOut, Monitor, Moon, Sparkles, Sun } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
 import { Button } from "@/shared/components/ui/button";
 import { useAuthStore } from "@/features/auth";
@@ -44,7 +44,19 @@ export function ProtectedShell({ children }: ProtectedShellProps) {
           <span className="font-semibold">SeePass</span>
         </div>
 
-        <div className="relative flex items-center" data-slot="user-menu">
+        <div className="flex items-center gap-3">
+          <Button
+            asChild
+            size="sm"
+            className="gap-1.5"
+          >
+            <Link href="/assistant">
+              <Sparkles className="size-4" />
+              Ask AI
+            </Link>
+          </Button>
+
+          <div className="relative flex items-center" data-slot="user-menu">
           <div className="group relative">
             <Button
               variant="ghost"
@@ -121,6 +133,7 @@ export function ProtectedShell({ children }: ProtectedShellProps) {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </header>
 
