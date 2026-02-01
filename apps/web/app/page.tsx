@@ -1,22 +1,23 @@
-import Link from "next/link";
+import { CanvasShowcase } from "@/shared/components/landing/canvas-showcase";
 import { Button } from "@/shared/components/ui/button";
 import {
-  Brain,
-  MessageSquare,
-  Target,
-  Layers,
   ArrowRight,
-  Zap,
+  ArrowUpRight,
+  BarChart3,
+  Brain,
+  CheckCircle2,
   Eye,
   GitBranch,
-  Users,
-  Lightbulb,
-  CheckCircle2,
-  ArrowUpRight,
   Inbox,
-  BarChart3,
+  Layers,
+  Lightbulb,
+  MessageSquare,
+  Target,
+  Users,
   Workflow,
+  Zap,
 } from "lucide-react";
+import Link from "next/link";
 
 function FeatureCard({
   icon: Icon,
@@ -349,6 +350,25 @@ export default function LandingPage() {
               accent="rose"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Canvas Showcase - Animated Demo */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
+              See It In Action
+            </p>
+            <h2 className="mb-4 text-3xl font-bold text-slate-900 sm:text-4xl">
+              Watch problems become clarity
+            </h2>
+            <p className="text-slate-600">
+              AI continuously surfaces patterns and highlights what matters
+              most.
+            </p>
+          </div>
+          <CanvasShowcase />
         </div>
       </section>
 

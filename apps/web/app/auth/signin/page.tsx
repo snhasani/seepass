@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuthStore } from "@/features/auth";
 import { Button } from "@/shared/components/ui/button";
 import {
   Card,
@@ -11,7 +12,6 @@ import {
 } from "@/shared/components/ui/card";
 import { Input } from "@/shared/components/ui/input";
 import { Label } from "@/shared/components/ui/label";
-import { useAuthStore } from "@/features/auth";
 import { CheckCircle2, Target } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
