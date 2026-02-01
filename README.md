@@ -1,20 +1,23 @@
 # Seepass
 
-AI-Native Product Management Tool
+AI Product Assistant for mid-size product teams: surfaces data-driven insights (signals, alerts, opportunities) and supports the full lifecycle from problem discovery to ideation. Integrates with your product data to answer questions like “What are users complaining about?” or “What should we prioritize?” and provides an AI-assisted workshop for brainstorming and refining ideas.
+
+**Current app areas:**
+
+* **Dashboard** — Surfacing cards (investigate / watch / opportunity), recent conversations, project context
+* **Signals** — Pattern records with filters (scenario, entity, date); investigate, watch, and opportunity views
+* **Assistant — Discover** — Chat to identify and refine customer problems
+* **Assistant — Workshop** — Hybrid canvas for ideas and problems
+* **Auth** — Sign-in and sign-up
 
 ## Tech Stack
 
-MVP Architecture Summary
-
 * App: Next.js (App Router) + TypeScript
-* UI: Tailwind CSS, Canvas option A: React Flow; option B: custom canvas
-* API: Next.js API routes + server actions (no separate service)
-* AI: External LLMs for core workflows (no custom embeddings)
+* UI: Tailwind CSS; canvas in Workshop (hybrid canvas for problems/ideas)
+* API: Next.js API routes (chat, explain, problem-chat, signals, wait-list)
+* AI: OpenAI via AI SDK (chat, explain, problem discovery; no custom embeddings)
 * Data/Realtime: Convex (single source of truth for data + realtime)
-* Integrations: Manual entry + CSV import only
-* Repo-Native Mode: Deferred
-* Infrastructure: Single Next.js deployment + Convex backend
-* Observability: Structured logs + Sentry
+* Infrastructure: Next.js deployment + Convex backend
 
 ## How to Run
 
@@ -22,39 +25,33 @@ Step-by-step instructions to run the project locally, including everything that 
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-team/your-project.git
-cd your-project
+git clone git@github.com:safer-spaces/seepass.git
+cd seepass
 
 # Install dependencies
 pnpm install
 
-# Start PostgreSQL database (Docker required)
-./scripts/db-start.sh
-# Or: docker-compose up -d postgres
+# Set up environment variables (Convex + OpenAI)
+cp apps/web/.env.example apps/web/.env
+# Edit apps/web/.env: set NEXT_PUBLIC_CONVEX_URL, CONVEX_DEPLOY_KEY, OPENAI_API_KEY
 
-# Set up environment variables
-cp .env.example apps/web/.env.local
-# DATABASE_URL is already configured for docker-compose setup
+# Run Convex backend (separate terminal)
+cd apps/web && pnpm dev:convex
 
-# Generate pattern records
-pnpm gen:patterns
+# Seed pattern records (optional; run from apps/web)
+cd apps/web && pnpm db:seed
 
-# Run database migrations
-cd apps/web && pnpm db:migrate
-
-# Seed the database
-pnpm db:seed
-
-# Run the development server
+# Run the development server (from repo root)
 pnpm dev
 ```
 
-### Database Management
+Optional: generate pattern records from `packages/data-gen` then import: `pnpm --filter data-gen gen:patterns`, then in `apps/web`: `pnpm db:seed:replace`.
 
-- **Start database**: `./scripts/db-start.sh` or `docker-compose up -d postgres`
-- **Stop database**: `./scripts/db-stop.sh` or `docker-compose down`
-- **View logs**: `./scripts/db-logs.sh` or `docker-compose logs -f postgres`
-- **Database Studio**: `cd apps/web && pnpm db:studio` (opens Prisma Studio)
+### Data & Convex
+
+- **Seed (Convex)**: `cd apps/web && pnpm db:seed` (runs `patternRecords:seedIfEmpty`)
+- **Replace seed data**: `cd apps/web && pnpm db:seed:replace` (imports from `convex/seed-data.json`)
+- **Convex dashboard**: Use your Convex project URL for data and function logs
 
 ## Details
 

@@ -35,7 +35,20 @@ import { MarkdownText } from "./markdown-text";
 import { ProblemQuestionTool, ProblemSummaryTool } from "./problem-tools";
 import { ToolFallback } from "./tool-fallback";
 
-export const ProblemThread: FC = () => {
+interface SignalContext {
+  id: string;
+  scenario: string;
+  entityKey: string;
+  summary: string;
+  metrics: Record<string, unknown>;
+}
+
+interface ProblemThreadProps {
+  prePrompts?: string[];
+  signalContext?: SignalContext;
+}
+
+export const ProblemThread: FC<ProblemThreadProps> = ({ prePrompts, signalContext }) => {
   return (
     <ThreadPrimitive.Root
       className="aui-root aui-thread-root @container flex h-full w-full flex-1 flex-col bg-background"
@@ -47,6 +60,13 @@ export const ProblemThread: FC = () => {
         turnAnchor="top"
         className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-6"
       >
+        <ThreadPrimitive.Empty>
+          {prePrompts && prePrompts.length > 0 ? (
+            <SignalWelcome prePrompts={prePrompts} signalContext={signalContext} />
+          ) : (
+            <ThreadWelcome />
+          )}
+        </ThreadPrimitive.Empty>
         <ThreadPrimitive.Messages
           components={{
             UserMessage,
@@ -149,6 +169,51 @@ const ThreadSuggestions: FC = () => {
           </ThreadPrimitive.Suggestion>
         </div>
       ))}
+    </div>
+  );
+};
+
+const SignalWelcome: FC<{ prePrompts: string[]; signalContext?: SignalContext }> = ({
+  prePrompts,
+  signalContext,
+}) => {
+  return (
+    <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-(--thread-max-width) grow flex-col">
+      <div className="aui-thread-welcome-center flex w-full grow flex-col items-center justify-center">
+        <div className="aui-thread-welcome-message flex size-full flex-col justify-center px-4">
+          <h1 className="aui-thread-welcome-message-inner fade-in slide-in-from-bottom-1 animate-in font-semibold text-2xl duration-200">
+            Investigate this signal
+          </h1>
+          <p className="aui-thread-welcome-message-inner fade-in slide-in-from-bottom-1 animate-in text-muted-foreground text-xl delay-75 duration-200">
+            {signalContext?.summary || "Ask questions to understand the root cause"}
+          </p>
+        </div>
+      </div>
+      <div className="aui-thread-welcome-suggestions flex flex-col gap-2 pb-4 px-4">
+        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+          Suggested questions
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {prePrompts.map((prompt, index) => (
+            <div
+              key={prompt}
+              className="fade-in slide-in-from-bottom-2 animate-in fill-mode-both duration-200"
+              style={{ animationDelay: `${100 + index * 50}ms` }}
+            >
+              <ThreadPrimitive.Suggestion prompt={prompt} send asChild>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="h-auto whitespace-normal text-left py-2 px-3 text-sm hover:bg-primary/5 hover:border-primary/30 transition-colors"
+                  aria-label={prompt}
+                >
+                  {prompt}
+                </Button>
+              </ThreadPrimitive.Suggestion>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

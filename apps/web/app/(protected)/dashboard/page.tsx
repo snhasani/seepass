@@ -117,7 +117,7 @@ export default function DashboardPage() {
 
         <section className="grid gap-6 lg:grid-cols-2">
           <div className="flex flex-col">
-            <SectionHeader title="Recent Chats" viewAllHref="/assistant" viewAllLabel="View all chats" />
+            <SectionHeader title="Recent Discoveries" viewAllHref="/assistant" viewAllLabel="View all discoveries" />
             <RecentChatsList
               chats={recentChats}
               onSelect={handleSelectChat}

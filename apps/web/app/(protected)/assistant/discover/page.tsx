@@ -35,40 +35,40 @@ export default function DiscoverPage() {
   }
 
   return (
-    <div className="flex h-full min-h-0 flex-col">
-      {/* Header */}
-      <div className="flex items-center gap-4 border-b bg-background px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
-            <MessageSquare className="size-4 text-primary" />
+    <div className="flex h-full min-h-0 flex-col bg-slate-50/50">
+      <div className="border-b bg-background px-6 py-3">
+        <div className="mx-auto flex max-w-4xl items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
+              <MessageSquare className="size-4 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-sm font-semibold">Discover Problem</h1>
+              <p className="text-xs text-muted-foreground">
+                Chat with AI to identify and refine a customer problem
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-sm font-semibold">Discover Problem</h1>
-            <p className="text-xs text-muted-foreground">
-              Chat with AI to identify and refine a customer problem
-            </p>
-          </div>
+          <div className="flex-1" />
+          <Button
+            onClick={handleNewChat}
+            variant="outline"
+            size="sm"
+            className="gap-2"
+          >
+            <RotateCcw className="size-3.5" />
+            New Chat
+          </Button>
+          <Button asChild variant="outline" size="sm" className="gap-2">
+            <Link href="/assistant/workshop">
+              Go to Workshop
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
         </div>
-        <div className="flex-1" />
-        <Button
-          onClick={handleNewChat}
-          variant="outline"
-          size="sm"
-          className="gap-2"
-        >
-          <RotateCcw className="size-3.5" />
-          New Chat
-        </Button>
-        <Button asChild size="sm" className="gap-2">
-          <Link href="/assistant/workshop">
-            Go to Workshop
-            <ArrowRight className="size-4" />
-          </Link>
-        </Button>
       </div>
 
-      {/* Chat interface */}
-      <div className="flex-1 min-h-0 w-full">
+      <div className="flex-1 min-h-0">
         <ProblemDiscoveryAssistant
           key={chatKey}
           userId={user.id}

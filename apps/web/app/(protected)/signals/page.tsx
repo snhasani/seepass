@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { cn } from "@/shared/lib/utils";
 import { Input } from "@/shared/components/ui/input";
@@ -14,8 +14,11 @@ import {
   Eye,
   Lightbulb,
   Loader2,
+  Sparkles,
   X,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/features/auth";
 import type { Id } from "@/convex/_generated/dataModel";
 
 interface Signal {
@@ -146,7 +149,7 @@ function formatCurrency(value: number): string {
   return value >= 1000 ? `$${(value / 1000).toFixed(1)}k` : `$${value}`;
 }
 
-function SignalRow({ signal }: { signal: Signal }) {
+function SignalRow({ signal, onDiscover }: { signal: Signal; onDiscover: (signalId: Id<"patternRecords">) => void }) {
   const [expanded, setExpanded] = useState(false);
   const type = scenarioToType(signal.scenario);
   const config = typeConfig[type];
@@ -215,6 +218,14 @@ function SignalRow({ signal }: { signal: Signal }) {
           <span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
             {signal.score.toFixed(1)}
           </span>
+          <button
+            type="button"
+            onClick={() => onDiscover(signal._id)}
+            className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
+          >
+            <Sparkles className="size-3" />
+            Discover
+          </button>
         </div>
       </div>
 
@@ -316,6 +327,9 @@ function SignalRow({ signal }: { signal: Signal }) {
 }
 
 export default function SignalsPage() {
+  const router = useRouter();
+  const user = useAuthStore((state) => state.user);
+  const createDiscover = useMutation(api.discovers.create);
   const [trend, setTrend] = useState("");
   const [entityKey, setEntityKey] = useState("");
   const [minScore, setMinScore] = useState("");
@@ -323,6 +337,7 @@ export default function SignalsPage() {
   const [sortBy, setSortBy] = useState<
     "score" | "date" | "accounts" | "revenue" | "badge"
   >("score");
+  const [isCreating, setIsCreating] = useState(false);
 
   const signalsData = useQuery(api.patternRecords.list, {
     scenario: trend || undefined,
@@ -331,6 +346,20 @@ export default function SignalsPage() {
   });
 
   const aggregatesData = useQuery(api.patternRecords.aggregates);
+
+  const handleDiscover = async (signalId: Id<"patternRecords">) => {
+    if (!user?.id || isCreating) return;
+    setIsCreating(true);
+    try {
+      const discoverId = await createDiscover({
+        userId: user.id,
+        signalId,
+      });
+      router.push(`/assistant/discover/${discoverId}`);
+    } finally {
+      setIsCreating(false);
+    }
+  };
 
   const signals = useMemo(() => {
     if (!signalsData?.data) return [];
@@ -530,7 +559,7 @@ export default function SignalsPage() {
         ) : (
           <div className="space-y-3">
             {signals.map((signal) => (
-              <SignalRow key={signal._id} signal={signal} />
+              <SignalRow key={signal._id} signal={signal} onDiscover={handleDiscover} />
             ))}
           </div>
         )}
