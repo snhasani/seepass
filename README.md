@@ -24,10 +24,6 @@ AI Product Assistant for mid-size product teams: surfaces data-driven insights (
 Step-by-step instructions to run the project locally, including everything that needs to be set up.
 
 ```bash
-# Clone the repo
-git clone git@github.com:safer-spaces/seepass.git
-cd seepass
-
 # Install dependencies
 pnpm install
 
